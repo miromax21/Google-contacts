@@ -9,7 +9,7 @@
 import UIKit
 protocol RouterMainProtocol {
     var navigationController: UINavigationController! {get set}
-    var moduleBuilder: ModuleBuilderProtocol? {get set}
+    var moduleBuilder: AppModuleBuilderProtocol? {get set}
 }
 
 protocol RouterProtocol:RouterMainProtocol {
@@ -24,9 +24,9 @@ enum ControllersEnum{
 
 final class Router: RouterProtocol {
     var navigationController: UINavigationController!
-    var moduleBuilder: ModuleBuilderProtocol?
-    
-    init(navigationController: UINavigationController!,moduleBuilder:ModuleBuilder, userDataProvider:UserDataProviderProtocol) {
+    var moduleBuilder: AppModuleBuilderProtocol?
+    var contactsModuleBuilder : ContactsModuleBuilder = ContactsModuleBuilder()
+    init(navigationController: UINavigationController!,moduleBuilder: AppModuleBuilder, userDataProvider:UserDataProviderProtocol) {
         self.navigationController = navigationController
         self.moduleBuilder = moduleBuilder
     }
@@ -34,11 +34,11 @@ final class Router: RouterProtocol {
         var vc:  UIViewController?
         switch nextView {
             case .login:
-                vc = moduleBuilder?.createLoginModule(router: self)
+                vc = moduleBuilder?.authenticationModuleBuilder.showLogin(router: self)
             case .contacts:
-                vc = moduleBuilder?.createContactsModule(router: self)
+                vc = moduleBuilder?.contactsModuleBuilder.showContacts(router: self)
             case .contactsDetails(let contact):
-                vc = moduleBuilder?.createDetailsModule(contact: contact, router: self)
+                vc = moduleBuilder?.contactsModuleBuilder.showDetails(contact: contact, router: self)
         }
         goForward(next: vc)
     }

@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         var navigationController = UINavigationController()
-        let moduleBuilder = ModuleBuilder()
+        let moduleBuilder = AppModuleBuilder()
         let userDataProvider = UserDataProvider()
         let router = Router(navigationController: navigationController, moduleBuilder: moduleBuilder, userDataProvider: userDataProvider)
         router.onNext(nextView: .contacts)

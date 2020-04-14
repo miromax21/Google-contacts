@@ -8,39 +8,16 @@
 
 import UIKit
 
-protocol ModuleBuilderProtocol {
-    func createContactsModule(router: RouterProtocol) -> UIViewController
-    func createDetailsModule(contact:Contact?,router: RouterProtocol) -> UIViewController
-    func createLoginModule(router: RouterProtocol) -> UIViewController
+protocol AppModuleBuilderProtocol {
+    var contactsModuleBuilder : ContactsModuleBuilder {get}
+    var authenticationModuleBuilder: AuthenticationModuleBuilder {get}
 }
 
-class ModuleBuilder: ModuleBuilderProtocol {
-    func createDetailsModule(contact:Contact?, router: RouterProtocol) -> UIViewController {
-        let view = DetailsViewController()
-        let networkService = GoogleService()
-        let validator = Validator()
-        let presentor = DetailPresentor(view: view, service: networkService, router: router, contact: contact,validator: validator)
-        view.presentor = presentor
-        return view
-    }
-    
-    func createContactsModule(router: RouterProtocol) -> UIViewController {
-        
-        let view = ContactsViewController()
-        let networkService = GoogleService()
-        let userDataProvider = UserDataProvider()
-        let useCases = GoogleContactsUseCase(service: networkService, userDataprovider: userDataProvider)
-        let presentor = ContactsPresentor(view: view, useCases: useCases, router: router)
-        view.presentor = presentor
-        return view
-    }
-    
-    func createLoginModule(router: RouterProtocol) -> UIViewController {
-        let view = LoginViewController()
-        let networkService = GoogleService()
-        let validator = Validator()
-        let presentor = LoginViewPresenter(view: view, service: networkService, router: router, validator: validator)
-        view.presentor = presentor
-        return view
-    }
+class AppModuleBuilder: AppModuleBuilderProtocol {
+    lazy var contactsModuleBuilder : ContactsModuleBuilder = {
+        return ContactsModuleBuilder()
+    }()
+    lazy var authenticationModuleBuilder : AuthenticationModuleBuilder = {
+         return AuthenticationModuleBuilder()
+    }()
 }

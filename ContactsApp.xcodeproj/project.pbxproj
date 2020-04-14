@@ -30,6 +30,8 @@
 		1B7C3586243368BA00B701C6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C3585243368BA00B701C6 /* LoginViewController.swift */; };
 		1B7C3589243368D900B701C6 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B7C3588243368D900B701C6 /* LoginViewController.xib */; };
 		1B7C358C24336B2700B701C6 /* LoginViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C358B24336B2700B701C6 /* LoginViewPresenter.swift */; };
+		1B864D172445EE2C00120F48 /* ContactsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B864D162445EE2C00120F48 /* ContactsModule.swift */; };
+		1B864D1B2445F2D300120F48 /* AuthenticationModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B864D1A2445F2D300120F48 /* AuthenticationModule.swift */; };
 		1BABCC19243AEB420012FDF9 /* NetworkServiceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BABCC18243AEB420012FDF9 /* NetworkServiceProtocols.swift */; };
 		1BC60E392435C26300E3C5A9 /* UserDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC60E382435C26300E3C5A9 /* UserDataProvider.swift */; };
 		1BEB6A96242DC15D00B3BCE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEB6A95242DC15D00B3BCE3 /* AppDelegate.swift */; };
@@ -80,6 +82,8 @@
 		1B7C3585243368BA00B701C6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1B7C3588243368D900B701C6 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		1B7C358B24336B2700B701C6 /* LoginViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewPresenter.swift; sourceTree = "<group>"; };
+		1B864D162445EE2C00120F48 /* ContactsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsModule.swift; sourceTree = "<group>"; };
+		1B864D1A2445F2D300120F48 /* AuthenticationModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationModule.swift; sourceTree = "<group>"; };
 		1BABCC18243AEB420012FDF9 /* NetworkServiceProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocols.swift; sourceTree = "<group>"; };
 		1BC60E382435C26300E3C5A9 /* UserDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataProvider.swift; sourceTree = "<group>"; };
 		1BEB6A92242DC15D00B3BCE3 /* ContactsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				1B0F9E00242E3A9F00DE4A41 /* DetailsViewController.swift */,
+				1B0F9E01242E3A9F00DE4A41 /* DetailsViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -134,8 +139,7 @@
 		1B0EFFCD243208D0006E3CC3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1B7C35842433688900B701C6 /* LoginModule */,
-				1B0F9DFC242E31E000DE4A41 /* DetailModule */,
+				1B864D192445F23300120F48 /* AuthenticationModule */,
 				1B0F9DEA242DC45500DE4A41 /* ContactsModule */,
 			);
 			path = Views;
@@ -144,9 +148,9 @@
 		1B0F9DEA242DC45500DE4A41 /* ContactsModule */ = {
 			isa = PBXGroup;
 			children = (
-				1B0F9DEF242DC60900DE4A41 /* View */,
-				1B0F9DF5242DCE7500DE4A41 /* Presentor */,
-				1B0F9DF4242DCE5E00DE4A41 /* ViewModels */,
+				1B0F9DFC242E31E000DE4A41 /* ContactDetails */,
+				1B864D182445F1F000120F48 /* ContactsList */,
+				1B864D162445EE2C00120F48 /* ContactsModule.swift */,
 			);
 			path = ContactsModule;
 			sourceTree = "<group>";
@@ -193,13 +197,13 @@
 			path = NetvorkLayer;
 			sourceTree = "<group>";
 		};
-		1B0F9DFC242E31E000DE4A41 /* DetailModule */ = {
+		1B0F9DFC242E31E000DE4A41 /* ContactDetails */ = {
 			isa = PBXGroup;
 			children = (
 				1B0EFFCA2431D2F5006E3CC3 /* View */,
 				1B0F9DFF242E39D600DE4A41 /* Presentor */,
 			);
-			path = DetailModule;
+			path = ContactDetails;
 			sourceTree = "<group>";
 		};
 		1B0F9DFF242E39D600DE4A41 /* Presentor */ = {
@@ -261,13 +265,13 @@
 			path = KeyChaindata;
 			sourceTree = "<group>";
 		};
-		1B7C35842433688900B701C6 /* LoginModule */ = {
+		1B7C35842433688900B701C6 /* Login */ = {
 			isa = PBXGroup;
 			children = (
 				1B7C358A24336B0600B701C6 /* Presenter */,
 				1B7C3587243368C200B701C6 /* View */,
 			);
-			path = LoginModule;
+			path = Login;
 			sourceTree = "<group>";
 		};
 		1B7C3587243368C200B701C6 /* View */ = {
@@ -275,7 +279,6 @@
 			children = (
 				1B7C3585243368BA00B701C6 /* LoginViewController.swift */,
 				1B7C3588243368D900B701C6 /* LoginViewController.xib */,
-				1B0F9E01242E3A9F00DE4A41 /* DetailsViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -286,6 +289,25 @@
 				1B7C358B24336B2700B701C6 /* LoginViewPresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		1B864D182445F1F000120F48 /* ContactsList */ = {
+			isa = PBXGroup;
+			children = (
+				1B0F9DEF242DC60900DE4A41 /* View */,
+				1B0F9DF5242DCE7500DE4A41 /* Presentor */,
+				1B0F9DF4242DCE5E00DE4A41 /* ViewModels */,
+			);
+			path = ContactsList;
+			sourceTree = "<group>";
+		};
+		1B864D192445F23300120F48 /* AuthenticationModule */ = {
+			isa = PBXGroup;
+			children = (
+				1B7C35842433688900B701C6 /* Login */,
+				1B864D1A2445F2D300120F48 /* AuthenticationModule.swift */,
+			);
+			path = AuthenticationModule;
 			sourceTree = "<group>";
 		};
 		1BABCC0F243AE3280012FDF9 /* Data */ = {
@@ -605,12 +627,14 @@
 				1BC60E392435C26300E3C5A9 /* UserDataProvider.swift in Sources */,
 				1B0F9DF1242DC65800DE4A41 /* ContactsPresentor.swift in Sources */,
 				1B0EFFCC2431EDFA006E3CC3 /* Validation.swift in Sources */,
+				1B864D1B2445F2D300120F48 /* AuthenticationModule.swift in Sources */,
 				1B0F9DE7242DC30D00DE4A41 /* Router.swift in Sources */,
 				1BEB6A9D242DC15D00B3BCE3 /* ContentView.swift in Sources */,
 				1BEB6A98242DC15D00B3BCE3 /* SceneDelegate.swift in Sources */,
 				1B0F9DF9242DD57300DE4A41 /* GoogleService.swift in Sources */,
 				1B1BF9C4243C4B6F00029B4A /* Utils.swift in Sources */,
 				1B0F9E02242E3A9F00DE4A41 /* DetailsViewController.swift in Sources */,
+				1B864D172445EE2C00120F48 /* ContactsModule.swift in Sources */,
 				1B7AB8322444269100D6948C /* UserDataProviderProtocols.swift in Sources */,
 				1B11F34824457C9500C8393E /* UIControllerExtentions.swift in Sources */,
 				1B0F9DFE242E322600DE4A41 /* DetailPresenter.swift in Sources */,

@@ -15,8 +15,6 @@ protocol DetailViewProtocol : class{
 protocol DetailViewPresenterProtocol : class {
     init(view: DetailViewProtocol, service: NetworkServiceProtocol, router:RouterProtocol, contact:Contact?,validator: Validator)
     func setContact()
-    func tap()
-    func validate(text: String, with rules: Rule) -> Bool
 }
 
 class DetailPresentor: DetailViewPresenterProtocol {
@@ -37,10 +35,4 @@ class DetailPresentor: DetailViewPresenterProtocol {
         self.view?.setContact(contact: contact)
     }
     
-    func tap(){
-        router?.goBackward()
-    }
-    func validate(text: String, with rules: Rule) -> Bool {
-        return validator.validate(text: text, with: rules)
-    }
 }
