@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ContactsViewController" customModule="ContactsApp" customModuleProvider="target">
+            <connections>
+                <outlet property="contactsTableView" destination="1Kq-OK-Na4" id="5Nw-wz-LPC"/>
+                <outlet property="view" destination="iN0-l3-epB" id="HgG-Bj-yU7"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="1" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1Kq-OK-Na4">
+                    <rect key="frame" x="0.0" y="90" width="414" height="806"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <viewLayoutGuide key="contentLayoutGuide" id="Aed-gF-2qz"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="8E2-SU-wMS"/>
+                </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contacts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJO-la-dRe">
+                    <rect key="frame" x="20" y="69" width="374" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="1Kq-OK-Na4" firstAttribute="top" secondItem="TJO-la-dRe" secondAttribute="bottom" id="6yx-DW-Bow"/>
+                <constraint firstItem="TJO-la-dRe" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="C4y-NA-GpB"/>
+                <constraint firstItem="1Kq-OK-Na4" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="HOC-bU-vEy"/>
+                <constraint firstItem="1Kq-OK-Na4" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Lry-e7-qKi"/>
+                <constraint firstItem="TJO-la-dRe" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="25" id="UG9-qo-683"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="1Kq-OK-Na4" secondAttribute="bottom" constant="-34" id="nLu-1T-4Jw"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="TJO-la-dRe" secondAttribute="trailing" constant="20" id="q8t-sj-lxs"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="137.68115942028987" y="141.96428571428569"/>
+        </view>
+    </objects>
+</document>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>491600642145-0m7sj187isa4t2k61et9r57oe9o9h5fi.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.491600642145-0m7sj187isa4t2k61et9r57oe9o9h5fi</string>
+	<key>PLIST_VERSION</key>
+	<string>2</string>
+	<key>BUNDLE_ID</key>
+	<string>miromax.Google-contacts</string>
+</dict>
+</plist>
