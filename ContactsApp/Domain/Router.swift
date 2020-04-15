@@ -7,15 +7,18 @@
 //
 
 import UIKit
-protocol RouterMainProtocol {
+
+protocol RouterProtocol {
+    func goBackward()
+    func onNext(nextView:ControllersEnum)
+}
+
+protocol RouterMainProtocol: RouterProtocol {
     var navigationController: UINavigationController! {get set}
     var moduleBuilder: AppModuleBuilderProtocol? {get set}
 }
 
-protocol RouterProtocol:RouterMainProtocol {
-    func goBackward()
-    func onNext(nextView:ControllersEnum)
-}
+
 enum ControllersEnum{
     case login
     case contacts

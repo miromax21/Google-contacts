@@ -19,25 +19,30 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="1" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1Kq-OK-Na4">
-                    <rect key="frame" x="0.0" y="90" width="414" height="806"/>
+                    <rect key="frame" x="0.0" y="94" width="414" height="802"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <viewLayoutGuide key="contentLayoutGuide" id="Aed-gF-2qz"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="8E2-SU-wMS"/>
                 </tableView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contacts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJO-la-dRe">
-                    <rect key="frame" x="20" y="69" width="374" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contacts" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJO-la-dRe">
+                    <rect key="frame" x="20" y="44" width="374" height="40"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="5sM-rm-tYO"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
+                    <color key="shadowColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </label>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="1Kq-OK-Na4" firstAttribute="top" secondItem="TJO-la-dRe" secondAttribute="bottom" id="6yx-DW-Bow"/>
+                <constraint firstItem="1Kq-OK-Na4" firstAttribute="top" secondItem="TJO-la-dRe" secondAttribute="bottom" constant="10" id="6yx-DW-Bow"/>
                 <constraint firstItem="TJO-la-dRe" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="C4y-NA-GpB"/>
                 <constraint firstItem="1Kq-OK-Na4" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="HOC-bU-vEy"/>
                 <constraint firstItem="1Kq-OK-Na4" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Lry-e7-qKi"/>
-                <constraint firstItem="TJO-la-dRe" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="25" id="UG9-qo-683"/>
+                <constraint firstItem="TJO-la-dRe" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="UG9-qo-683"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="1Kq-OK-Na4" secondAttribute="bottom" constant="-34" id="nLu-1T-4Jw"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="TJO-la-dRe" secondAttribute="trailing" constant="20" id="q8t-sj-lxs"/>
             </constraints>

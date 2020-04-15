@@ -22,6 +22,7 @@ protocol ContactsViewPresentorProtocol {
     var userContacts: PublishSubject<[Contact]>{get set}
     var nextContacts: PublishSubject<[Contact]> {get set}
     var useCases: GoogleUseCases!  {get set}
+    var isLoading: PublishSubject<Bool> {get set}
 }
 
 class ContactsPresentor:ContactsViewPresentorProtocol{
@@ -30,22 +31,28 @@ class ContactsPresentor:ContactsViewPresentorProtocol{
     var contacts: [Contact] = []
     var useCases: GoogleUseCases!
     var error = PublishSubject<Error?>()
+    
     var userContacts =  PublishSubject<[Contact]>()
     var nextContacts =  PublishSubject<[Contact]>()
+    
+    var isLoading = PublishSubject<Bool>()
     let disposeBag = DisposeBag()
     required init(view: ContactsViewProtocol, useCases: GoogleUseCases, router: RouterProtocol) {
         self.view = view
         self.router = router
         self.useCases = useCases
-        self.getContacts()
+        self.isLoading.onNext(true)
     }
     func tapOnTheContact(contact: Contact?){
         router?.onNext(nextView: .contactsDetails(contact: contact))
     }
     func getContacts() {
+        self.isLoading.onNext(true)
         self.useCases.fetchContacts()
+        .delay(5, scheduler: ConcurrentDispatchQueueScheduler(qos: .background))
         .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background)).subscribe(onNext: { [unowned self] contacts in
             guard let contacts = contacts else {return}
+            self.isLoading.onNext(false)
             self.contacts += contacts
             self.nextContacts.onNext(contacts)
             self.nextContacts.onCompleted()

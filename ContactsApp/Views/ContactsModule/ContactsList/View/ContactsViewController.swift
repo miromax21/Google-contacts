@@ -20,18 +20,22 @@ class ContactsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         contactsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        let disposeBag = DisposeBag()
+    
         self.contactsTableView.delegate = nil
-
-        self.presentor.nextContacts.asObservable()
-            .do(onCompleted : {
-                self.removeLoader()
-            }, onSubscribe : {
+        self.presentor.isLoading.asObservable().subscribe(onNext: { (isLoading) in
+            if (isLoading){
                 self.showSpinner(onView: self.view)
-            })
-            .bind(to: contactsTableView.rx.items(cellIdentifier: "Cell",  cellType: UITableViewCell.self)) { row, element, cell in
-                cell.textLabel?.text = "\(element.name)"
+            }else{
+                self.removeLoader()
             }
+        })
+        
+        self.presentor.nextContacts.asObservable()
+        .bind(to: contactsTableView.rx.items(cellIdentifier: "Cell",  cellType: UITableViewCell.self)) { row, element, cell in
+            cell.textLabel?.text = "\(element.name)"
+        }
+        self.presentor.getContacts()
+        
         
         contactsTableView.rx.itemSelected.subscribe(onNext: {   [weak self] indexPath in
             self?.presentor.tapOnTheContact(contact: self?.presentor.contacts[indexPath.row])

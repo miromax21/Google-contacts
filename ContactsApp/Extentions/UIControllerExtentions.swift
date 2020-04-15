@@ -17,7 +17,7 @@ var loadingView : UIView?
 extension UIViewController : UIViewControllerLoaderProtocol {
     func showSpinner(onView : UIView) {
         let spinnerView = UIView.init(frame: onView.bounds)
-        let ai = UIActivityIndicatorView.init(style: .whiteLarge)
+        let ai = UIActivityIndicatorView.init(style: UIActivityIndicatorView.Style.large)
         ai.startAnimating()
         ai.center = spinnerView.center
         spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
