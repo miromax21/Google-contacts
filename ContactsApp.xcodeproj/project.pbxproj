@@ -34,6 +34,8 @@
 		1B864D1B2445F2D300120F48 /* AuthenticationModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B864D1A2445F2D300120F48 /* AuthenticationModule.swift */; };
 		1BABCC19243AEB420012FDF9 /* NetworkServiceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BABCC18243AEB420012FDF9 /* NetworkServiceProtocols.swift */; };
 		1BC60E392435C26300E3C5A9 /* UserDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC60E382435C26300E3C5A9 /* UserDataProvider.swift */; };
+		1BCA4EF92449923D00646D90 /* ContactDetailsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCA4EF82449923D00646D90 /* ContactDetailsProtocols.swift */; };
+		1BCA4EFB244992EF00646D90 /* ContactsListProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCA4EFA244992EF00646D90 /* ContactsListProtocols.swift */; };
 		1BEB6A96242DC15D00B3BCE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEB6A95242DC15D00B3BCE3 /* AppDelegate.swift */; };
 		1BEB6A98242DC15D00B3BCE3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEB6A97242DC15D00B3BCE3 /* SceneDelegate.swift */; };
 		1BEB6A9B242DC15D00B3BCE3 /* Google_contacts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1BEB6A99242DC15D00B3BCE3 /* Google_contacts.xcdatamodeld */; };
@@ -86,6 +88,8 @@
 		1B864D1A2445F2D300120F48 /* AuthenticationModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationModule.swift; sourceTree = "<group>"; };
 		1BABCC18243AEB420012FDF9 /* NetworkServiceProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocols.swift; sourceTree = "<group>"; };
 		1BC60E382435C26300E3C5A9 /* UserDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataProvider.swift; sourceTree = "<group>"; };
+		1BCA4EF82449923D00646D90 /* ContactDetailsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailsProtocols.swift; sourceTree = "<group>"; };
+		1BCA4EFA244992EF00646D90 /* ContactsListProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsListProtocols.swift; sourceTree = "<group>"; };
 		1BEB6A92242DC15D00B3BCE3 /* ContactsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BEB6A95242DC15D00B3BCE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BEB6A97242DC15D00B3BCE3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -148,6 +152,7 @@
 		1B0F9DEA242DC45500DE4A41 /* ContactsModule */ = {
 			isa = PBXGroup;
 			children = (
+				1BCA4EF72449921900646D90 /* Protocols */,
 				1B0F9DFC242E31E000DE4A41 /* ContactDetails */,
 				1B864D182445F1F000120F48 /* ContactsList */,
 				1B864D162445EE2C00120F48 /* ContactsModule.swift */,
@@ -337,6 +342,15 @@
 				1B0F9DF6242DCF1700DE4A41 /* ModuleBuilder.swift */,
 			);
 			path = Domain;
+			sourceTree = "<group>";
+		};
+		1BCA4EF72449921900646D90 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				1BCA4EF82449923D00646D90 /* ContactDetailsProtocols.swift */,
+				1BCA4EFA244992EF00646D90 /* ContactsListProtocols.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		1BEB6A89242DC15D00B3BCE3 = {
@@ -614,6 +628,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B7C358C24336B2700B701C6 /* LoginViewPresenter.swift in Sources */,
+				1BCA4EFB244992EF00646D90 /* ContactsListProtocols.swift in Sources */,
 				1BEB6A96242DC15D00B3BCE3 /* AppDelegate.swift in Sources */,
 				1B7AB82C244420F600D6948C /* UserDataWrapper.swift in Sources */,
 				1BABCC19243AEB420012FDF9 /* NetworkServiceProtocols.swift in Sources */,
@@ -632,6 +647,7 @@
 				1BEB6A9D242DC15D00B3BCE3 /* ContentView.swift in Sources */,
 				1BEB6A98242DC15D00B3BCE3 /* SceneDelegate.swift in Sources */,
 				1B0F9DF9242DD57300DE4A41 /* GoogleService.swift in Sources */,
+				1BCA4EF92449923D00646D90 /* ContactDetailsProtocols.swift in Sources */,
 				1B1BF9C4243C4B6F00029B4A /* Utils.swift in Sources */,
 				1B0F9E02242E3A9F00DE4A41 /* DetailsViewController.swift in Sources */,
 				1B864D172445EE2C00120F48 /* ContactsModule.swift in Sources */,

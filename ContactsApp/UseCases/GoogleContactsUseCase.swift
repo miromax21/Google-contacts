@@ -22,7 +22,7 @@ class GoogleContactsUseCase : GoogleUseCases {
     }
     
    func fetchContacts() -> Observable<[Contact]?>{
-    let googletoken = self.userDataprovider.getData(for: .googleIdToken)
+        let googletoken = self.userDataprovider.getData(for: .googleIdToken)
         return Observable.deferred {
             return self.service.fetch(path: .Users).flatMap { (data) -> Observable<[Contact]?> in
                 guard let data = data else { return Observable.of(nil)}

@@ -16,40 +16,89 @@ class ContactsViewController: UIViewController {
     
     var presentor: ContactsViewPresentorProtocol!
     var places: BehaviorRelay<[Contact]> = BehaviorRelay(value: [])
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        contactsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        
+        setupTableView()
+        setupTableViewBinding()
+        setupLoading()
+        self.presentor.getContacts()
+    }
     
+    private func setupTableView() {
         self.contactsTableView.delegate = nil
-        self.presentor.isLoading.asObservable().subscribe(onNext: { (isLoading) in
+        self.contactsTableView.dataSource = nil
+        self.contactsTableView.delegate = nil
+        self.contactsTableView.tableFooterView = UIView()
+    }
+
+    private func setupTableViewBinding() {
+        contactsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        presentor.dataSource.bind(to: contactsTableView.rx.items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) { index, model, cell in
+            cell.textLabel?.text = model.name
+        }.disposed(by: self.disposeBag)
+        
+        contactsTableView.rx.itemSelected.subscribe(onNext: { (indexPath) in
+            self.presentor.tapOnTheContact(contactIndex: indexPath)
+        }).disposed(by: self.disposeBag)
+    }
+    
+    func setupLoading(){
+       presentor.isLoading.asObservable().subscribe(onNext: { (isLoading) in
             if (isLoading){
                 self.showSpinner(onView: self.view)
             }else{
                 self.removeLoader()
             }
-        })
+        }).disposed(by: self.disposeBag)
         
-        self.presentor.nextContacts.asObservable()
-        .bind(to: contactsTableView.rx.items(cellIdentifier: "Cell",  cellType: UITableViewCell.self)) { row, element, cell in
-            cell.textLabel?.text = "\(element.name)"
-        }
-        self.presentor.getContacts()
-        
-        
-        contactsTableView.rx.itemSelected.subscribe(onNext: {   [weak self] indexPath in
-            self?.presentor.tapOnTheContact(contact: self?.presentor.contacts[indexPath.row])
-        })
+//        presentor.error.asObservable().subscribe(onNext: { (erroe) in
+//            let error = erroe?.localizedDescription
+//            self.showAlert(title: "difbsdf" , message: error)
+//        })
     }
 }
 
 extension ContactsViewController : ContactsViewProtocol {
-    func success() {
-      
-    }
-    
-    func failure(error:Error) {
-        print(error)
+    func showAlert(title: String?, message: ContactsAlertMessegeEnum! , style : UIAlertController.Style? = .alert) {
+        var title: String?
+        var alertMessege: String?
+        
+        let alert =  UIAlertController(title: title, message: alertMessege, preferredStyle: style!)
+        let actionRetry = UIAlertAction(title: "Retry", style: .default) { [unowned self] (action:UIAlertAction) in
+            alert.dismiss(animated: true) {
+                self.presentor.getContacts()
+            }
+        }
+        let actionOK = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
+            alert.dismiss(animated: true)
+        }
+        let actionGoAuth = UIAlertAction(title: "Авторизоваться", style: .default) { (action:UIAlertAction) in
+            self.presentor.goToAuthentication()
+        }
+        
+        switch message {
+            case .authorizationError:
+                title = "authorization error"
+                alert.addAction(actionGoAuth)
+            case .serverError(let errorTitle, let errorMessege):
+                title = errorTitle
+                alertMessege =  errorMessege
+                alert.addAction(actionRetry)
+            default:
+                title = "error :)"
+        }
+  
+
+
+
+        alert.addAction(actionOK)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+        }
+        
     }
 }
 

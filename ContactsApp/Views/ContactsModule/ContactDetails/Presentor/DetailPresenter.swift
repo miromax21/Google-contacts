@@ -8,15 +8,6 @@
 //
 
 import Foundation
-protocol DetailViewProtocol : class{
-   func setContact(contact: Contact?)
-}
-
-protocol DetailViewPresenterProtocol : class {
-    init(view: DetailViewProtocol, service: NetworkServiceProtocol, router:RouterProtocol, contact:Contact?,validator: Validator)
-    func setContact()
-}
-
 class DetailPresentor: DetailViewPresenterProtocol {
     weak var view: DetailViewProtocol?
     var router: RouterProtocol?
@@ -34,5 +25,4 @@ class DetailPresentor: DetailViewPresenterProtocol {
     func setContact() {
         self.view?.setContact(contact: contact)
     }
-    
 }
