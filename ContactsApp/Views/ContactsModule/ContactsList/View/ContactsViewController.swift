@@ -13,9 +13,7 @@ import RxDataSources
 
 class ContactsViewController: UIViewController {
     @IBOutlet weak var contactsTableView: UITableView!
-    
     var presentor: ContactsViewPresentorProtocol!
-    var places: BehaviorRelay<[Contact]> = BehaviorRelay(value: [])
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -35,17 +33,24 @@ class ContactsViewController: UIViewController {
     }
 
     private func setupTableViewBinding() {
-        contactsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        presentor.dataSource.bind(to: contactsTableView.rx.items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) { index, model, cell in
-            cell.textLabel?.text = model.name
+        let cell = ContactsTableViewCell.self
+        let nib = UINib(nibName: cell.identifier, bundle: nil)
+        contactsTableView.register(nib, forCellReuseIdentifier: cell.identifier)
+        presentor.dataSource.bind(to: contactsTableView.rx.items(cellIdentifier: cell.identifier, cellType: cell)) { index, model, cell in
+            cell.contact = model
         }.disposed(by: self.disposeBag)
         
         contactsTableView.rx.itemSelected.subscribe(onNext: { (indexPath) in
             self.presentor.tapOnTheContact(contactIndex: indexPath)
         }).disposed(by: self.disposeBag)
     }
+    private func setupHendelind(){
+        self.presentor.error.subscribe(onNext: { (error) in
+            self.showAlert(message: error)
+        }).disposed(by: self.disposeBag)
+    }
     
-    func setupLoading(){
+    private func setupLoading(){
        presentor.isLoading.asObservable().subscribe(onNext: { (isLoading) in
             if (isLoading){
                 self.showSpinner(onView: self.view)
@@ -54,15 +59,11 @@ class ContactsViewController: UIViewController {
             }
         }).disposed(by: self.disposeBag)
         
-//        presentor.error.asObservable().subscribe(onNext: { (erroe) in
-//            let error = erroe?.localizedDescription
-//            self.showAlert(title: "difbsdf" , message: error)
-//        })
     }
 }
 
 extension ContactsViewController : ContactsViewProtocol {
-    func showAlert(title: String?, message: ContactsAlertMessegeEnum! , style : UIAlertController.Style? = .alert) {
+    func showAlert(message: ContactsAlertMessegeEnum! , style : UIAlertController.Style? = .alert) {
         var title: String?
         var alertMessege: String?
         
@@ -90,9 +91,6 @@ extension ContactsViewController : ContactsViewProtocol {
             default:
                 title = "error :)"
         }
-  
-
-
 
         alert.addAction(actionOK)
         DispatchQueue.main.async {

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 protocol ContactsViewProtocol: class {
-    func showAlert(title: String?, message: ContactsAlertMessegeEnum! , style : UIAlertController.Style?)
+    func showAlert(message: ContactsAlertMessegeEnum! , style : UIAlertController.Style?)
 }
 enum ContactsAlertMessegeEnum{
     case authorizationError

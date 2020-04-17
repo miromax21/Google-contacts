@@ -7,7 +7,7 @@
 //
 
 import Foundation
-class Validator {
+struct  Validator {
     func validate(text: String, with rule: Rule) -> Bool {
         return NSPredicate(format: "SELF MATCHES %@", rule.rawValue).evaluate(with: text)
     }

@@ -11,9 +11,9 @@ import RxSwift
 import RxCocoa
 
 protocol ContactsViewPresentorProtocol {
-    var dataSource: BehaviorRelay<[Contact]> {get set}
-    var error : PublishSubject<Error?>  {get set}
-    var isLoading: PublishSubject<Bool> {get set}
+    var dataSource: BehaviorRelay<[Contact]> {get}
+    var error : PublishSubject<ContactsAlertMessegeEnum?>  {get}
+    var isLoading: PublishSubject<Bool> {get}
     func getContacts()
     func goToAuthentication()
     func tapOnTheContact(contactIndex: IndexPath)
@@ -23,7 +23,7 @@ class ContactsPresentor:ContactsViewPresentorProtocol{
     weak var view: ContactsViewProtocol?
     var dataSource = BehaviorRelay(value: [Contact]())
     var isLoading = PublishSubject<Bool>()
-    var error = PublishSubject<Error?>()
+    var error = PublishSubject<ContactsAlertMessegeEnum?>()
     
     var router: RouterProtocol?
     var contacts: [Contact] = []
@@ -63,7 +63,7 @@ class ContactsPresentor:ContactsViewPresentorProtocol{
                 self.nextContacts = contacts
             },
             onError: { [unowned self] (error) in
-                self.error.onNext(error)
+                self.error.onNext(.authorizationError)
             },
             onCompleted: { [unowned self] in
                 self.isLoading.onNext(false)

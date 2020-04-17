@@ -9,7 +9,6 @@
 import Foundation
 class Utils {
     init() {
-
     }
     static let shared = Utils()
     func JSONDecodeToData<T: Decodable>(data: Data?) -> T?{
@@ -24,12 +23,6 @@ class Utils {
             return nil
         }
         return NSDictionary(contentsOfFile: path)
-    }
-}
-
-extension Decodable {
-    init(jsonData: Data) throws {
-        self = try JSONDecoder().decode(Self.self, from: jsonData)
     }
 }
 
