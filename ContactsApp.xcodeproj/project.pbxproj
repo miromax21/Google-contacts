@@ -240,8 +240,8 @@
 		1B11F34924457CA000C8393E /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
-				1B11F34724457C9500C8393E /* UIControllerExtentions.swift */,
 				1BCA4F002449C7ED00646D90 /* UITableViewCellExtention.swift */,
+				1B11F34724457C9500C8393E /* UIControllerExtentions.swift */,
 				1BCA4F022449CD5400646D90 /* LibraryExtention.swift */,
 			);
 			path = Extentions;

@@ -9,6 +9,7 @@
 import UIKit
 
 protocol RouterProtocol {
+    var navigationController: UINavigationController! {get}
     func goBackward()
     func onNext(nextView:ControllersEnum)
     func present(onvc: UIViewController,nextView: ControllersEnum)

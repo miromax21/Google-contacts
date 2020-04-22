@@ -12,10 +12,10 @@ class Routertest: XCTestCase {
     
     var router : RouterProtocol!
     let navigationController = UINavigationController()
-    let moduleBuilder = ModuleBuilder()
-
+    let moduleBuilder = AppModuleBuilder()
+    let userDataProvider = UserDataProvider()
     override func setUp() {
-        router = Router(navigationController: navigationController, moduleBuilder: moduleBuilder)
+        router = Router(navigationController: navigationController, moduleBuilder: moduleBuilder, userDataProvider: userDataProvider)
     }
     override func tearDown() {
         router = nil
@@ -23,7 +23,7 @@ class Routertest: XCTestCase {
 
     func testRouter(){
        // router.loginViewController()
-        router.contactsViewController()
+        router.onNext(nextView: .contacts)
         XCTAssertTrue(router.navigationController?.viewControllers.last is ContactsViewController)
     }
 }
