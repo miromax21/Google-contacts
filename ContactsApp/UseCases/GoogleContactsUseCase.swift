@@ -9,24 +9,34 @@
 import Foundation
 import RxSwift
 import RxCocoa
-protocol GoogleUseCases {
-     func fetchContacts() -> Observable<[Contact]?>
-     init(service: NetworkServiceProtocol!, userDataprovider: UserDataProvider!)
-}
+
 class GoogleContactsUseCase : GoogleUseCases {
     var service: NetworkServiceProtocol!
-    var userDataprovider: UserDataProvider!
-    required init(service: NetworkServiceProtocol!, userDataprovider: UserDataProvider!) {
+    required init(service: NetworkServiceProtocol!) {
         self.service = service
-        self.userDataprovider = userDataprovider
     }
     
    func fetchContacts() -> Observable<[Contact]?>{
-        let googletoken = self.userDataprovider.getData(for: .googleIdToken)
+        guard let googleAccessTokken = UserDataWrapper.googleAccessTokken else { return Observable.of(nil)}
         return Observable.deferred {
-            return self.service.fetch(path: .Users).flatMap { (data) -> Observable<[Contact]?> in
-                guard let data = data else { return Observable.of(nil)}
-                return Observable.of(Utils.shared.JSONDecodeToData(data: data))
+            return self.service.fetch(path: .Contacts(token: googleAccessTokken)).flatMap { (data) -> Observable<[Contact]?> in
+                
+                var contscts = [Contact]()
+                
+                guard let data = data,
+                      let json = try? JSONSerialization.jsonObject(with:data) as? NSDictionary,
+                      let feeds = json["feed"] as? NSDictionary,
+                      let entryDictionaries = feeds["entry"] as? [Dictionary<String, AnyObject>]
+                else { return Observable.of(contscts)}
+
+                for entryDictionary in entryDictionaries {
+                    if let name = entryDictionary["gd$name"], let fullName = name["gd$fullName"] as? Dictionary<String, AnyObject>  {
+                        let contact = Contact(name: fullName.first?.value as? String)
+                        contscts.append(contact)
+                    }
+                }
+ 
+                return Observable.of(contscts)
             }
         }
     }

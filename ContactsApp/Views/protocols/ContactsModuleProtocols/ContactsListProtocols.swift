@@ -8,10 +8,20 @@
 
 import Foundation
 import UIKit
-protocol ContactsViewProtocol: class {
+import RxSwift
+import RxCocoa
+protocol ContactsViewProtocol: UIViewController {
     func showAlert(message: ContactsAlertMessegeEnum! , style : UIAlertController.Style?)
 }
 enum ContactsAlertMessegeEnum{
     case authorizationError
     case serverError(errorTitle:String, errorMessege: String?)
+}
+protocol ContactsViewPresentorProtocol {
+    var dataSource: BehaviorRelay<[Contact]> {get}
+    var error : PublishSubject<ContactsAlertMessegeEnum?>  {get}
+    var isLoading: PublishSubject<Bool> {get}
+    func getContacts()
+    func goToAuthentication()
+    func tapOnTheContact(contactIndex: IndexPath)
 }

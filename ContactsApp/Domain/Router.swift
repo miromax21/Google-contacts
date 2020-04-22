@@ -7,33 +7,39 @@
 //
 
 import UIKit
-
-protocol RouterProtocol {
-    func goBackward()
-    func onNext(nextView:ControllersEnum)
-}
-
-protocol RouterMainProtocol: RouterProtocol {
-    var navigationController: UINavigationController! {get set}
-    var moduleBuilder: AppModuleBuilderProtocol? {get set}
-}
-
-
-enum ControllersEnum{
-    case login
-    case contacts
-    case contactsDetails(contact:Contact?)
-}
-
 final class Router: RouterProtocol {
+    
     var navigationController: UINavigationController!
     var moduleBuilder: AppModuleBuilderProtocol?
     var contactsModuleBuilder : ContactsModuleBuilder = ContactsModuleBuilder()
+    var userDataProvider : UserDataProviderProtocol!
+    
     init(navigationController: UINavigationController!,moduleBuilder: AppModuleBuilder, userDataProvider:UserDataProviderProtocol) {
         self.navigationController = navigationController
         self.moduleBuilder = moduleBuilder
+        self.userDataProvider = userDataProvider
     }
+    
     func onNext(nextView: ControllersEnum){
+        if let vc = getViewController(nextView: nextView){
+            goForward(next: vc)
+        }
+    }
+    
+    func present(onvc: UIViewController, nextView: ControllersEnum){
+        if let vc = getViewController(nextView: nextView){
+            onvc.present(vc, animated: true)
+        }
+    }
+    
+    func goBackward() {
+        if self.navigationController.viewControllers.count > 1 {
+            self.navigationController.popToRootViewController(animated: true)
+        }
+    }
+    
+  // MARK: Private Methods
+    private func getViewController(nextView: ControllersEnum) ->  UIViewController? {
         var vc:  UIViewController?
         switch nextView {
             case .login:
@@ -43,20 +49,12 @@ final class Router: RouterProtocol {
             case .contactsDetails(let contact):
                 vc = moduleBuilder?.contactsModuleBuilder.showDetails(contact: contact, router: self)
         }
-        goForward(next: vc)
+        return vc
     }
-    
-    func goBackward() {
-        if self.navigationController.viewControllers.count > 1 {
-            self.navigationController.popToRootViewController(animated: true)
-        }
-    }
-    
     
     private func goForward(next:UIViewController?){
         guard let next = next else {return}
         self.navigationController.pushViewController(next, animated: true)
-
     }
     
     private func setAsRoot(viewControllerAsRoot:UIViewController?)  {
@@ -64,4 +62,5 @@ final class Router: RouterProtocol {
         self.navigationController = UINavigationController()
         self.navigationController?.pushViewController(viewController, animated: true)
     }
+    
 }

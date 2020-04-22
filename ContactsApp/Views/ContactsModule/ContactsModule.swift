@@ -8,11 +8,8 @@
 
 import Foundation
 import UIKit
-protocol ContactsModuleBuilderProtocol {
-     func showDetails(contact:Contact?, router: RouterProtocol) -> UIViewController
-     func showContacts(router: RouterProtocol) -> UIViewController
-}
 class ContactsModuleBuilder {
+    
     func showDetails(contact:Contact?, router: RouterProtocol) -> UIViewController {
         let view = DetailsViewController()
         let networkService = GoogleService()
@@ -21,12 +18,11 @@ class ContactsModuleBuilder {
         view.presentor = presentor
         return view
     }
+    
     func showContacts(router: RouterProtocol) -> UIViewController {
-        
         let view = ContactsViewController()
         let networkService = GoogleService()
-        let userDataProvider = UserDataProvider()
-        let useCases = GoogleContactsUseCase(service: networkService, userDataprovider: userDataProvider)
+        let useCases = GoogleContactsUseCase(service: networkService)
         let presentor = ContactsPresentor(view: view, useCases: useCases, router: router)
         view.presentor = presentor
         return view

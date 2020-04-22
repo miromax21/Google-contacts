@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+
 protocol NetworkServiceProtocol {
     func fetch(path:GoogleServiceEnum) -> Observable<Data?>
     var inProces : Bool {get set}

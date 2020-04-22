@@ -22,6 +22,7 @@ class ContactsViewController: UIViewController {
         setupTableView()
         setupTableViewBinding()
         setupLoading()
+        setupHendler()
         self.presentor.getContacts()
     }
     
@@ -44,8 +45,8 @@ class ContactsViewController: UIViewController {
             self.presentor.tapOnTheContact(contactIndex: indexPath)
         }).disposed(by: self.disposeBag)
     }
-    private func setupHendelind(){
-        self.presentor.error.subscribe(onNext: { (error) in
+    private func setupHendler(){
+        self.presentor.error.asObservable().subscribe(onNext: { [unowned self] (error) in
             self.showAlert(message: error)
         }).disposed(by: self.disposeBag)
     }
@@ -62,6 +63,8 @@ class ContactsViewController: UIViewController {
     }
 }
 
+// MARK: Extensions
+
 extension ContactsViewController : ContactsViewProtocol {
     func showAlert(message: ContactsAlertMessegeEnum! , style : UIAlertController.Style? = .alert) {
         var title: String?
@@ -73,10 +76,10 @@ extension ContactsViewController : ContactsViewProtocol {
                 self.presentor.getContacts()
             }
         }
-        let actionOK = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in
+        let actionOK = UIAlertAction(title: "OK", style: .default) { (action) in
             alert.dismiss(animated: true)
         }
-        let actionGoAuth = UIAlertAction(title: "Авторизоваться", style: .default) { (action:UIAlertAction) in
+        let actionGoAuth = UIAlertAction(title: "Авторизоваться", style: .default) {[unowned self] (action)  in
             self.presentor.goToAuthentication()
         }
         
@@ -91,7 +94,7 @@ extension ContactsViewController : ContactsViewProtocol {
             default:
                 title = "error :)"
         }
-
+        alert.title = title
         alert.addAction(actionOK)
         DispatchQueue.main.async {
             self.present(alert, animated: true)

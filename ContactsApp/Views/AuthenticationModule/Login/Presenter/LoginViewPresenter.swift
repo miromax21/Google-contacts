@@ -10,27 +10,25 @@ import Foundation
 import RxSwift
 import GoogleSignIn
 
-protocol LoginViewPresenterProtocol : class {
-    init(view: UIViewController, service: NetworkServiceProtocol, router:RouterProtocol, validator: Validator)
-    func validate(text: String, with rules: Rule) -> Bool
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!)
-}
-
 class LoginViewPresenter: LoginViewPresenterProtocol {
+    
     weak var view: UIViewController?
     var router: RouterProtocol?
     let service: NetworkServiceProtocol!
     var contact: Contact?
     var validator: Validator!
+    
     required init(view: UIViewController, service: NetworkServiceProtocol, router: RouterProtocol, validator: Validator) {
         self.view = view
         self.service = service
         self.router = router
         self.validator = validator
     }
+    
     func validate(text: String, with rules: Rule) -> Bool {
         return false
     }
+    
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if (error == nil) {
             guard let authentication = user.authentication else { return }

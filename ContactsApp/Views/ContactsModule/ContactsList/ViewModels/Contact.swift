@@ -9,10 +9,8 @@
 import Foundation
 
 struct Contact:Codable {
-    var id: Int
-    var name: String
-//    var username: String
-//    var email: String
+    var id: UUID
+    var name: String? = ""
     
     enum CodingKeys: String, CodingKey {
       case id
@@ -25,7 +23,12 @@ struct Contact:Codable {
     }
     init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
-      id = try container.decode(Int.self, forKey: .id)
+      id = try container.decode(UUID.self, forKey: .id)
       name = try container.decode(String.self, forKey: .name)
+    }
+    
+    init(name:String?) {
+        self.id = UUID.init()
+        self.name = name
     }
 }

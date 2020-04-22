@@ -14,6 +14,7 @@ target 'ContactsApp' do
   pod 'GoogleSignIn'
   pod 'KeychainSwift'
   pod 'RxDataSources'
+  pod 'AEXML'
 
   target 'ContactsAppTests' do
     inherit! :search_paths

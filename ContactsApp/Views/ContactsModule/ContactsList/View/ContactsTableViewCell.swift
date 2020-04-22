@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
+
 class ContactsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var contactLable: UILabel!
@@ -19,5 +20,4 @@ class ContactsTableViewCell: UITableViewCell {
             self.contactLable?.text = contact.name
         }
     }
-
 }

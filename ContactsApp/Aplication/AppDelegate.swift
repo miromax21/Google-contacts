@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         if let key = Utils.shared.GetBundleData(fileName: Constants.googleServicePlist)?.value(forKey: Constants.googleServicePlistClientID) as? String{
             GIDSignIn.sharedInstance().clientID  = key
-            GIDSignIn.sharedInstance().scopes = ["https://www.google.com/m8/feeds","https://www.googleapis.com/auth/contacts.readonly"];
+            GIDSignIn.sharedInstance().scopes = ["https://www.googleapis.com/auth/contacts.readonly","https://www.googleapis.com/auth/plus.login","https://www.googleapis.com/auth/plus.me"];
         }
         return true
     }
@@ -79,20 +79,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-//    func getPlist(withName name: String) -> [String]?
-//    {
-//        var nsDictionary: String?
-//        if let path = Bundle.main.path(forResource: name, ofType: "plist") {
-//            nsDictionary = NSDictionary(contentsOfFile: path)?.value(forKey: "CLIENT_ID")
-//        }
-//        if  let path = Bundle.main.path(forResource: name, ofType: "plist"),
-//            let xml = FileManager.default.contents(atPath: path)
-//        {
-//            return (try? PropertyListSerialization.propertyList(from: xml, options: .mutableContainersAndLeaves, format: nil)) as? [String]
-//        }
-//
-//        return nil
-//    }
 
 }
 

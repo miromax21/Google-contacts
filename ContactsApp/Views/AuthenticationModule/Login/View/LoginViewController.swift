@@ -9,6 +9,7 @@
 import UIKit
 import GoogleSignIn
 import GoogleUtilities
+
 class LoginViewController: UIViewController{
 
     @IBOutlet weak var login: UITextField!
@@ -22,7 +23,6 @@ class LoginViewController: UIViewController{
     }
     
     @IBAction func SignIn(_ sender: Any) {
-        
     }
     fileprivate func ConfigureGoogleSignInButton(){
         let googleSignButton = GIDSignInButton()
@@ -34,6 +34,8 @@ class LoginViewController: UIViewController{
         GIDSignIn.sharedInstance().presentingViewController = self
     }
 }
+
+// MARK: Extensions
 
 extension LoginViewController:GIDSignInDelegate{
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {

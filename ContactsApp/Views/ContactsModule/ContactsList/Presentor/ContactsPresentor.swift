@@ -10,15 +10,6 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-protocol ContactsViewPresentorProtocol {
-    var dataSource: BehaviorRelay<[Contact]> {get}
-    var error : PublishSubject<ContactsAlertMessegeEnum?>  {get}
-    var isLoading: PublishSubject<Bool> {get}
-    func getContacts()
-    func goToAuthentication()
-    func tapOnTheContact(contactIndex: IndexPath)
-}
-
 class ContactsPresentor:ContactsViewPresentorProtocol{
     weak var view: ContactsViewProtocol?
     var dataSource = BehaviorRelay(value: [Contact]())
@@ -37,7 +28,6 @@ class ContactsPresentor:ContactsViewPresentorProtocol{
         }
     }
  
-
     required init(view: ContactsViewProtocol, useCases: GoogleUseCases, router: RouterProtocol) {
         self.view = view
         self.router = router
@@ -51,7 +41,7 @@ class ContactsPresentor:ContactsViewPresentorProtocol{
         router?.onNext(nextView: .contactsDetails(contact: contact))
     }
     func goToAuthentication() {
-        router?.onNext(nextView: .login)
+        router?.present( onvc: self.view!, nextView: .login)
     }
     func getContacts() {
         self.isLoading.onNext(true)
@@ -59,11 +49,14 @@ class ContactsPresentor:ContactsViewPresentorProtocol{
         .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
         .subscribeOn(MainScheduler.instance).subscribe(
             onNext: { [unowned self] contacts in
-                guard let contacts = contacts else {return}
+                guard let contacts = contacts else {
+                    return
+                }
                 self.nextContacts = contacts
             },
             onError: { [unowned self] (error) in
                 self.error.onNext(.authorizationError)
+                self.isLoading.onNext(false)
             },
             onCompleted: { [unowned self] in
                 self.isLoading.onNext(false)

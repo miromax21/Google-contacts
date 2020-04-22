@@ -12,7 +12,7 @@ class Utils {
     }
     static let shared = Utils()
     func JSONDecodeToData<T: Decodable>(data: Data?) -> T?{
-        guard let data = data  else { return nil}
+        guard let data = data else { return nil}
         let model = try? JSONDecoder().decode(T.self, from: data)
         guard let result = model else { return nil}
         return result

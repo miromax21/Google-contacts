@@ -8,11 +8,10 @@
 
 import Foundation
 import UIKit
-protocol AuthenticationModuleBuilderProtocol {
-     func showLogin(router: RouterProtocol) -> UIViewController 
-}
+
 class AuthenticationModuleBuilder: AuthenticationModuleBuilderProtocol {
-    func showLogin(router: RouterProtocol) -> UIViewController {
+
+    func showLogin(router: RouterProtocol) -> UIViewController? {
         let view = LoginViewController()
         let networkService = GoogleService()
         let validator = Validator()

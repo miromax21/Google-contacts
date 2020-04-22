@@ -17,8 +17,8 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ILY-HO-AOC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <rect key="frame" x="16" y="0.0" width="288" height="60"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="Wek-Fl-8sB"/>
                         </constraints>
@@ -29,18 +29,12 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <constraints>
-                    <constraint firstAttribute="bottom" secondItem="ILY-HO-AOC" secondAttribute="bottom" id="F0b-05-LZm"/>
-                    <constraint firstItem="ILY-HO-AOC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="SQF-Be-zja"/>
-                    <constraint firstAttribute="trailing" secondItem="ILY-HO-AOC" secondAttribute="trailing" id="XLK-ES-zlh"/>
-                    <constraint firstItem="ILY-HO-AOC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="tht-nJ-oKE"/>
-                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="contactLable" destination="ILY-HO-AOC" id="tSt-qL-oaW"/>
             </connections>
-            <point key="canvasLocation" x="137.68115942028987" y="93.080357142857139"/>
+            <point key="canvasLocation" x="633.33333333333337" y="55.580357142857139"/>
         </tableViewCell>
     </objects>
 </document>
