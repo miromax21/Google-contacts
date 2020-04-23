@@ -7,28 +7,33 @@
 //
 
 import UIKit
+import  RxCocoa
+import RxSwift
 final class Router: RouterProtocol {
-    
     var navigationController: UINavigationController!
     var moduleBuilder: AppModuleBuilderProtocol?
     var contactsModuleBuilder : ContactsModuleBuilder = ContactsModuleBuilder()
     var userDataProvider : UserDataProviderProtocol!
+
+    var nextView: ControllersEnum?
     
-    init(navigationController: UINavigationController!,moduleBuilder: AppModuleBuilder, userDataProvider:UserDataProviderProtocol) {
+    init(navigationController: UINavigationController!,moduleBuilder: AppModuleBuilder, userDataProvider:UserDataProviderProtocol, firstView: ControllersEnum = .contacts ) {
         self.navigationController = navigationController
         self.moduleBuilder = moduleBuilder
         self.userDataProvider = userDataProvider
+        self.setAsRoot(viewControllerAsRoot: getVC(nextView: firstView))
     }
     
     func onNext(nextView: ControllersEnum){
-        if let vc = getViewController(nextView: nextView){
-            goForward(next: vc)
-        }
+        navigateTo(nextView: nextView)
     }
-    
-    func present(onvc: UIViewController, nextView: ControllersEnum){
-        if let vc = getViewController(nextView: nextView){
-            onvc.present(vc, animated: true)
+    func present(presentView: ControllersEnum) {
+        if let presentView = getVC(nextView: presentView) as? PresentableViewController{
+            presentView.complete = { view in
+                view.dismiss(animated: true)
+                return
+            }
+            self.navigationController.viewControllers.last?.present(presentView , animated: true)
         }
     }
     
@@ -39,8 +44,18 @@ final class Router: RouterProtocol {
     }
     
   // MARK: Private Methods
-    private func getViewController(nextView: ControllersEnum) ->  UIViewController? {
-        var vc:  UIViewController?
+    private func navigateTo(nextView: ControllersEnum) {
+        var vc:  UIViewController!
+        guard nextView.needAccept, (self.userDataProvider.getData(for: .googleAccessTokken)) != nil else {
+            present(presentView: .login)
+            return
+        }
+        vc = getVC(nextView: nextView)
+        self.navigationController.pushViewController(vc, animated: true)
+    }
+    
+    private func getVC(nextView: ControllersEnum) -> UIViewController{
+        var vc:  UIViewController!
         switch nextView {
             case .login:
                 vc = moduleBuilder?.authenticationModuleBuilder.showLogin(router: self)
@@ -59,8 +74,7 @@ final class Router: RouterProtocol {
     
     private func setAsRoot(viewControllerAsRoot:UIViewController?)  {
         guard let viewController = viewControllerAsRoot else {return}
-        self.navigationController = UINavigationController()
-        self.navigationController?.pushViewController(viewController, animated: true)
+        self.navigationController.viewControllers = [viewController]
     }
     
 }

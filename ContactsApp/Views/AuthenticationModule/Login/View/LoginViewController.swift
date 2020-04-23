@@ -10,20 +10,15 @@ import UIKit
 import GoogleSignIn
 import GoogleUtilities
 
-class LoginViewController: UIViewController{
-
-    @IBOutlet weak var login: UITextField!
-    @IBOutlet weak var password: UITextField!
-    @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
+class LoginViewController: UIViewController, PresentableViewController{
     
+    var complete: ((UIViewController) -> ())?
     var presentor: LoginViewPresenterProtocol!
     override func viewDidLoad() {
         super.viewDidLoad()
         ConfigureGoogleSignInButton()
     }
     
-    @IBAction func SignIn(_ sender: Any) {
-    }
     fileprivate func ConfigureGoogleSignInButton(){
         let googleSignButton = GIDSignInButton()
         googleSignButton.center = view.center

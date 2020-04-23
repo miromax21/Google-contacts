@@ -12,7 +12,7 @@ protocol RouterProtocol {
     var navigationController: UINavigationController! {get}
     func goBackward()
     func onNext(nextView:ControllersEnum)
-    func present(onvc: UIViewController,nextView: ControllersEnum)
+    func present(presentView: ControllersEnum)
 }
 
 protocol RouterMainProtocol: RouterProtocol {
@@ -26,4 +26,13 @@ enum ControllersEnum {
     case login
     case contacts
     case contactsDetails(contact:Contact?)
+
+    var needAccept : Bool {
+        switch self {
+            case .login :
+                return false
+            default:
+                return true
+        }
+    }
 }

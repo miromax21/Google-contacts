@@ -12,13 +12,13 @@ import GoogleSignIn
 
 class LoginViewPresenter: LoginViewPresenterProtocol {
     
-    weak var view: UIViewController?
+    weak var view: PresentableViewController?
     var router: RouterProtocol?
     let service: NetworkServiceProtocol!
     var contact: Contact?
     var validator: Validator!
     
-    required init(view: UIViewController, service: NetworkServiceProtocol, router: RouterProtocol, validator: Validator) {
+    required init(view: PresentableViewController, service: NetworkServiceProtocol, router: RouterProtocol, validator: Validator) {
         self.view = view
         self.service = service
         self.router = router
@@ -38,10 +38,13 @@ class LoginViewPresenter: LoginViewPresenterProtocol {
             else { return }
             UserDataWrapper.email = email
             UserDataWrapper.googleAccessTokken = accessTokken
+            if let done = view?.complete {
+                done(self.view!)
+                return
+            }
             self.router?.onNext(nextView: .contacts)
         } else {
             print("\(error.localizedDescription)")
         }
     }
-    
 }

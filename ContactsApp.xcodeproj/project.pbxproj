@@ -45,6 +45,7 @@
 		1BDDC23B24501C4300A23B96 /* ContactsModuleProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDDC23A24501C4300A23B96 /* ContactsModuleProtocols.swift */; };
 		1BDDC23E24501D3E00A23B96 /* AuthenticationProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDDC23D24501D3E00A23B96 /* AuthenticationProtocols.swift */; };
 		1BDDC246245187C800A23B96 /* UserDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDDC245245187C800A23B96 /* UserDataProvider.swift */; };
+		1BDDC2492451B7AD00A23B96 /* PresentableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDDC2482451B7AD00A23B96 /* PresentableProtocol.swift */; };
 		1BEB6A96242DC15D00B3BCE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEB6A95242DC15D00B3BCE3 /* AppDelegate.swift */; };
 		1BEB6A98242DC15D00B3BCE3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEB6A97242DC15D00B3BCE3 /* SceneDelegate.swift */; };
 		1BEB6A9B242DC15D00B3BCE3 /* Google_contacts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1BEB6A99242DC15D00B3BCE3 /* Google_contacts.xcdatamodeld */; };
@@ -107,6 +108,7 @@
 		1BDDC23A24501C4300A23B96 /* ContactsModuleProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsModuleProtocols.swift; sourceTree = "<group>"; };
 		1BDDC23D24501D3E00A23B96 /* AuthenticationProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationProtocols.swift; sourceTree = "<group>"; };
 		1BDDC245245187C800A23B96 /* UserDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserDataProvider.swift; path = ../../../../../UserDataProvider.swift; sourceTree = "<group>"; };
+		1BDDC2482451B7AD00A23B96 /* PresentableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentableProtocol.swift; sourceTree = "<group>"; };
 		1BEB6A92242DC15D00B3BCE3 /* ContactsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BEB6A95242DC15D00B3BCE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BEB6A97242DC15D00B3BCE3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 		1B1BF9C5243CBAB300029B4A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1BDDC2472451B78D00A23B96 /* Common */,
 				1B11F34924457CA000C8393E /* Extentions */,
 				1BCA4F042449CD9600646D90 /* Utils */,
 				1B6699092445C150002969D8 /* Constants.swift */,
@@ -420,6 +423,14 @@
 				1B7AB8312444269100D6948C /* UserDataProtocols.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		1BDDC2472451B78D00A23B96 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				1BDDC2482451B7AD00A23B96 /* PresentableProtocol.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		1BEB6A89242DC15D00B3BCE3 = {
@@ -712,6 +723,7 @@
 				1B0F9DF1242DC65800DE4A41 /* ContactsPresentor.swift in Sources */,
 				1B0EFFCC2431EDFA006E3CC3 /* Validation.swift in Sources */,
 				1BDDC23624501A0700A23B96 /* GoogleContactsUseCaseProtocols.swift in Sources */,
+				1BDDC2492451B7AD00A23B96 /* PresentableProtocol.swift in Sources */,
 				1BCA4F012449C7ED00646D90 /* UITableViewCellExtention.swift in Sources */,
 				1B864D1B2445F2D300120F48 /* AuthenticationModule.swift in Sources */,
 				1B0F9DE7242DC30D00DE4A41 /* Router.swift in Sources */,

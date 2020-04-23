@@ -12,7 +12,7 @@ import GoogleSignIn
 
 // MARK: ViewProtocols
 protocol LoginViewPresenterProtocol : class {
-    init(view: UIViewController, service: NetworkServiceProtocol, router:RouterProtocol, validator: Validator)
+    init(view: PresentableViewController, service: NetworkServiceProtocol, router:RouterProtocol, validator: Validator)
     func validate(text: String, with rules: Rule) -> Bool
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!)
 }

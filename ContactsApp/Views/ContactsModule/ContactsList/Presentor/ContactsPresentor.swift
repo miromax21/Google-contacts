@@ -40,7 +40,7 @@ class ContactsPresentor:ContactsViewPresentorProtocol{
         router?.onNext(nextView: .contactsDetails(contact: contact))
     }
     func goToAuthentication() {
-       router?.present( onvc: self.view!, nextView: .login)
+        router?.present(presentView: .login)
     }
     func getContacts() {
         self.isLoading.onNext(true)
@@ -48,7 +48,7 @@ class ContactsPresentor:ContactsViewPresentorProtocol{
         .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
         .subscribeOn(MainScheduler.instance).subscribe(
             onNext: { [unowned self] contacts in
-                 self.error.onNext(RequestError.authentification)
+                self.error.onNext(RequestError.authentification)
                 guard let contacts = contacts else {
                     return
                 }

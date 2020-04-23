@@ -44,7 +44,6 @@ class GoogleContactsUseCase : GoogleUseCases {
                         contscts.append(contact)
                     }
                 }
- 
                 return Observable.of(contscts)
             }
         }
