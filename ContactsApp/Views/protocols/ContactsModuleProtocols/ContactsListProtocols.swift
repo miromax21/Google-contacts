@@ -11,15 +11,11 @@ import UIKit
 import RxSwift
 import RxCocoa
 protocol ContactsViewProtocol: UIViewController {
-    func showAlert(message: ContactsAlertMessegeEnum! , style : UIAlertController.Style?)
-}
-enum ContactsAlertMessegeEnum{
-    case authorizationError
-    case serverError(errorTitle:String, errorMessege: String?)
+    func showAlert(message: RequestError, style : UIAlertController.Style?)
 }
 protocol ContactsViewPresentorProtocol {
     var dataSource: BehaviorRelay<[Contact]> {get}
-    var error : PublishSubject<ContactsAlertMessegeEnum?>  {get}
+    var error : PublishSubject<RequestError>  {get}
     var isLoading: PublishSubject<Bool> {get}
     func getContacts()
     func goToAuthentication()

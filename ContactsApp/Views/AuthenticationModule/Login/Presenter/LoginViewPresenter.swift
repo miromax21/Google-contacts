@@ -31,9 +31,12 @@ class LoginViewPresenter: LoginViewPresenterProtocol {
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if (error == nil) {
-            guard let authentication = user.authentication else { return }
-            guard let idtoken = authentication.idToken, let accessTokken = authentication.accessToken else { return }
-            UserDataWrapper.token = idtoken
+            guard
+                let authentication = user.authentication,
+                let email = user?.profile.email,
+                let accessTokken = authentication.accessToken
+            else { return }
+            UserDataWrapper.email = email
             UserDataWrapper.googleAccessTokken = accessTokken
             self.router?.onNext(nextView: .contacts)
         } else {

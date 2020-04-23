@@ -9,11 +9,13 @@
 import Foundation
 import RxSwift
 import RxCocoa
-
+import Network
 public struct RequestObservable {
-    
-  private var urlSession: URLSession
+
   static let shared = RequestObservable()
+  private var urlSession: URLSession
+  fileprivate var monitor = NWPathMonitor()
+  fileprivate let checkInternrtQueue = DispatchQueue(label: "InternetConnectionMonitor")
     
   public init(config:URLSessionConfiguration = URLSessionConfiguration.default) {
       urlSession = URLSession(configuration: config)
@@ -21,15 +23,22 @@ public struct RequestObservable {
     
   public func callAPI(request: URLRequest) -> Observable<Data?> {
       return Observable.create { observer in
+        if self.checkInternetConnection(){
+            observer.onError(RequestError.noInternet)
+            observer.onCompleted()
+        }
         let task = self.urlSession.dataTask(with: request) { (data, response, error) in
             if let httpResponse = response as? HTTPURLResponse{
                 let statusCode = httpResponse.statusCode
+                if let error = error {
+                    observer.onError(RequestError.sessionError(error: error))
+                }
                 if (200...399).contains(statusCode) {
                     observer.onNext(data)
-                }else if let error = error {
-                    observer.onError(error)
-                }else{
-                    observer.onError(NSError(domain: request.url?.absoluteString ?? "", code: httpResponse.statusCode, userInfo:  nil))
+                }
+                else{
+                    let taskError = NSError(domain: "Requesst", code: httpResponse.statusCode, userInfo:  nil)
+                    observer.onError(RequestError.serverError(error: taskError))
                 }
             }
              observer.onCompleted()
@@ -39,6 +48,17 @@ public struct RequestObservable {
         return Disposables.create {
             task.cancel()
         }
-       }
+    }.retry(2)
+    }
+    
+    private func checkInternetConnection() -> Bool{
+        var connectionerror = false
+        self.monitor.pathUpdateHandler   = { pathUpdateHandler in
+             if !(pathUpdateHandler.status == .satisfied){
+                connectionerror = true
+             }
+        }
+        self.monitor.start(queue: self.checkInternrtQueue)
+        return connectionerror
     }
 }

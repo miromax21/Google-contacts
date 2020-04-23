@@ -15,7 +15,7 @@ class ContactsViewController: UIViewController {
     @IBOutlet weak var contactsTableView: UITableView!
     var presentor: ContactsViewPresentorProtocol!
     let disposeBag = DisposeBag()
-    
+    let refreshControl = UIRefreshControl()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,6 +24,13 @@ class ContactsViewController: UIViewController {
         setupLoading()
         setupHendler()
         self.presentor.getContacts()
+        
+        refreshControl
+            .rx.controlEvent(UIControlEvents.valueChanged)
+            .subscribe(onNext: { [weak self] in
+            let s = ""
+                }, onCompleted: nil, onDisposed: nil)
+            .disposed(by: disposeBag)
     }
     
     private func setupTableView() {
@@ -66,7 +73,7 @@ class ContactsViewController: UIViewController {
 // MARK: Extensions
 
 extension ContactsViewController : ContactsViewProtocol {
-    func showAlert(message: ContactsAlertMessegeEnum! , style : UIAlertController.Style? = .alert) {
+    func showAlert(message: RequestError , style : UIAlertController.Style? = .alert) {
         var title: String?
         var alertMessege: String?
         
@@ -82,18 +89,27 @@ extension ContactsViewController : ContactsViewProtocol {
         let actionGoAuth = UIAlertAction(title: "Авторизоваться", style: .default) {[unowned self] (action)  in
             self.presentor.goToAuthentication()
         }
-        
-        switch message {
-            case .authorizationError:
-                title = "authorization error"
-                alert.addAction(actionGoAuth)
-            case .serverError(let errorTitle, let errorMessege):
-                title = errorTitle
-                alertMessege =  errorMessege
-                alert.addAction(actionRetry)
-            default:
-                title = "error :)"
+        switch message{
+            
+        case .any:
+            title = "asomething went wrong :)"
+        case .noInternet:
+            title = "internet cennection error"
+        case .sessionError(error: let error):
+            title = error.localizedDescription
+            alert.addAction(actionRetry)
+        case .serverError(error: let error):
+            if (error.code == 401){
+                fallthrough
+            }
+            title = "server error"
+            alertMessege = error.localizedDescription
+        case .authentification:
+            title = "authorization error"
+            alert.addAction(actionGoAuth)
+
         }
+        
         alert.title = title
         alert.addAction(actionOK)
         DispatchQueue.main.async {

@@ -14,3 +14,12 @@ protocol NetworkServiceProtocol {
     func fetch(path:GoogleServiceEnum) -> Observable<Data?>
     var inProces : Bool {get set}
 }
+
+enum RequestError: Error {
+    case any
+    case noInternet
+    case authentification
+    case sessionError(error: Error)
+    case serverError(error: NSError)
+}
+

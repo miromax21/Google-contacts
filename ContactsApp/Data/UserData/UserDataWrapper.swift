@@ -19,12 +19,12 @@ struct UserDataWrapper {
         }
     }
     
-    static var token: String? {
+    static var email: String? {
         get {
-            return userDataProvider.getData(for: .googleIdToken)
+            return userDataProvider.getData(for: .userEmail)
         }
         set {
-            userDataProvider.setData(value: newValue, for: .googleIdToken)
+            userDataProvider.setData(value: newValue, for: .userEmail)
         }
     }
 }

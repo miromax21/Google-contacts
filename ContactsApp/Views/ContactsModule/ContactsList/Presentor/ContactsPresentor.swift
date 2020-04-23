@@ -14,14 +14,13 @@ class ContactsPresentor:ContactsViewPresentorProtocol{
     weak var view: ContactsViewProtocol?
     var dataSource = BehaviorRelay(value: [Contact]())
     var isLoading = PublishSubject<Bool>()
-    var error = PublishSubject<ContactsAlertMessegeEnum?>()
+    var error = PublishSubject<RequestError>()
     
     var router: RouterProtocol?
     var contacts: [Contact] = []
     var useCases: GoogleUseCases!
     
     let disposeBag = DisposeBag()
-    
     fileprivate var nextContacts: [Contact] {
         willSet {
             self.dataSource.accept(self.dataSource.value + newValue)
@@ -41,7 +40,7 @@ class ContactsPresentor:ContactsViewPresentorProtocol{
         router?.onNext(nextView: .contactsDetails(contact: contact))
     }
     func goToAuthentication() {
-        router?.present( onvc: self.view!, nextView: .login)
+       router?.present( onvc: self.view!, nextView: .login)
     }
     func getContacts() {
         self.isLoading.onNext(true)
@@ -49,13 +48,14 @@ class ContactsPresentor:ContactsViewPresentorProtocol{
         .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
         .subscribeOn(MainScheduler.instance).subscribe(
             onNext: { [unowned self] contacts in
+                 self.error.onNext(RequestError.authentification)
                 guard let contacts = contacts else {
                     return
                 }
                 self.nextContacts = contacts
             },
             onError: { [unowned self] (error) in
-                self.error.onNext(.authorizationError)
+                self.error.onNext(error as? RequestError ?? RequestError.any)
                 self.isLoading.onNext(false)
             },
             onCompleted: { [unowned self] in

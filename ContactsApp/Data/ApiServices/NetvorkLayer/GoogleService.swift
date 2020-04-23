@@ -9,19 +9,20 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-fileprivate let GoogleServiceBaseUrl:String = "https://www.google.com/m8/feeds/contacts/miromax21@gmail.com/"
-
+//fileprivate let GoogleServiceBaseUrl:String = "https://www.google.com/m8/feeds/contacts/miromax21@gmail.com/"
+fileprivate let GoogleServiceBaseUrl:String = "https://www.google.com/m8/feeds/contacts/"
+//"dianadanikevski@gmail.com"
 enum GoogleServiceEnum{
     case Users
-    case Contacts(token:String)
+    case Contacts(token:String, userEmail : String)
     var url : URL {
         var path = ""
         switch self {
             
         case .Users:
             path = "/full"
-        case .Contacts(let accessToken):
-            path = "full?access_token=\(accessToken)&max-results=\(999)&alt=json&v=3.0"
+        case .Contacts(let accessToken, let userEmail):
+            path = "\(userEmail)/full?access_token=\(accessToken)&max-results=\(999)&alt=json&v=3.0"
         }
         
         return URL(string: GoogleServiceBaseUrl + path)!

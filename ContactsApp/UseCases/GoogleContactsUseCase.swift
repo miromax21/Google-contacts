@@ -22,9 +22,13 @@ class GoogleContactsUseCase : GoogleUseCases {
     }
     
    func fetchContacts() -> Observable<[Contact]?>{
-        guard let googleAccessTokken = UserDataWrapper.googleAccessTokken else { return Observable.of(nil)}
+        guard
+            let googleAccessTokken = UserDataWrapper.googleAccessTokken,
+            let email = UserDataWrapper.email
+            else { return Observable.error(RequestError.authentification)}
+    
         return Observable.deferred {
-            return self.service.fetch(path: .Contacts(token: googleAccessTokken)).flatMap { (data) -> Observable<[Contact]?> in
+            return self.service.fetch(path: .Contacts(token: googleAccessTokken, userEmail: email)).flatMap { (data) -> Observable<[Contact]?> in
                 
                 var contscts = [Contact]()
                 

@@ -16,4 +16,5 @@ protocol UserDataProviderProtocol {
 enum UserDataKeysEnum:String{
     case googleIdToken
     case googleAccessTokken
+    case userEmail
 }
