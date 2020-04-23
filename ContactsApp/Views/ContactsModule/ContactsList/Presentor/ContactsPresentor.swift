@@ -48,7 +48,6 @@ class ContactsPresentor:ContactsViewPresentorProtocol{
         .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
         .subscribeOn(MainScheduler.instance).subscribe(
             onNext: { [unowned self] contacts in
-                self.error.onNext(RequestError.authentification)
                 guard let contacts = contacts else {
                     return
                 }

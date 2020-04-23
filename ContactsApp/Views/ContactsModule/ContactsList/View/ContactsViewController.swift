@@ -15,7 +15,7 @@ class ContactsViewController: UIViewController {
     @IBOutlet weak var contactsTableView: UITableView!
     var presentor: ContactsViewPresentorProtocol!
     let disposeBag = DisposeBag()
-    let refreshControl = UIRefreshControl()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,15 +24,8 @@ class ContactsViewController: UIViewController {
         setupLoading()
         setupHendler()
         self.presentor.getContacts()
-        
-        refreshControl
-            .rx.controlEvent(UIControlEvents.valueChanged)
-            .subscribe(onNext: { [weak self] in
-            let s = ""
-                }, onCompleted: nil, onDisposed: nil)
-            .disposed(by: disposeBag)
+
     }
-    
     private func setupTableView() {
         self.contactsTableView.delegate = nil
         self.contactsTableView.dataSource = nil
