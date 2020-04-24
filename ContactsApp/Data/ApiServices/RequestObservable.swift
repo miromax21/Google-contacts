@@ -14,16 +14,14 @@ public struct RequestObservable {
 
   static let shared = RequestObservable()
   private var urlSession: URLSession
-  fileprivate var monitor = NWPathMonitor()
-  fileprivate let checkInternrtQueue = DispatchQueue(label: "InternetConnectionMonitor")
-    
+
   public init(config:URLSessionConfiguration = URLSessionConfiguration.default) {
       urlSession = URLSession(configuration: config)
   }
     
   public func callAPI(request: URLRequest) -> Observable<Data?> {
       return Observable.create { observer in
-        if self.checkInternetConnection(){
+        if Utils.shared.isInternetAvailable {
             observer.onError(RequestError.noInternet)
             observer.onCompleted()
         }
@@ -37,7 +35,7 @@ public struct RequestObservable {
                     observer.onNext(data)
                 }
                 else{
-                    let taskError = NSError(domain: "Requesst", code: httpResponse.statusCode, userInfo:  nil)
+                    let taskError = NSError(domain: String(describing:type(of: self)), code: httpResponse.statusCode, userInfo:  nil)
                     observer.onError(RequestError.serverError(error: taskError))
                 }
             }
@@ -49,17 +47,5 @@ public struct RequestObservable {
             task.cancel()
         }
     }.retry(2)
-    }
-    
-    private func checkInternetConnection() -> Bool{
-        var connectionerror = false
-        self.monitor.start(queue: self.checkInternrtQueue)
-        self.monitor.pathUpdateHandler   = { pathUpdateHandler in
-             if !(pathUpdateHandler.status == .satisfied){
-                connectionerror = true
-             }
-        }
-
-        return connectionerror
     }
 }

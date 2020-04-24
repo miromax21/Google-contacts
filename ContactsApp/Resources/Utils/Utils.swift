@@ -7,9 +7,16 @@
 //
 
 import Foundation
+import Network
 class Utils {
-    init() {
-    }
+    
+    fileprivate let utilsQueue = DispatchQueue(label: "utilsQueue")
+    lazy var isInternetAvailable : Bool = {
+        return checkInternetConnection()
+    }()
+    
+    init() {}
+    
     static let shared = Utils()
     func JSONDecodeToData<T: Decodable>(data: Data?) -> T?{
         guard let data = data else { return nil}
@@ -23,6 +30,19 @@ class Utils {
             return nil
         }
         return NSDictionary(contentsOfFile: path)
+    }
+
+//MARK: privet Utils functions
+    fileprivate func checkInternetConnection() -> Bool  {
+        let monitor = NWPathMonitor()
+        var connectionerror = false
+        monitor.start(queue: self.utilsQueue)
+        monitor.pathUpdateHandler   = { pathUpdateHandler in
+             if !(pathUpdateHandler.status == .satisfied){
+                connectionerror = true
+             }
+        }
+        return connectionerror
     }
 }
 
