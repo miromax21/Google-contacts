@@ -8,6 +8,6 @@
 
 import UIKit
 protocol PresentableViewController: UIViewController {
-    var complete : ((UIViewController)-> ())? { get set }
+    var complete : (()-> ())? { get set }
 }
 

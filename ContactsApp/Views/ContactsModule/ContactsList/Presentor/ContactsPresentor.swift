@@ -16,7 +16,7 @@ class ContactsPresentor:ContactsViewPresentorProtocol{
     var isLoading = PublishSubject<Bool>()
     var error = PublishSubject<RequestError>()
     
-    var router: RouterProtocol?
+    var router: RouterProtocol!
     var contacts: [Contact] = []
     var useCases: GoogleUseCases!
     
@@ -37,10 +37,12 @@ class ContactsPresentor:ContactsViewPresentorProtocol{
 
     func tapOnTheContact(contactIndex: IndexPath){
         let contact =  self.dataSource.value[contactIndex.row]
-        router?.onNext(nextView: .contactsDetails(contact: contact))
+        router.onNext(nextView: .contactsDetails(contact: contact))
     }
     func goToAuthentication() {
-        router?.present(presentView: .login)
+        router.present(presentView: .login, completion: { [unowned self] _ in
+             self.getContacts()
+        })
     }
     func getContacts() {
         self.isLoading.onNext(true)
@@ -48,6 +50,7 @@ class ContactsPresentor:ContactsViewPresentorProtocol{
         .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
         .subscribeOn(MainScheduler.instance).subscribe(
             onNext: { [unowned self] contacts in
+                self.error.onNext(.authentification)
                 guard let contacts = contacts else {
                     return
                 }

@@ -12,7 +12,7 @@ protocol RouterProtocol {
     var navigationController: UINavigationController! {get}
     func goBackward()
     func onNext(nextView:ControllersEnum)
-    func present(presentView: ControllersEnum)
+    func present(presentView: ControllersEnum, completion: ((_ vc: PresentableViewController) -> ())?)
 }
 
 protocol RouterMainProtocol: RouterProtocol {

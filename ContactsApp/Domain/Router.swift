@@ -27,10 +27,12 @@ final class Router: RouterProtocol {
     func onNext(nextView: ControllersEnum){
         navigateTo(nextView: nextView)
     }
-    func present(presentView: ControllersEnum) {
+    func present(presentView: ControllersEnum, completion: ((PresentableViewController) -> ())?) {
         if let presentView = getVC(nextView: presentView) as? PresentableViewController{
-            presentView.complete = { view in
-                view.dismiss(animated: true)
+            presentView.complete = {
+                if let completion = completion{
+                    completion(presentView)
+                }
                 return
             }
             self.navigationController.viewControllers.last?.present(presentView , animated: true)
@@ -47,7 +49,7 @@ final class Router: RouterProtocol {
     private func navigateTo(nextView: ControllersEnum) {
         var vc:  UIViewController!
         guard nextView.needAccept, (self.userDataProvider.getData(for: .googleAccessTokken)) != nil else {
-            present(presentView: .login)
+                present(presentView: .login, completion: nil)
             return
         }
         vc = getVC(nextView: nextView)

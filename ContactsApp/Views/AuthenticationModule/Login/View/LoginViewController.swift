@@ -12,7 +12,7 @@ import GoogleUtilities
 
 class LoginViewController: UIViewController, PresentableViewController{
     
-    var complete: ((UIViewController) -> ())?
+    var complete: (() -> ())?
     var presentor: LoginViewPresenterProtocol!
     override func viewDidLoad() {
         super.viewDidLoad()

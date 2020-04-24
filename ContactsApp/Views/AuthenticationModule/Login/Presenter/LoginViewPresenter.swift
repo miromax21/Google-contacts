@@ -38,8 +38,9 @@ class LoginViewPresenter: LoginViewPresenterProtocol {
             else { return }
             UserDataWrapper.email = email
             UserDataWrapper.googleAccessTokken = accessTokken
-            if let done = view?.complete {
-                done(self.view!)
+            if let complete = view?.complete {
+                self.view?.dismiss(animated: true)
+                complete()
                 return
             }
             self.router?.onNext(nextView: .contacts)
