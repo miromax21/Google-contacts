@@ -47,10 +47,9 @@ class ContactsPresentor:ContactsViewPresentorProtocol{
     func getContacts() {
         self.isLoading.onNext(true)
         self.useCases.fetchContacts()
-        .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-        .subscribeOn(MainScheduler.instance).subscribe(
+        .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+        .observeOn(MainScheduler.instance).subscribe(
             onNext: { [unowned self] contacts in
-                self.error.onNext(.authentification)
                 guard let contacts = contacts else {
                     return
                 }

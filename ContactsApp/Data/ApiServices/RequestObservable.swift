@@ -53,12 +53,13 @@ public struct RequestObservable {
     
     private func checkInternetConnection() -> Bool{
         var connectionerror = false
+        self.monitor.start(queue: self.checkInternrtQueue)
         self.monitor.pathUpdateHandler   = { pathUpdateHandler in
              if !(pathUpdateHandler.status == .satisfied){
                 connectionerror = true
              }
         }
-        self.monitor.start(queue: self.checkInternrtQueue)
+
         return connectionerror
     }
 }
