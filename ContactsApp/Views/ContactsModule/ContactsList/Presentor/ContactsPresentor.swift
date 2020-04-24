@@ -19,7 +19,6 @@ class ContactsPresentor:ContactsViewPresentorProtocol{
     var router: RouterProtocol!
     var contacts: [Contact] = []
     var useCases: GoogleUseCases!
-    
     let disposeBag = DisposeBag()
     fileprivate var nextContacts: [Contact] {
         willSet {

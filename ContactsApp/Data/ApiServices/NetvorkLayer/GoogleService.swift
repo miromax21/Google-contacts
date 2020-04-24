@@ -31,7 +31,7 @@ enum GoogleServiceEnum{
 
 
 class GoogleService: NetworkServiceProtocol {
-    var inProces : Bool = false
+    var inProcess : Bool = false
     var currentRequest : URLRequest?
     var dataTask: URLSessionDataTask?
     lazy var requestObservable = RequestObservable(config: .default)

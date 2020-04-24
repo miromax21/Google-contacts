@@ -40,6 +40,7 @@ class LoginViewPresenter: LoginViewPresenterProtocol {
             UserDataWrapper.googleAccessTokken = accessTokken
             if let complete = view?.complete {
                 self.view?.dismiss(animated: true)
+                self.view?.removeFromParent()
                 complete()
                 return
             }
