@@ -9,9 +9,8 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-//fileprivate let GoogleServiceBaseUrl:String = "https://www.google.com/m8/feeds/contacts/miromax21@gmail.com/"
 fileprivate let GoogleServiceBaseUrl:String = "https://www.google.com/m8/feeds/contacts/"
-//"dianadanikevski@gmail.com"
+
 enum GoogleServiceEnum{
     case Users
     case Contacts(token:String, userEmail : String)
@@ -38,9 +37,8 @@ class GoogleService: NetworkServiceProtocol {
     init() {
         
     }
-    
     func fetch(path:GoogleServiceEnum) -> Observable<Data?> {
-         let request = NSMutableURLRequest(url: path.url)
+         var request = URLRequest(url: path.url)
          request.httpMethod = "GET"
          request.addValue("text/xml; charset=utf-8", forHTTPHeaderField: "Content-Type")
          return RequestObservable.shared.callAPI(request: request as URLRequest)

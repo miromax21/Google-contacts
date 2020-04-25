@@ -12,40 +12,62 @@ import RxCocoa
 import Network
 public struct RequestObservable {
 
-  static let shared = RequestObservable()
-  private var urlSession: URLSession
+    static let shared = RequestObservable()
+    private var urlSession: URLSession
 
-  public init(config:URLSessionConfiguration = URLSessionConfiguration.default) {
-      urlSession = URLSession(configuration: config)
-  }
+    fileprivate let cache = URLCache.shared
+    fileprivate let cacheInterval:Double = 0.0
+
+    public init(config:URLSessionConfiguration = URLSessionConfiguration.default) {
+        urlSession = URLSession(configuration: config)
+    }
     
-  public func callAPI(request: URLRequest) -> Observable<Data?> {
-      return Observable.create { observer in
-        if Utils.shared.isInternetAvailable {
-            observer.onError(RequestError.noInternet)
-            observer.onCompleted()
-        }
-        let task = self.urlSession.dataTask(with: request) { (data, response, error) in
-            if let httpResponse = response as? HTTPURLResponse{
-                let statusCode = httpResponse.statusCode
+    public func callAPI(request: URLRequest) -> Observable<Data?> {
+        return Observable.create { observer in
+            if Utils.shared.isInternetAvailable {
+                observer.onNext(self.getDataFromCache(request: request))
+                observer.onError(RequestError.noInternet)
+                observer.onCompleted()
+            }
+            let task = self.urlSession.dataTask(with: request) { (data, response, error) in
                 if let error = error {
                     observer.onError(RequestError.sessionError(error: error))
                 }
-                if (200...399).contains(statusCode) {
-                    observer.onNext(data)
+                if let httpResponse = response as? HTTPURLResponse{
+                    let statusCode = httpResponse.statusCode
+                    if (200...399).contains(statusCode) {
+                        guard let data = data, let resp = response  else { return observer.onNext(nil)}
+                        let cachedData = CachedURLResponse(response: resp, data: data)
+                        self.setDataToCache(cachedData: cachedData, for: request)
+
+                        observer.onNext(data)
+                    }
+                    else{
+                        let taskError = NSError(domain: String(describing:type(of: self)), code: statusCode, userInfo:  nil)
+                        observer.onError(RequestError.serverError(error: taskError))
+                    }
                 }
-                else{
-                    let taskError = NSError(domain: String(describing:type(of: self)), code: httpResponse.statusCode, userInfo:  nil)
-                    observer.onError(RequestError.serverError(error: taskError))
-                }
+                 observer.onCompleted()
             }
-             observer.onCompleted()
-        }
             
-        task.resume()
-        return Disposables.create {
-            task.cancel()
+            Timer.scheduledTimer(withTimeInterval: self.cacheInterval, repeats: false) { timer in
+                observer.onNext(self.getDataFromCache(request: request))
+                observer.onCompleted()
+                task.cancel()
+            }.fire()
+            
+            task.resume()
+            return Disposables.create {
+                task.cancel()
+            }
         }
-    }.retry(2)
+    }
+    
+    fileprivate func getDataFromCache(request: URLRequest) -> Data?{
+        return self.cache.cachedResponse(for: request)?.data
+    }
+    
+    fileprivate func setDataToCache(cachedData:CachedURLResponse, for request: URLRequest){
+        self.cache.storeCachedResponse(cachedData, for: request)
     }
 }
