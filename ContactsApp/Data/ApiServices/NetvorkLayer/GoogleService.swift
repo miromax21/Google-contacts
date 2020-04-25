@@ -29,19 +29,13 @@ enum GoogleServiceEnum{
 }
 
 
-class GoogleService: NetworkServiceProtocol {
-    var inProcess : Bool = false
-    var currentRequest : URLRequest?
-    var dataTask: URLSessionDataTask?
-    lazy var requestObservable = RequestObservable(config: .default)
+class GoogleService: RequestObservable, NetworkServiceProtocol {
     init() {
-        
     }
     func fetch(path:GoogleServiceEnum) -> Observable<Data?> {
          var request = URLRequest(url: path.url)
          request.httpMethod = "GET"
          request.addValue("text/xml; charset=utf-8", forHTTPHeaderField: "Content-Type")
-         return RequestObservable.shared.callAPI(request: request as URLRequest)
+         return super.callAPI(request: request)
     }
 }
-

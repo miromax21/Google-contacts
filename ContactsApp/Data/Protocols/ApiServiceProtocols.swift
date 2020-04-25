@@ -12,7 +12,6 @@ import RxCocoa
 
 protocol NetworkServiceProtocol {
     func fetch(path:GoogleServiceEnum) -> Observable<Data?>
-    var inProcess : Bool {get set}
 }
 
 enum RequestError: Error {

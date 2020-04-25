@@ -10,16 +10,21 @@ import Foundation
 import RxSwift
 import RxCocoa
 import Network
-public struct RequestObservable {
+protocol Api{
+    var task: URLSessionTask? {get set}
+    func callAPI(request: URLRequest) -> Observable<Data?>
+}
+public class RequestObservable {
 
-    static let shared = RequestObservable()
+    var task: URLSessionTask?
+
     private var urlSession: URLSession
 
     fileprivate let cache = URLCache.shared
-    fileprivate let cacheInterval:Double = 0.0
-
+    fileprivate let cacheInterval:Double = 7.0
+ 
     public init(config:URLSessionConfiguration = URLSessionConfiguration.default) {
-        urlSession = URLSession(configuration: config)
+        self.urlSession = URLSession(configuration: config)
     }
     
     public func callAPI(request: URLRequest) -> Observable<Data?> {
@@ -29,17 +34,17 @@ public struct RequestObservable {
                 observer.onError(RequestError.noInternet)
                 observer.onCompleted()
             }
-            let task = self.urlSession.dataTask(with: request) { (data, response, error) in
+            self.task = self.urlSession.dataTask(with: request) { (data, response, error) in
                 if let error = error {
                     observer.onError(RequestError.sessionError(error: error))
                 }
                 if let httpResponse = response as? HTTPURLResponse{
+                    
                     let statusCode = httpResponse.statusCode
                     if (200...399).contains(statusCode) {
                         guard let data = data, let resp = response  else { return observer.onNext(nil)}
                         let cachedData = CachedURLResponse(response: resp, data: data)
                         self.setDataToCache(cachedData: cachedData, for: request)
-
                         observer.onNext(data)
                     }
                     else{
@@ -53,12 +58,12 @@ public struct RequestObservable {
             Timer.scheduledTimer(withTimeInterval: self.cacheInterval, repeats: false) { timer in
                 observer.onNext(self.getDataFromCache(request: request))
                 observer.onCompleted()
-                task.cancel()
+                self.task?.cancel()
             }.fire()
             
-            task.resume()
+            self.task?.resume()
             return Disposables.create {
-                task.cancel()
+                self.task?.cancel()
             }
         }
     }
