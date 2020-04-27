@@ -20,7 +20,6 @@ class ContactsViewController: UIViewController {
         super.viewDidLoad()
         
         setupTableView()
-        setupTableViewBinding()
         setupLoading()
         setupHendler()
         self.presentor.getContacts()
@@ -31,6 +30,7 @@ class ContactsViewController: UIViewController {
         self.contactsTableView.dataSource = nil
         self.contactsTableView.delegate = nil
         self.contactsTableView.tableFooterView = UIView()
+        setupTableViewBinding()
     }
 
     private func setupTableViewBinding() {
@@ -52,12 +52,9 @@ class ContactsViewController: UIViewController {
     }
     
     private func setupLoading(){
-       presentor.isLoading.asObservable().subscribe(onNext: { (isLoading) in
-            if (isLoading){
-                self.showSpinner(onView: self.view)
-            }else{
-                self.removeLoader()
-            }
+        let loader: LoaderViewProtocol = LoaderView(onview: self.view)
+        presentor.isLoading.asObservable().subscribe(onNext: { (isLoading) in
+            loader.isLoading.onNext(isLoading)
         }).disposed(by: self.disposeBag)
         
     }
@@ -79,7 +76,7 @@ extension ContactsViewController : ContactsViewProtocol {
         let actionOK = UIAlertAction(title: "OK", style: .default) { (action) in
             alert.dismiss(animated: true)
         }
-        let actionGoAuth = UIAlertAction(title: "Авторизоваться", style: .default) {[unowned self] (action)  in
+        let actionGoAuth = UIAlertAction(title: "Авторизоваться", style: .default) { [unowned self] (action)  in
             self.presentor.goToAuthentication()
         }
         switch message{

@@ -18,7 +18,7 @@
 		1B0F9DFE242E322600DE4A41 /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F9DFD242E322600DE4A41 /* DetailPresenter.swift */; };
 		1B0F9E02242E3A9F00DE4A41 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F9E00242E3A9F00DE4A41 /* DetailsViewController.swift */; };
 		1B0F9E03242E3A9F00DE4A41 /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B0F9E01242E3A9F00DE4A41 /* DetailsViewController.xib */; };
-		1B11F34824457C9500C8393E /* UIControllerExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B11F34724457C9500C8393E /* UIControllerExtentions.swift */; };
+		1B11F34824457C9500C8393E /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B11F34724457C9500C8393E /* LoaderView.swift */; };
 		1B1BF9C0243C37E200029B4A /* GoogleContactsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1BF9BF243C37E200029B4A /* GoogleContactsUseCase.swift */; };
 		1B1BF9C4243C4B6F00029B4A /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1BF9C3243C4B6F00029B4A /* Utils.swift */; };
 		1B6166472434890B00ACB5DA /* Routertest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6166462434890B00ACB5DA /* Routertest.swift */; };
@@ -79,7 +79,7 @@
 		1B0F9DFD242E322600DE4A41 /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
 		1B0F9E00242E3A9F00DE4A41 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		1B0F9E01242E3A9F00DE4A41 /* DetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
-		1B11F34724457C9500C8393E /* UIControllerExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIControllerExtentions.swift; sourceTree = "<group>"; };
+		1B11F34724457C9500C8393E /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
 		1B1BF9BF243C37E200029B4A /* GoogleContactsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleContactsUseCase.swift; sourceTree = "<group>"; };
 		1B1BF9C3243C4B6F00029B4A /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		1B61663C243487C100ACB5DA /* ContactsAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactsAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -243,7 +243,6 @@
 			isa = PBXGroup;
 			children = (
 				1BCA4F002449C7ED00646D90 /* UITableViewCellExtention.swift */,
-				1B11F34724457C9500C8393E /* UIControllerExtentions.swift */,
 				1BCA4F022449CD5400646D90 /* LibraryExtention.swift */,
 			);
 			path = Extentions;
@@ -428,7 +427,8 @@
 		1BDDC2472451B78D00A23B96 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				1BDDC2482451B7AD00A23B96 /* PresentableProtocol.swift */,
+				1BFA53B02456CE8E004D091E /* directives */,
+				1BFA53AF2456CE2A004D091E /* Protocols */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -475,6 +475,22 @@
 				1BEB6AA1242DC16000B3BCE3 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		1BFA53AF2456CE2A004D091E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				1BDDC2482451B7AD00A23B96 /* PresentableProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		1BFA53B02456CE8E004D091E /* directives */ = {
+			isa = PBXGroup;
+			children = (
+				1B11F34724457C9500C8393E /* LoaderView.swift */,
+			);
+			path = directives;
 			sourceTree = "<group>";
 		};
 		43053A043A2A3D5BB27DAA4F /* Pods */ = {
@@ -736,7 +752,7 @@
 				1BCA4F032449CD5400646D90 /* LibraryExtention.swift in Sources */,
 				1BDDC23B24501C4300A23B96 /* ContactsModuleProtocols.swift in Sources */,
 				1B7AB8322444269100D6948C /* UserDataProtocols.swift in Sources */,
-				1B11F34824457C9500C8393E /* UIControllerExtentions.swift in Sources */,
+				1B11F34824457C9500C8393E /* LoaderView.swift in Sources */,
 				1B0F9DFE242E322600DE4A41 /* DetailPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
