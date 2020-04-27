@@ -17,6 +17,7 @@ class ContactsViewController: UIViewController {
     let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         setupTableView()

@@ -14,8 +14,7 @@ class AuthenticationModuleBuilder: AuthenticationModuleBuilderProtocol {
     func showLogin(router: RouterProtocol) -> UIViewController? {
         let view = LoginViewController()
         let networkService = GoogleService()
-        let validator = Validator()
-        let presentor = LoginViewPresenter(view: view, service: networkService, router: router, validator: validator)
+        let presentor = LoginViewPresenter(view: view, service: networkService, router: router)
         view.presentor = presentor
         return view
     }

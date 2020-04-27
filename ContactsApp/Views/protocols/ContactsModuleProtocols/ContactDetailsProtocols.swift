@@ -12,7 +12,7 @@ protocol DetailViewProtocol : class{
 }
 
 protocol DetailViewPresenterProtocol : class {
-    init(view: DetailViewProtocol, service: NetworkServiceProtocol, router:RouterProtocol, contact:Contact?,validator: Validator)
+    init(view: DetailViewProtocol, service: NetworkServiceProtocol, router:RouterProtocol, contact:Contact?)
     func setContact()
 }
 

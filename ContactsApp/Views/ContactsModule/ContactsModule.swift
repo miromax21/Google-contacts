@@ -13,8 +13,7 @@ class ContactsModuleBuilder {
     func showDetails(contact:Contact?, router: RouterProtocol) -> UIViewController {
         let view = DetailsViewController()
         let networkService = GoogleService()
-        let validator = Validator()
-        let presentor = DetailPresentor(view: view, service: networkService, router: router, contact: contact,validator: validator)
+        let presentor = DetailPresentor(view: view, service: networkService, router: router, contact: contact)
         view.presentor = presentor
         return view
     }

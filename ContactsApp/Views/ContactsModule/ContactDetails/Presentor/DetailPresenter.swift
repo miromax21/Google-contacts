@@ -14,14 +14,13 @@ class DetailPresentor: DetailViewPresenterProtocol {
     var router: RouterProtocol?
     let service: NetworkServiceProtocol!
     var contact: Contact?
-    var validator: Validator!
+
     
-    required init(view: DetailViewProtocol, service: NetworkServiceProtocol, router:RouterProtocol, contact: Contact?, validator: Validator) {
+    required init(view: DetailViewProtocol, service: NetworkServiceProtocol, router:RouterProtocol, contact: Contact?) {
         self.view = view
         self.service = service
         self.contact = contact
         self.router = router
-        self.validator = validator
     }
     
     func setContact() {

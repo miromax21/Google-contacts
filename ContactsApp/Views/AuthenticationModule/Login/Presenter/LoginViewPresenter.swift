@@ -16,17 +16,11 @@ class LoginViewPresenter: LoginViewPresenterProtocol {
     var router: RouterProtocol?
     let service: NetworkServiceProtocol!
     var contact: Contact?
-    var validator: Validator!
     
-    required init(view: PresentableViewController, service: NetworkServiceProtocol, router: RouterProtocol, validator: Validator) {
+    required init(view: PresentableViewController, service: NetworkServiceProtocol, router: RouterProtocol) {
         self.view = view
         self.service = service
         self.router = router
-        self.validator = validator
-    }
-    
-    func validate(text: String, with rules: Rule) -> Bool {
-        return false
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {

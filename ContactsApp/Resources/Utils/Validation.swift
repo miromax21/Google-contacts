@@ -7,33 +7,17 @@
 //
 
 import Foundation
-struct  Validator {
-    func validate(text: String, with rule: Rule) -> Bool {
-        return NSPredicate(format: "SELF MATCHES %@", rule.rawValue).evaluate(with: text)
-    }
-    
-    func validate(validation:ValidationEnum) -> Bool{
-        var valid = true
-        switch validation{
-            
-        case .login(let value):
-            valid = NSPredicate(format: "SELF MATCHES %@", Rule.login as! CVarArg).evaluate(with: value)
-        case .password(let value):
-            valid = NSPredicate(format: "SELF MATCHES %@", Rule.password as! CVarArg).evaluate(with: value)
-        case .email(let value):
-            valid = NSPredicate(format: "SELF MATCHES %@", Rule.email as! CVarArg).evaluate(with: value)
-        }
-        return valid
-    }
-}
-enum Rule: String {
+enum Validation: String {
     case login = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$"
     case password = "password"
     case email = "email"
+    
+    func validate(text: String, additionally: ((String) -> Bool)? = nil) -> Bool {
+        var valid = true
+        if let additionally = additionally{
+            valid = additionally(text)
+        }
+        return NSPredicate(format: "SELF MATCHES %@", self.rawValue).evaluate(with: text) && valid
+    }
 }
 
-enum ValidationEnum {
-    case login(String)
-    case password(String)
-    case email(String)
-}
