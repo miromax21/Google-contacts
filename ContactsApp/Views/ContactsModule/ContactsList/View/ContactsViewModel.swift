@@ -10,28 +10,29 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class ContactsPresentor:ContactsViewPresentorProtocol{
-    weak var view: ContactsViewProtocol?
-    var dataSource = BehaviorRelay(value: [Contact]())
+class ContactsViewModel{
+    weak var view: ContactsViewController?
+    var dataSource = BehaviorRelay(value: [Entry]())
     var isLoading = PublishSubject<Bool>()
     var error = PublishSubject<RequestError>()
     
     var router: RouterProtocol!
-    var contacts: [Contact] = []
+    var contacts: [Entry] = []
     var useCases: GoogleUseCases!
     let disposeBag = DisposeBag()
-    fileprivate var nextContacts: [Contact] {
+    fileprivate var nextEntries: [Entry] {
         willSet {
             self.dataSource.accept(self.dataSource.value + newValue)
         }
     }
+    
  
-    required init(view: ContactsViewProtocol, useCases: GoogleUseCases, router: RouterProtocol) {
+    required init(view: ContactsViewController, useCases: GoogleUseCases, router: RouterProtocol) {
         self.view = view
         self.router = router
         self.useCases = useCases
         self.isLoading.onNext(true)
-        self.nextContacts = [Contact]()
+        self.nextEntries = [Entry]()
     }
 
     func tapOnTheContact(contactIndex: IndexPath){
@@ -48,11 +49,11 @@ class ContactsPresentor:ContactsViewPresentorProtocol{
         self.useCases.fetchContacts()
         .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
         .observeOn(MainScheduler.instance).subscribe(
-            onNext: { [unowned self] contacts in
-                guard let contacts = contacts else {
+            onNext: { [unowned self] entry in
+                guard let entry = entry else {
                     return
                 }
-                self.nextContacts = contacts
+                self.nextEntries = entry
             },
             onError: { [unowned self] (error) in
                 self.error.onNext(error as? RequestError ?? RequestError.any)

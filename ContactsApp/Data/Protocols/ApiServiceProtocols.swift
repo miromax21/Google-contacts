@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 protocol NetworkServiceProtocol {
-    func fetch(path:GoogleServiceEnum) -> Observable<Data?>
+    func fetch(path:GoogleServiceEnum) -> Observable<UserData?>
 }
 
 enum RequestError: Error {

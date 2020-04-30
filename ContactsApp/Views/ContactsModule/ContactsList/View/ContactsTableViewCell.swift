@@ -14,10 +14,12 @@ import RxDataSources
 class ContactsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var contactLable: UILabel!
-    var contact: Contact? {
+    @IBOutlet weak var emaillable: UILabel!
+    var contact: Entry? {
         willSet(contact){
             guard let contact = contact else {return}
-            self.contactLable?.text = contact.name
+            self.contactLable.text = contact.name?.fullName ?? contact.title
+            self.emaillable.text = contact.gmail?.address
         }
     }
 }

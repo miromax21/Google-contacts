@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import Network
 protocol Api{
-    var task: URLSessionTask? {get set}
+   // var task: URLSessionTask? {get set}
     func callAPI(request: URLRequest) -> Observable<Data?>
 }
 public class RequestObservable {

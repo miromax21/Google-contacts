@@ -13,7 +13,7 @@ import GoogleUtilities
 class LoginViewController: UIViewController, PresentableViewController{
     
     var complete: (() -> ())?
-    var presentor: LoginViewPresenterProtocol!
+    var presentor: LoginViewModel!
     override func viewDidLoad() {
         super.viewDidLoad()
         ConfigureGoogleSignInButton()

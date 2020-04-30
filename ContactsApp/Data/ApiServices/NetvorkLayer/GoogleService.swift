@@ -30,12 +30,19 @@ enum GoogleServiceEnum{
 
 
 class GoogleService: RequestObservable, NetworkServiceProtocol {
+    var al : AlamofireRequest!
     init() {
+        self.al = AlamofireRequest()
     }
-    func fetch(path:GoogleServiceEnum) -> Observable<Data?> {
+    func fetch(path:GoogleServiceEnum) -> Observable<UserData?> {
          var request = URLRequest(url: path.url)
          request.httpMethod = "GET"
-         request.addValue("text/xml; charset=utf-8", forHTTPHeaderField: "Content-Type")
-         return super.callAPI(request: request)
+         request.addValue("text/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        let sds: Observable<UserData?> =  self.al.callAPI(request: request)
+        return sds
+//        sds.asObservable().subscribe(onNext: { (data) in
+//            let s  = ""
+//        })
+//         return super.callAPI(request: request)
     }
 }

@@ -9,12 +9,12 @@
 import Foundation
 import UIKit
 
-class AuthenticationModuleBuilder: AuthenticationModuleBuilderProtocol {
+class AuthenticationModuleBuilder {
 
     func showLogin(router: RouterProtocol) -> UIViewController? {
         let view = LoginViewController()
         let networkService = GoogleService()
-        let presentor = LoginViewPresenter(view: view, service: networkService, router: router)
+        let presentor = LoginViewModel(view: view, service: networkService, router: router)
         view.presentor = presentor
         return view
     }

@@ -25,7 +25,7 @@ protocol RouterMainProtocol: RouterProtocol {
 enum ControllersEnum {
     case login
     case contacts
-    case contactsDetails(contact:Contact?)
+    case contactsDetails(contact:Entry?)
 
     var needAccept : Bool {
         switch self {

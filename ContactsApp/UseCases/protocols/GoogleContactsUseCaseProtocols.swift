@@ -10,6 +10,6 @@ import Foundation
 import RxSwift
 
 protocol GoogleUseCases {
-     func fetchContacts() -> Observable<[Contact]?>
+     func fetchContacts() -> Observable<[Entry]?>
      init(service: NetworkServiceProtocol!)
 }

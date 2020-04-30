@@ -14,18 +14,16 @@ class Utils {
     lazy var isInternetAvailable : Bool = {
         return checkInternetConnection()
     }()
-    
-    init() {}
-    
+
     static let shared = Utils()
-    func JSONDecodeToData<T: Decodable>(data: Data?) -> T?{
+    func JSONDecodeToData<T: Codable>(data: Data?, model : T) -> T?{
         guard let data = data else { return nil}
         let model = try? JSONDecoder().decode(T.self, from: data)
         guard let result = model else { return nil}
         return result
     }
     
-    func GetBundleData(fileName: String, type: String? = "plist") -> NSDictionary? {
+    func getBundleData(fileName: String, type: String? = "plist") -> NSDictionary? {
         guard let path = Bundle.main.path(forResource: fileName, ofType: type) else {
             return nil
         }

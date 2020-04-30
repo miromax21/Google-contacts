@@ -10,12 +10,11 @@ import Foundation
 import RxSwift
 import GoogleSignIn
 
-class LoginViewPresenter: LoginViewPresenterProtocol {
+class LoginViewModel{
     
     weak var view: PresentableViewController?
     var router: RouterProtocol?
     let service: NetworkServiceProtocol!
-    var contact: Contact?
     
     required init(view: PresentableViewController, service: NetworkServiceProtocol, router: RouterProtocol) {
         self.view = view

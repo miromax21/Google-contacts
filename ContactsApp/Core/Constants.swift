@@ -7,7 +7,8 @@
 //
 
 import Foundation
-struct Constants {
-    static let googleServicePlist = "GoogleService-Info"
-    static let googleServicePlistClientID = "CLIENT_ID"
+
+enum Constants:String{
+    case googleServicePlist = "GoogleService-Info"
+    case googleServicePlistClientID = "CLIENT_ID"
 }

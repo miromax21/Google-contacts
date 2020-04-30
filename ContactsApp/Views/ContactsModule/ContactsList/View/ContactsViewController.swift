@@ -13,7 +13,7 @@ import RxDataSources
 
 class ContactsViewController: UIViewController {
     @IBOutlet weak var contactsTableView: UITableView!
-    var presentor: ContactsViewPresentorProtocol!
+    var presentor: ContactsViewModel!
     let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
@@ -63,7 +63,7 @@ class ContactsViewController: UIViewController {
 
 // MARK: Extensions
 
-extension ContactsViewController : ContactsViewProtocol {
+extension ContactsViewController {
     func showAlert(message: RequestError , style : UIAlertController.Style? = .alert) {
         var title: String?
         var alertMessege: String?

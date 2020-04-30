@@ -11,7 +11,7 @@ import UIKit
 class DetailsViewController: UIViewController {
 
     @IBOutlet weak var name: UILabel!
-    var presentor: DetailViewPresenterProtocol!
+    var presentor: DetailViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,8 +21,8 @@ class DetailsViewController: UIViewController {
     
 }
 
-extension DetailsViewController : DetailViewProtocol{
-    func setContact(contact: Contact?) {
-        name.text = contact?.name
+extension DetailsViewController{
+    func setContact(contact: Entry?) {
+        name.text = contact?.name?.fullName
     }
 }

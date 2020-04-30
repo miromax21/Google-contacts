@@ -8,15 +8,15 @@
 //
 import Foundation
 
-class DetailPresentor: DetailViewPresenterProtocol {
+class DetailViewModel {
     
-    weak var view: DetailViewProtocol?
+    weak var view: DetailsViewController?
     var router: RouterProtocol?
     let service: NetworkServiceProtocol!
-    var contact: Contact?
+    var contact: Entry?
 
     
-    required init(view: DetailViewProtocol, service: NetworkServiceProtocol, router:RouterProtocol, contact: Contact?) {
+    required init(view: DetailsViewController, service: NetworkServiceProtocol, router:RouterProtocol, contact: Entry?) {
         self.view = view
         self.service = service
         self.contact = contact

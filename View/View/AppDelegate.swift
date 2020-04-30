@@ -1,22 +1,21 @@
 //
 //  AppDelegate.swift
-//  Google contacts
+//  View
 //
-//  Created by maxim mironov on 27.03.2020.
+//  Created by maxim mironov on 28.04.2020.
 //  Copyright © 2020 maxim mironov. All rights reserved.
 //
 
 import UIKit
 import CoreData
-import GoogleSignIn
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        if let key = Utils.shared.getBundleData(fileName: Constants.googleServicePlist.rawValue)?.value(forKey: Constants.googleServicePlistClientID.rawValue) as? String{
-            GIDSignIn.sharedInstance().clientID  = key
-            GIDSignIn.sharedInstance().scopes = ["https://www.googleapis.com/auth/contacts.readonly","https://www.googleapis.com/auth/plus.login","https://www.googleapis.com/auth/plus.me"];
-        }
+        // Override point for customization after application launch.
         return true
     }
 
@@ -43,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
         */
-        let container = NSPersistentContainer(name: "Google_contacts")
+        let container = NSPersistentContainer(name: "View")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
@@ -78,7 +77,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-    
 
 }
 
