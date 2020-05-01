@@ -16,6 +16,10 @@ class ContactsViewController: UIViewController {
     var presentor: ContactsViewModel!
     let disposeBag = DisposeBag()
 
+    convenience init(router: RouterProtocol) {
+        self.init(nibName:nil, bundle:nil)
+        presentor = ContactsViewModel(router: router)
+    }
     override func viewDidLoad() {
         
         super.viewDidLoad()

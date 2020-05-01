@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 class ContactsViewModel{
-    weak var view: ContactsViewController?
+    var view: ContactsViewController
     var dataSource = BehaviorRelay(value: [Entry]())
     var isLoading = PublishSubject<Bool>()
     var error = PublishSubject<RequestError>()
@@ -25,19 +25,24 @@ class ContactsViewModel{
             self.dataSource.accept(self.dataSource.value + newValue)
         }
     }
+    var Output: UIViewController {
+        get{
+            return self.view
+        }
+    }
     
- 
-    required init(view: ContactsViewController, useCases: GoogleUseCases, router: RouterProtocol) {
-        self.view = view
+    init(router: RouterProtocol) {
         self.router = router
-        self.useCases = useCases
+        self.view = ContactsViewController()
+        self.useCases = GoogleContactsUseCase(service: GoogleService())
         self.isLoading.onNext(true)
         self.nextEntries = [Entry]()
+        self.view.presentor = self
     }
 
     func tapOnTheContact(contactIndex: IndexPath){
         let contact =  self.dataSource.value[contactIndex.row]
-        router.onNext(nextView: .contactsDetails(contact: contact))
+        router.onNext(nextView: DetailViewModel.init(router: self.router, contact: contact).Output)
     }
     func goToAuthentication() {
         router.present(presentView: .login, completion: { [unowned self] _ in

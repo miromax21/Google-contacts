@@ -12,14 +12,19 @@ import GoogleSignIn
 
 class LoginViewModel{
     
-    weak var view: PresentableViewController?
-    var router: RouterProtocol?
+    var view: LoginViewController
+    var router: RouterProtocol
     let service: NetworkServiceProtocol!
-    
-    required init(view: PresentableViewController, service: NetworkServiceProtocol, router: RouterProtocol) {
-        self.view = view
-        self.service = service
+    var Output: UIViewController {
+         get{
+             return self.view
+         }
+     }
+    required init(router: RouterProtocol) {
+        self.view = LoginViewController()
+        self.service = GoogleService()
         self.router = router
+        self.view.presentor = self
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
@@ -31,13 +36,13 @@ class LoginViewModel{
             else { return }
             UserDataWrapper.email = email
             UserDataWrapper.googleAccessTokken = accessTokken
-            if let complete = view?.complete {
-                self.view?.dismiss(animated: true)
-                self.view?.removeFromParent()
+            if let complete = view.complete {
+                self.view.dismiss(animated: true)
+                self.view.removeFromParent()
                 complete()
                 return
             }
-            self.router?.onNext(nextView: .contacts)
+            self.router.onNext(nextView: ContactsViewModel.init(router: self.router).Output)
         } else {
             print("\(error.localizedDescription)")
         }

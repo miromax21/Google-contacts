@@ -11,20 +11,14 @@ import  RxCocoa
 import RxSwift
 final class Router: RouterProtocol {
     var navigationController: UINavigationController!
-    var moduleBuilder: AppModuleBuilderProtocol?
-    var contactsModuleBuilder : ContactsModuleBuilder = ContactsModuleBuilder()
-    var userDataProvider : UserDataProviderProtocol!
-
-    var nextView: ControllersEnum?
+    var userDataProvider = UserDataProvider()
     
-    init(navigationController: UINavigationController!,moduleBuilder: AppModuleBuilder, userDataProvider:UserDataProviderProtocol, firstView: ControllersEnum = .contacts ) {
+    init(navigationController :UINavigationController, firstView: ControllersEnum = .login ) {
         self.navigationController = navigationController
-        self.moduleBuilder = moduleBuilder
-        self.userDataProvider = userDataProvider
         self.setAsRoot(viewControllerAsRoot: getVC(nextView: firstView))
     }
     
-    func onNext(nextView: ControllersEnum){
+    func onNext(nextView: UIViewController){
         navigateTo(nextView: nextView)
     }
     func present(presentView: ControllersEnum, completion: ((PresentableViewController) -> ())?) {
@@ -46,25 +40,19 @@ final class Router: RouterProtocol {
     }
     
   // MARK: Private Methods
-    private func navigateTo(nextView: ControllersEnum) {
-        var vc:  UIViewController!
-        guard nextView.needAccept, (self.userDataProvider.getData(for: .googleAccessTokken)) != nil else {
-                present(presentView: .login, completion: nil)
-            return
-        }
-        vc = getVC(nextView: nextView)
-        self.navigationController.pushViewController(vc, animated: true)
+    private func navigateTo(nextView: UIViewController) {
+        self.navigationController.pushViewController(nextView, animated: true)
     }
     
     private func getVC(nextView: ControllersEnum) -> UIViewController{
         var vc:  UIViewController!
         switch nextView {
             case .login:
-                vc = moduleBuilder?.authenticationModuleBuilder.showLogin(router: self)
+                vc = LoginViewModel.init(router: self).Output
             case .contacts:
-                vc = moduleBuilder?.contactsModuleBuilder.showContacts(router: self)
+                vc = ContactsViewController.init(router: self) // ContactsViewModel.init(router: self).Output
             case .contactsDetails(let contact):
-                vc = moduleBuilder?.contactsModuleBuilder.showDetails(contact: contact, router: self)
+                vc = DetailViewModel.init(router: self, contact: contact).Output
         }
         return vc
     }

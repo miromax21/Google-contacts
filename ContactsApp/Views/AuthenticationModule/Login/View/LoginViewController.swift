@@ -10,7 +10,7 @@ import UIKit
 import GoogleSignIn
 import GoogleUtilities
 
-class LoginViewController: UIViewController, PresentableViewController{
+class LoginViewController: UIViewController{
     
     var complete: (() -> ())?
     var presentor: LoginViewModel!

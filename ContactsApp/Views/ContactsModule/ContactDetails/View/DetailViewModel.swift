@@ -7,23 +7,29 @@
 //  Copyright © 2020 maxim mironov. All rights reserved.
 //
 import Foundation
-
+import UIKit
 class DetailViewModel {
     
-    weak var view: DetailsViewController?
+    var view: DetailsViewController
     var router: RouterProtocol?
     let service: NetworkServiceProtocol!
     var contact: Entry?
 
+    var Output: UIViewController {
+         get{
+             return self.view
+         }
+     }
     
-    required init(view: DetailsViewController, service: NetworkServiceProtocol, router:RouterProtocol, contact: Entry?) {
-        self.view = view
-        self.service = service
-        self.contact = contact
+    init(router: RouterProtocol, contact: Entry?) {
         self.router = router
+        self.view = DetailsViewController()
+        self.service = GoogleService()
+        self.contact = contact
+        self.view.presentor = self
     }
     
     func setContact() {
-        self.view?.setContact(contact: contact)
+        self.view.setContact(contact: contact)
     }
 }

@@ -13,7 +13,6 @@
 		1B0F9DEC242DC48900DE4A41 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F9DEB242DC48900DE4A41 /* ContactsViewController.swift */; };
 		1B0F9DEE242DC51F00DE4A41 /* ContactsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B0F9DED242DC51F00DE4A41 /* ContactsViewController.xib */; };
 		1B0F9DF1242DC65800DE4A41 /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F9DF0242DC65800DE4A41 /* ContactsViewModel.swift */; };
-		1B0F9DF7242DCF1700DE4A41 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F9DF6242DCF1700DE4A41 /* ModuleBuilder.swift */; };
 		1B0F9DF9242DD57300DE4A41 /* GoogleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F9DF8242DD57300DE4A41 /* GoogleService.swift */; };
 		1B0F9DFE242E322600DE4A41 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F9DFD242E322600DE4A41 /* DetailViewModel.swift */; };
 		1B0F9E02242E3A9F00DE4A41 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F9E00242E3A9F00DE4A41 /* DetailsViewController.swift */; };
@@ -84,7 +83,6 @@
 		1B0F9DEB242DC48900DE4A41 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		1B0F9DED242DC51F00DE4A41 /* ContactsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactsViewController.xib; sourceTree = "<group>"; };
 		1B0F9DF0242DC65800DE4A41 /* ContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
-		1B0F9DF6242DCF1700DE4A41 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		1B0F9DF8242DD57300DE4A41 /* GoogleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleService.swift; sourceTree = "<group>"; };
 		1B0F9DFD242E322600DE4A41 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		1B0F9E00242E3A9F00DE4A41 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
@@ -358,7 +356,6 @@
 			children = (
 				1BDDC23724501B3D00A23B96 /* protocols */,
 				1B0F9DE6242DC30D00DE4A41 /* Router.swift */,
-				1B0F9DF6242DCF1700DE4A41 /* ModuleBuilder.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -717,7 +714,6 @@
 				1B96CE79245948FE004DDD8D /* AlamofireRequest.swift in Sources */,
 				1B96CE7C245952D7004DDD8D /* UserApiData.swift in Sources */,
 				1B7C3586243368BA00B701C6 /* LoginViewController.swift in Sources */,
-				1B0F9DF7242DCF1700DE4A41 /* ModuleBuilder.swift in Sources */,
 				1BEB6A9B242DC15D00B3BCE3 /* Google_contacts.xcdatamodeld in Sources */,
 				1B0F9DF1242DC65800DE4A41 /* ContactsViewModel.swift in Sources */,
 				1B0EFFCC2431EDFA006E3CC3 /* Validation.swift in Sources */,
