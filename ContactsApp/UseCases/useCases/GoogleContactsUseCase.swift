@@ -10,9 +10,9 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class GoogleContactsUseCase : GoogleUseCases {
+class GoogleContactsUseCase  {
     var service: NetworkServiceProtocol!
-    required init(service: NetworkServiceProtocol!) {
+    init(service: NetworkServiceProtocol!) {
         self.service = service
     }
    func fetchContacts() -> Observable<[Entry]?>{

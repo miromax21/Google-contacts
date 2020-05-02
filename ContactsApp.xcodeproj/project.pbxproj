@@ -20,6 +20,11 @@
 		1B11F34824457C9500C8393E /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B11F34724457C9500C8393E /* LoaderView.swift */; };
 		1B1BF9C0243C37E200029B4A /* GoogleContactsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1BF9BF243C37E200029B4A /* GoogleContactsUseCase.swift */; };
 		1B1BF9C4243C4B6F00029B4A /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1BF9C3243C4B6F00029B4A /* Utils.swift */; };
+		1B43AB1B245BFF9200BC3A6D /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B43AB1A245BFF9200BC3A6D /* BaseCoordinator.swift */; };
+		1B43AB1D245BFFEE00BC3A6D /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B43AB1C245BFFEE00BC3A6D /* AppCoordinator.swift */; };
+		1B43AB1F245C2E8400BC3A6D /* ContactDetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B43AB1E245C2E8400BC3A6D /* ContactDetailsCoordinator.swift */; };
+		1B43AB24245D399700BC3A6D /* ContactsUsecaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B43AB23245D399700BC3A6D /* ContactsUsecaseProvider.swift */; };
+		1B43AB26245D74E700BC3A6D /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B43AB25245D74E600BC3A6D /* Application.swift */; };
 		1B6166472434890B00ACB5DA /* Routertest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6166462434890B00ACB5DA /* Routertest.swift */; };
 		1B6166492434B34200ACB5DA /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1B6166482434B34200ACB5DA /* .gitignore */; };
 		1B66990A2445C150002969D8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6699092445C150002969D8 /* Constants.swift */; };
@@ -92,6 +97,11 @@
 		1B1BF9C3243C4B6F00029B4A /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		1B1ED9BB245858B60041B919 /* ViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTests.swift; sourceTree = "<group>"; };
 		1B1ED9BD245858B60041B919 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1B43AB1A245BFF9200BC3A6D /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
+		1B43AB1C245BFFEE00BC3A6D /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		1B43AB1E245C2E8400BC3A6D /* ContactDetailsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailsCoordinator.swift; sourceTree = "<group>"; };
+		1B43AB23245D399700BC3A6D /* ContactsUsecaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsUsecaseProvider.swift; sourceTree = "<group>"; };
+		1B43AB25245D74E600BC3A6D /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		1B61663C243487C100ACB5DA /* ContactsAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactsAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B616640243487C100ACB5DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B6166462434890B00ACB5DA /* Routertest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routertest.swift; sourceTree = "<group>"; };
@@ -219,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				1B0EFFCA2431D2F5006E3CC3 /* View */,
+				1B43AB1E245C2E8400BC3A6D /* ContactDetailsCoordinator.swift */,
 			);
 			path = ContactDetails;
 			sourceTree = "<group>";
@@ -235,8 +246,9 @@
 		1B1BF9BE243C37B400029B4A /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				1B43AB22245D37DC00BC3A6D /* useCases */,
+				1B43AB23245D399700BC3A6D /* ContactsUsecaseProvider.swift */,
 				1BDDC234245019EC00A23B96 /* protocols */,
-				1B1BF9BF243C37E200029B4A /* GoogleContactsUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -256,6 +268,24 @@
 				1B1ED9BD245858B60041B919 /* Info.plist */,
 			);
 			path = ViewTests;
+			sourceTree = "<group>";
+		};
+		1B43AB19245BFF6A00BC3A6D /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				1B43AB1A245BFF9200BC3A6D /* BaseCoordinator.swift */,
+				1B43AB1C245BFFEE00BC3A6D /* AppCoordinator.swift */,
+				1B43AB25245D74E600BC3A6D /* Application.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		1B43AB22245D37DC00BC3A6D /* useCases */ = {
+			isa = PBXGroup;
+			children = (
+				1B1BF9BF243C37E200029B4A /* GoogleContactsUseCase.swift */,
+			);
+			path = useCases;
 			sourceTree = "<group>";
 		};
 		1B61663D243487C100ACB5DA /* ContactsAppTests */ = {
@@ -314,6 +344,7 @@
 		1B8742A4245A9BB20084302B /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				1B43AB19245BFF6A00BC3A6D /* Coordinator */,
 				1BDDC2472451B78D00A23B96 /* Common */,
 				1B11F34924457CA000C8393E /* Extentions */,
 				1BCA4F042449CD9600646D90 /* Utils */,
@@ -701,7 +732,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B43AB1F245C2E8400BC3A6D /* ContactDetailsCoordinator.swift in Sources */,
+				1B43AB1D245BFFEE00BC3A6D /* AppCoordinator.swift in Sources */,
 				1BCA4EFE2449BA7400646D90 /* ContactsTableViewCell.swift in Sources */,
+				1B43AB26245D74E700BC3A6D /* Application.swift in Sources */,
 				1B7C358C24336B2700B701C6 /* LoginViewModel.swift in Sources */,
 				1BDDC23924501B5000A23B96 /* RouterProtocol.swift in Sources */,
 				1BEB6A96242DC15D00B3BCE3 /* AppDelegate.swift in Sources */,
@@ -716,10 +750,12 @@
 				1B7C3586243368BA00B701C6 /* LoginViewController.swift in Sources */,
 				1BEB6A9B242DC15D00B3BCE3 /* Google_contacts.xcdatamodeld in Sources */,
 				1B0F9DF1242DC65800DE4A41 /* ContactsViewModel.swift in Sources */,
+				1B43AB1B245BFF9200BC3A6D /* BaseCoordinator.swift in Sources */,
 				1B0EFFCC2431EDFA006E3CC3 /* Validation.swift in Sources */,
 				1BDDC23624501A0700A23B96 /* GoogleContactsUseCaseProtocols.swift in Sources */,
 				1BCA4F012449C7ED00646D90 /* UITableViewCellExtention.swift in Sources */,
 				1B864D1B2445F2D300120F48 /* AuthenticationModule.swift in Sources */,
+				1B43AB24245D399700BC3A6D /* ContactsUsecaseProvider.swift in Sources */,
 				1B007B1E245A88D7004CA952 /* PresentableViewController.swift in Sources */,
 				1BF3D86C245A9EA200E03881 /* UserDataProvider.swift in Sources */,
 				1B0F9DE7242DC30D00DE4A41 /* Router.swift in Sources */,

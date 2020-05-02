@@ -6,18 +6,14 @@
 //  Copyright © 2020 maxim mironov. All rights reserved.
 //
 
-//import Foundation
-//import UIKit
-//
-//class AuthenticationModuleBuilder {
-//
-//    func showLogin(router: RouterProtocol) -> UIViewController? {
-//        let view = LoginViewController()
-//        let networkService = GoogleService()
-//        let presentor = LoginViewModel(view: view, service: networkService, router: router)
-//        view.presentor = presentor
-//        return view
-//    }
-//}
+class LoginCoordinator:BaseCoordinator {
+    
+    override func start() {
+        let loginViewController = LoginViewController()
+        let p = LoginViewModel()
+        loginViewController.presentor = p
+        self.navigationController.viewControllers = [loginViewController]
+    }
+}
 
 

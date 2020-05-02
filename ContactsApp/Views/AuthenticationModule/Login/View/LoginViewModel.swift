@@ -13,18 +13,16 @@ import GoogleSignIn
 class LoginViewModel{
     
     var view: LoginViewController
-    var router: RouterProtocol
+   // var router: RouterProtocol
     let service: NetworkServiceProtocol!
     var Output: UIViewController {
          get{
              return self.view
          }
      }
-    required init(router: RouterProtocol) {
+    required init() {
         self.view = LoginViewController()
         self.service = GoogleService()
-        self.router = router
-        self.view.presentor = self
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
@@ -42,7 +40,12 @@ class LoginViewModel{
                 complete()
                 return
             }
-            self.router.onNext(nextView: ContactsViewModel.init(router: self.router).Output)
+            
+
+            let scene = UIApplication.shared.connectedScenes.first
+            if let sd : SceneDelegate = (scene?.delegate as? SceneDelegate) {
+                sd.app.start(coordinator: ContactsCoordinator())
+            }
         } else {
             print("\(error.localizedDescription)")
         }

@@ -11,7 +11,7 @@ import UIKit
 class DetailViewModel {
     
     var view: DetailsViewController
-    var router: RouterProtocol?
+  
     let service: NetworkServiceProtocol!
     var contact: Entry?
 
@@ -21,8 +21,7 @@ class DetailViewModel {
          }
      }
     
-    init(router: RouterProtocol, contact: Entry?) {
-        self.router = router
+    init(contact: Entry?) {
         self.view = DetailsViewController()
         self.service = GoogleService()
         self.contact = contact

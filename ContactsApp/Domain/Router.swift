@@ -9,13 +9,13 @@
 import UIKit
 import  RxCocoa
 import RxSwift
-final class Router: RouterProtocol {
+final class Routerb: RouterProtocol {
     var navigationController: UINavigationController!
     var userDataProvider = UserDataProvider()
     
     init(navigationController :UINavigationController, firstView: ControllersEnum = .login ) {
-        self.navigationController = navigationController
-        self.setAsRoot(viewControllerAsRoot: getVC(nextView: firstView))
+       // self.navigationController = navigationController
+        //self.setAsRoot(viewControllerAsRoot: getVC(nextView: firstView))
     }
     
     func onNext(nextView: UIViewController){
@@ -46,14 +46,17 @@ final class Router: RouterProtocol {
     
     private func getVC(nextView: ControllersEnum) -> UIViewController{
         var vc:  UIViewController!
-        switch nextView {
-            case .login:
-                vc = LoginViewModel.init(router: self).Output
-            case .contacts:
-                vc = ContactsViewController.init(router: self) // ContactsViewModel.init(router: self).Output
-            case .contactsDetails(let contact):
-                vc = DetailViewModel.init(router: self, contact: contact).Output
-        }
+//        switch nextView {
+//            case .login:
+//                vc = LoginViewModel.init(router: self).Output
+//            case .contacts:
+//                let vcc = ContactsViewController()
+//                vcc.setUp(router: self)
+//                //vc.s
+//                vc = vcc
+//            case .contactsDetails(let contact):
+//                vc = DetailViewModel.init(router: self, contact: contact).Output
+//        }
         return vc
     }
     

@@ -42,7 +42,7 @@ struct Entry: Decodable{
      init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.gmail = try? container.decode([Gmail].self, forKey: CodingKeys.gmail).first
-        self.title = try? container.decode(Single.self, forKey: CodingKeys.title).key
+        self.title = try? container.decode(SingleData.self, forKey: CodingKeys.title).key
     }
 }
 
@@ -65,10 +65,10 @@ struct Name: Codable{
      }
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.fullName = try? container.decode(Single.self, forKey: CodingKeys.fullName).key
+        self.fullName = try? container.decode(SingleData.self, forKey: CodingKeys.fullName).key
     }
 }
-struct Single: Codable{
+struct SingleData: Codable{
     var key : String?
     enum CodingKeys: String, CodingKey {
         case key = "$t"

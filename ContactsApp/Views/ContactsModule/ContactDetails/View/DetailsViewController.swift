@@ -16,13 +16,12 @@ class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presentor.setContact()
-        // Do any additional setup after loading the view.
     }
     
 }
 
 extension DetailsViewController{
     func setContact(contact: Entry?) {
-        name.text = contact?.name?.fullName
+        name?.text = contact?.gmail?.address
     }
 }
