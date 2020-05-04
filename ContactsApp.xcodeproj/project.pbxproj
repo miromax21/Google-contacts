@@ -95,8 +95,6 @@
 		1B11F34724457C9500C8393E /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
 		1B1BF9BF243C37E200029B4A /* GoogleContactsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleContactsUseCase.swift; sourceTree = "<group>"; };
 		1B1BF9C3243C4B6F00029B4A /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		1B1ED9BB245858B60041B919 /* ViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTests.swift; sourceTree = "<group>"; };
-		1B1ED9BD245858B60041B919 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B43AB1A245BFF9200BC3A6D /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		1B43AB1C245BFFEE00BC3A6D /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		1B43AB1E245C2E8400BC3A6D /* ContactDetailsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailsCoordinator.swift; sourceTree = "<group>"; };
@@ -259,15 +257,6 @@
 				1BEB6A9E242DC16000B3BCE3 /* Assets.xcassets */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		1B1ED9BA245858B60041B919 /* ViewTests */ = {
-			isa = PBXGroup;
-			children = (
-				1B1ED9BB245858B60041B919 /* ViewTests.swift */,
-				1B1ED9BD245858B60041B919 /* Info.plist */,
-			);
-			path = ViewTests;
 			sourceTree = "<group>";
 		};
 		1B43AB19245BFF6A00BC3A6D /* Coordinator */ = {
@@ -439,7 +428,6 @@
 			children = (
 				1BEB6A94242DC15D00B3BCE3 /* ContactsApp */,
 				1B61663D243487C100ACB5DA /* ContactsAppTests */,
-				1B1ED9BA245858B60041B919 /* ViewTests */,
 				1BEB6A93242DC15D00B3BCE3 /* Products */,
 				43053A043A2A3D5BB27DAA4F /* Pods */,
 				E07D2BBB2D66716B6C732A84 /* Frameworks */,
