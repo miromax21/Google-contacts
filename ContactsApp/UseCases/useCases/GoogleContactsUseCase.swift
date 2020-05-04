@@ -22,11 +22,11 @@ class GoogleContactsUseCase  {
             else { return Observable.error(RequestError.authentification)}
     
         return Observable.deferred {
-            let sds: Observable<UserData?> =  self.service.fetch(path: .Contacts(token: googleAccessTokken, userEmail: email) )
-    
-            return sds.flatMap { (userData)  -> Observable<[Entry]?>  in
-                return Observable.of(userData?.feed?.entry)
-            }
+            return
+                self.service.fetch(path: .Contacts(token: googleAccessTokken, userEmail: email) )
+                    .flatMap { (userData)  -> Observable<[Entry]?>  in
+                        return Observable.of(userData?.feed?.entry)
+                }
         }
     }
 }

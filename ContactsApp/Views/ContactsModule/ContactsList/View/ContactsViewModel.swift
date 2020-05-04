@@ -50,6 +50,8 @@ class ContactsViewModel{
         self.navigator.parentCoordinator?.next(coordinator: contactDetailsCoordinator)
     }
     func goToAuthentication() {
+        let a = LoginCoordinator()
+        self.navigator.parentCoordinator?.next(coordinator: a)
 //        router.present(presentView: .login, completion: { [unowned self] _ in
 //             self.getContacts()
 //        })
