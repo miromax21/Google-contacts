@@ -11,7 +11,10 @@ import RxSwift
 import RxCocoa
 
 protocol NetworkServiceProtocol {
-    func fetch(path:GoogleServiceEnum) -> Observable<UserData?>
+    func request(path : GoogleServiceEnum) -> Observable<UserData?>
+}
+protocol Api{
+    func callAPI(request: URLRequest) -> Observable<Data?>
 }
 
 enum RequestError: Error {
@@ -20,5 +23,7 @@ enum RequestError: Error {
     case authentification
     case sessionError(error: Error)
     case serverError(error: NSError)
+    case noData
+    
 }
 

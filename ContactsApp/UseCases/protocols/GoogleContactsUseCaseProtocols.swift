@@ -11,4 +11,5 @@ import RxSwift
 
 protocol GoogleUseCaseProvider {
      func fetchContacts() -> Single<[Entry]?>
+     func fetchContacts2() -> Single<[Entry]?>
 }

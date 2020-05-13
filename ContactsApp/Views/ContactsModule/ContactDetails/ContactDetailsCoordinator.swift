@@ -17,6 +17,11 @@ class ContactDetailsCoordinator: BaseCoordinator {
         let detailsViewController = DetailsViewController()
         let detailViewModel = DetailViewModel(contact: self.contact)
         detailsViewController.presentor =  detailViewModel
+        self.navigationController.navigationBar.isHidden = false
         self.navigationController.viewControllers = [detailsViewController]
+//        self.navigationController.pushViewController(detailsViewController, animated: true)
+        //.pushViewController(detailsViewController, animated: true)
+            
     }
+    
 }

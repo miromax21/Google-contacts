@@ -26,28 +26,31 @@ class LoginViewModel{
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if (error == nil) {
-            guard
-                let authentication = user.authentication,
-                let email = user?.profile.email,
-                let accessTokken = authentication.accessToken
-            else { return }
-            UserDataWrapper.email = email
-            UserDataWrapper.googleAccessTokken = accessTokken
-            if let complete = view.complete {
-                self.view.dismiss(animated: true)
-                self.view.removeFromParent()
-                complete()
-                return
-            }
-            
-
-            let scene = UIApplication.shared.connectedScenes.first
-            if let sd : SceneDelegate = (scene?.delegate as? SceneDelegate) {
-                sd.app.start(coordinator: ContactsCoordinator())
-            }
-        } else {
+        if let error = error {
             print("\(error.localizedDescription)")
+            return
         }
+        guard
+            let authentication = user.authentication,
+            let email = user?.profile.email,
+            let accessTokken = authentication.accessToken
+        else { return }
+        
+        UserDataWrapper.email = email
+        UserDataWrapper.googleAccessTokken = accessTokken
+        UserDataWrapper.googleAccessTokkenExpired = Date(timeIntervalSince1970: authentication.accessTokenExpirationDate.timeIntervalSince1970)
+        
+        if let complete = view.complete {
+            self.view.dismiss(animated: true)
+            self.view.removeFromParent()
+            complete()
+            return
+        }
+        
+        let scene = UIApplication.shared.connectedScenes.first
+        if let sd : SceneDelegate = (scene?.delegate as? SceneDelegate) {
+            sd.app.start(coordinator: ContactsCoordinator())
+        }
+
     }
 }

@@ -18,7 +18,14 @@ struct UserDataWrapper {
             userDataProvider.setData(value: newValue, for: .googleAccessTokken)
         }
     }
-    
+    static var googleAccessTokkenExpired: Date?{
+        get {
+            return userDataProvider.getDate(for: .googleAccessTokkenExpired)
+         }
+         set {
+            userDataProvider.setDate(value: newValue, for: .googleAccessTokkenExpired)
+         }
+    }
     static var email: String? {
         get {
             return userDataProvider.getData(for: .userEmail)

@@ -10,11 +10,8 @@ import Foundation
 import RxSwift
 import RxCocoa
 import Network
-protocol Api{
-   // var task: URLSessionTask? {get set}
-    func callAPI(request: URLRequest) -> Observable<Data?>
-}
-public class RequestObservable {
+
+public class RequestObservable : Api{
 
     var task: URLSessionTask?
 

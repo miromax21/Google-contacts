@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 protocol Coordinator: AnyObject {
     var navigationController: UINavigationController { get set }
-    var parentCoordinator: Coordinator? { get set }
+    var parentCoordinator: Coordinator! { get set }
     
     func start()
     func start(coordinator: Coordinator)
@@ -20,7 +20,7 @@ protocol Coordinator: AnyObject {
 
 class BaseCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
-    var parentCoordinator: Coordinator?
+    var parentCoordinator: Coordinator!
     var navigationController = UINavigationController()
 
     func start() {

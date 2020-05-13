@@ -10,18 +10,21 @@ import UIKit
 
 class DetailsViewController: UIViewController {
 
-    @IBOutlet weak var name: UILabel!
     var presentor: DetailViewModel!
     
+    @IBOutlet weak var name: UILabel?
     override func viewDidLoad() {
         super.viewDidLoad()
-        presentor.setContact()
+      //  presentor.setContact()
     }
-    
+
 }
 
 extension DetailsViewController{
     func setContact(contact: Entry?) {
-        name?.text = contact?.gmail?.address
+        if let addres =  contact?.gmail?.address{
+            self.name?.text = addres
+        }
+      //  name?.text = contact?.gmail?.address
     }
 }

@@ -8,20 +8,27 @@
 import RxAlamofire
 import Foundation
 import RxSwift
-class AlamofireRequest {
+class AlamofireRequest: Api {
+    
+    fileprivate let cache = URLCache.shared
+    fileprivate let cacheInterval:Double = 7.0
+    
     public func callAPI<T:Decodable>(request: URLRequest) -> Observable<T?>  {
+        
         return RxAlamofire
             .requestJSON(request)
             .debug()
-            .catchError { error in
-                print(error)
-                return Observable.never()
-            }
-        .mapObject(type: T.self)
-        .asObservable()
-
-
-
+            .mapObject(type: T.self)
+            .asObservable()
+    }
+    
+    
+    fileprivate func getDataFromCache(request: URLRequest) -> Data?{
+        return self.cache.cachedResponse(for: request)?.data
+    }
+    
+    fileprivate func setDataToCache(cachedData:CachedURLResponse, for request: URLRequest){
+        self.cache.storeCachedResponse(cachedData, for: request)
     }
 }
 extension ObservableType {
@@ -32,11 +39,20 @@ extension ObservableType {
                let responseTuple = data as? (HTTPURLResponse, AnyObject),
                let jsonData = try? JSONSerialization.data(withJSONObject: responseTuple.1, options: [JSONSerialization.WritingOptions.prettyPrinted])
            else {
-               return Observable.of(nil)
+                return Observable.error(RequestError.noData)
            }
-           let decoder = JSONDecoder()
-           let object = try decoder.decode(T.self, from: jsonData)
-           return Observable.just(object)
+            
+            let httpResponse = responseTuple.0
+            let statusCode = httpResponse.statusCode
+            if (200...399).contains(statusCode) {
+                let decoder = JSONDecoder()
+                let object = try decoder.decode(T.self, from: jsonData)
+                return Observable.just(object)
+            }
+            else{
+                let taskError = NSError(domain: "", code: statusCode, userInfo:  nil)
+                return Observable.error(RequestError.serverError(error: taskError))
+            }
         }
     }
    

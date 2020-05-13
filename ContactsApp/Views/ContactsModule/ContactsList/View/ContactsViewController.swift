@@ -82,7 +82,7 @@ extension ContactsViewController {
         }
         switch message{
             
-        case .any:
+        case .any, .noData:
             title = "asomething went wrong :)"
         case .noInternet:
             title = "internet cennection error"
@@ -95,6 +95,7 @@ extension ContactsViewController {
             }
             title = "server error"
             alertMessege = error.localizedDescription
+            alert.addAction(actionRetry)
         case .authentification:
             title = "authorization error"
             alert.addAction(actionGoAuth)

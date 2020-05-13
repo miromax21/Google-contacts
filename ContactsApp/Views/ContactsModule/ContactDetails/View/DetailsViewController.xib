@@ -9,7 +9,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailsViewController" customModule="ContactsApp" customModuleProvider="target">
             <connections>
-                <outlet property="name" destination="SR5-yf-fks" id="nP1-OL-fGh"/>
+                <outlet property="czxc" destination="SR5-yf-fks" id="r2T-BW-pei"/>
+                <outlet property="name" destination="SR5-yf-fks" id="Mmg-CX-1cB"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -31,7 +32,7 @@
                 <constraint firstItem="SR5-yf-fks" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="v7Z-Wm-uvf"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="139" y="130"/>
+            <point key="canvasLocation" x="137.68115942028987" y="129.91071428571428"/>
         </view>
     </objects>
 </document>

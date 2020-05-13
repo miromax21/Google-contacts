@@ -10,8 +10,7 @@ class LoginCoordinator:BaseCoordinator {
     
     override func start() {
         let loginViewController = LoginViewController()
-        let p = LoginViewModel()
-        loginViewController.presentor = p
+        loginViewController.presentor =  LoginViewModel()
         self.navigationController.viewControllers = [loginViewController]
     }
 }

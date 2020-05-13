@@ -8,13 +8,11 @@ target 'ContactsApp' do
   # Pods for ContactsApp
   pod 'RxSwift', '~> 4.4'
   pod 'RxCocoa'
-#  pod 'Alamofire', '~> 5.0'
-  pod 'Firebase/Auth'
+  pod 'Moya/RxSwift', '~> 12.0'
   pod 'RxAlamofire'
   pod 'GoogleSignIn'
   pod 'KeychainSwift'
   pod 'RxDataSources'
-  pod 'AEXML'
 
   target 'ContactsAppTests' do
     inherit! :search_paths

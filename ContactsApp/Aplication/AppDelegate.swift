@@ -8,15 +8,12 @@
 
 import UIKit
 import CoreData
-import GoogleSignIn
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        if let key = Utils.shared.getBundleData(fileName: Constants.googleServicePlist.rawValue)?.value(forKey: Constants.googleServicePlistClientID.rawValue) as? String{
-            GIDSignIn.sharedInstance().clientID  = key
-            GIDSignIn.sharedInstance().scopes = ["https://www.googleapis.com/auth/contacts.readonly","https://www.googleapis.com/auth/plus.login","https://www.googleapis.com/auth/plus.me"];
-        }
+
         return true
     }
 

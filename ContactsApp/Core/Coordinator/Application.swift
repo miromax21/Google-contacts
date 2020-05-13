@@ -8,31 +8,48 @@
 
 import Foundation
 import UIKit
-protocol AppProtocol {
-    func start(coordinator: Coordinator)
-    func next(coordinator: Coordinator)
-}
+import GoogleSignIn
 
-class App : AppProtocol {
+//protocol AppProtocol {
+//    func start(coordinator: Coordinator)
+//    func next(coordinator: Coordinator)
+//}
+
+class App  {
+    
     var appCoordinator: AppCoordinator!
-    var window : UIWindow?
-    init(window : UIWindow?){
+    var window : UIWindow!
+    var cooordinator: Coordinator!
+    
+    init(window : UIWindow){
         self.window = window
-        let firstCoordinator = ContactsCoordinator()
-        self.start(coordinator: firstCoordinator)
-    }
-    func start(coordinator: Coordinator) {
-        self.appCoordinator = AppCoordinator(coordinator: coordinator)
-        self.appCoordinator.start()
-        show()
+        self.configureApp()
+        self.start(coordinator: self.cooordinator)
     }
     
     func next(coordinator: Coordinator)  {
         self.appCoordinator.next(coordinator: coordinator)
     }
-    private func show(){
-        self.window?.rootViewController = self.appCoordinator.navigationController
-        self.window?.makeKeyAndVisible()
+    
+    func start(coordinator: Coordinator) {
+        self.appCoordinator = AppCoordinator(coordinator: coordinator)
+        self.appCoordinator.start()
+        show()
+    }
+    func show()  {
+        self.window.rootViewController = self.appCoordinator.navigationController
+        self.window.makeKeyAndVisible()
+    }
+
+    fileprivate func configureApp(){
+        self.cooordinator = ContactsCoordinator()
+        //let firstCoordinator = LoginCoordinator()
+        
+// MARK: confuguration GIDSignIn
+        if let key = Utils.shared.getBundleData(fileName: Constants.googleServicePlist.rawValue)?.value(forKey: Constants.googleServicePlistClientID.rawValue) as? String{
+            GIDSignIn.sharedInstance().clientID  = key
+            GIDSignIn.sharedInstance().scopes = ["https://www.googleapis.com/auth/contacts.readonly","https://www.googleapis.com/auth/plus.login","https://www.googleapis.com/auth/plus.me"];
+        }
     }
     
 }

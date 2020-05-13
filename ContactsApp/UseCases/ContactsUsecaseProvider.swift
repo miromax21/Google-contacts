@@ -8,15 +8,24 @@
 
 import Foundation
 import RxSwift
+import Moya
+
 class ContactsUsecaseProvider: GoogleUseCaseProvider {
     var useCase : GoogleContactsUseCase!
     
     init(){
         let service = GoogleService()
-        self.useCase =  GoogleContactsUseCase.init(service: service)
+        let provider = MoyaProvider<GoogleMoyaService>()
+        self.useCase =  GoogleContactsUseCase.init(service: service, moyaProvider: provider)
     }
     func fetchContacts() -> Single<[Entry]?>{
         return self.useCase.fetchContacts().asSingle()
     }
-
+    
+    func fetchContacts2() -> Single<[Entry]?>{
+        return self.useCase.fetchContactsWithMoya()
+     }
+    
 }
+ 
+

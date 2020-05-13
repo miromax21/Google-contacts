@@ -11,12 +11,15 @@ import SwiftUI
 import  GoogleSignIn
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
-    var app: AppProtocol!
+    var app: App!
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else {return}
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
-        window?.windowScene = windowScene
-        app = App(window: window)
+        if let window  = window{
+            window.windowScene = windowScene
+            app = App(window: window)
+        }
+
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

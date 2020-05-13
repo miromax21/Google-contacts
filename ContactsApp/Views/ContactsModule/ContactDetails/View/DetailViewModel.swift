@@ -26,9 +26,10 @@ class DetailViewModel {
         self.service = GoogleService()
         self.contact = contact
         self.view.presentor = self
+        setContact()
     }
     
     func setContact() {
-        self.view.setContact(contact: contact)
+        self.view.setContact(contact: self.contact)
     }
 }

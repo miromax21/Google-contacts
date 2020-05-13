@@ -17,14 +17,12 @@ class ContactsViewModel{
     var error = PublishSubject<RequestError>()
     
     var navigationController: UINavigationController!
-  //  var router: RouterProtocol!
     var contacts: [Entry] = []
     var useCases: GoogleUseCaseProvider!
     let disposeBag = DisposeBag()
 
     var navigator: ContactsCoordinator!
     fileprivate var nextEntries: [Entry] {
-        
         willSet {
             self.dataSource.accept(self.dataSource.value + newValue)
         }
@@ -49,13 +47,11 @@ class ContactsViewModel{
         let contactDetailsCoordinator = ContactDetailsCoordinator(contact: contact)
         self.navigator.parentCoordinator?.next(coordinator: contactDetailsCoordinator)
     }
+    
     func goToAuthentication() {
-        let a = LoginCoordinator()
-        self.navigator.parentCoordinator?.next(coordinator: a)
-//        router.present(presentView: .login, completion: { [unowned self] _ in
-//             self.getContacts()
-//        })
+        self.navigator.parentCoordinator?.next(coordinator: LoginCoordinator())
     }
+    
     func getContacts() {
         self.isLoading.onNext(true)
         self.useCases.fetchContacts()
