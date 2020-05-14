@@ -24,9 +24,10 @@ class GoogleContactsUseCaseMoya {
             let googleAccessTokken = UserDataWrapper.googleAccessTokken,
             let email = UserDataWrapper.email,
             let tokkenExpired = UserDataWrapper.googleAccessTokkenExpired,
-            tokkenExpired.timeIntervalSince1970 < NSDate().timeIntervalSince1970
+            tokkenExpired.timeIntervalSince1970 > NSDate().timeIntervalSince1970,
+            googleAccessTokken != ""
         else {
-            return Single.error(RequestError.authentification)
+             return Single.error(RequestError.authentification)
         }
 
         return self.provider

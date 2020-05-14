@@ -20,6 +20,7 @@ class App : AppProtocol {
     var appCoordinator: AppCoordinator!
     var window : UIWindow!
     var coreDataUsecase = CoreDataUseCase()
+    
     init(window : UIWindow){
         self.window = window
         self.configureApp()
@@ -31,6 +32,7 @@ class App : AppProtocol {
         self.window.rootViewController = self.appCoordinator.router.navigationController
         self.window.makeKeyAndVisible()
     }
+    
     func saveCobtext() {
         self.coreDataUsecase.saveContext()
     }
