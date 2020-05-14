@@ -8,8 +8,8 @@
 
 import Foundation
 import UIKit
+
 protocol Coordinator: AnyObject {
-    var appCoordinator: AppCoordinator! { get }
     func start() -> UIViewController
 }
 

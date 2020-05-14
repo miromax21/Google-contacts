@@ -9,11 +9,17 @@
 import Foundation
 import UIKit
 import GoogleSignIn
-class App  {
+import CoreData
+
+protocol AppProtocol {
+    func start()
+    func saveCobtext()
+}
+class App : AppProtocol {
     
     var appCoordinator: AppCoordinator!
     var window : UIWindow!
-    
+    var coreDataUsecase = CoreDataUseCase()
     init(window : UIWindow){
         self.window = window
         self.configureApp()
@@ -25,6 +31,9 @@ class App  {
         self.window.rootViewController = self.appCoordinator.router.navigationController
         self.window.makeKeyAndVisible()
     }
+    func saveCobtext() {
+        self.coreDataUsecase.saveContext()
+    }
     
 // MARK: confuguration
     fileprivate func configureApp(){
@@ -35,5 +44,4 @@ class App  {
             GIDSignIn.sharedInstance().scopes = ["https://www.googleapis.com/auth/contacts.readonly","https://www.googleapis.com/auth/plus.login","https://www.googleapis.com/auth/plus.me"];
         }
     }
-    
 }

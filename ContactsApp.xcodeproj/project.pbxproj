@@ -37,6 +37,7 @@
 		1B7C358C24336B2700B701C6 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C358B24336B2700B701C6 /* LoginViewModel.swift */; };
 		1B864D172445EE2C00120F48 /* ContactsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B864D162445EE2C00120F48 /* ContactsModule.swift */; };
 		1B864D1B2445F2D300120F48 /* AuthenticationModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B864D1A2445F2D300120F48 /* AuthenticationModule.swift */; };
+		1B95147B246D7A250026FD0E /* CoreDataUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B95147A246D7A250026FD0E /* CoreDataUseCase.swift */; };
 		1B96CE79245948FE004DDD8D /* AlamofireRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B96CE78245948FE004DDD8D /* AlamofireRequest.swift */; };
 		1B96CE7C245952D7004DDD8D /* UserApiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B96CE7B245952D7004DDD8D /* UserApiData.swift */; };
 		1B9E02D02462A7F800E25937 /* GoogleMoyaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9E02CF2462A7F800E25937 /* GoogleMoyaService.swift */; };
@@ -116,6 +117,7 @@
 		1B7C358B24336B2700B701C6 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		1B864D162445EE2C00120F48 /* ContactsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsModule.swift; sourceTree = "<group>"; };
 		1B864D1A2445F2D300120F48 /* AuthenticationModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationModule.swift; sourceTree = "<group>"; };
+		1B95147A246D7A250026FD0E /* CoreDataUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUseCase.swift; sourceTree = "<group>"; };
 		1B96CE78245948FE004DDD8D /* AlamofireRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireRequest.swift; sourceTree = "<group>"; };
 		1B96CE7B245952D7004DDD8D /* UserApiData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserApiData.swift; sourceTree = "<group>"; };
 		1B9E02CF2462A7F800E25937 /* GoogleMoyaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMoyaService.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 			children = (
 				1B1BF9BF243C37E200029B4A /* GoogleContactsUseCase.swift */,
 				1BBF5877246D3E1A000BB3F9 /* GoogleContactsUseCaseMoya.swift */,
+				1B95147A246D7A250026FD0E /* CoreDataUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -728,6 +731,7 @@
 				1BABCC19243AEB420012FDF9 /* ApiServiceProtocols.swift in Sources */,
 				1BBF5876246D1378000BB3F9 /* Router.swift in Sources */,
 				1B0F9DEC242DC48900DE4A41 /* ContactsViewController.swift in Sources */,
+				1B95147B246D7A250026FD0E /* CoreDataUseCase.swift in Sources */,
 				1B1BF9C0243C37E200029B4A /* GoogleContactsUseCase.swift in Sources */,
 				1B66990A2445C150002969D8 /* Constants.swift in Sources */,
 				1B75AF31244DCF78000C30A4 /* RequestObservable.swift in Sources */,
