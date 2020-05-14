@@ -79,6 +79,8 @@ extension ContactsViewController {
         }
         let actionGoAuth = UIAlertAction(title: "Авторизоваться", style: .default) { [unowned self] (action)  in
             self.presentor.goToAuthentication()
+         //   let vc  = LoginCoordinator(router: self.presentor.coordinator.router).start()
+          //  self.navigationController?.pushViewController(LoginCoordinator().start(), animated: true)
         }
         switch message{
             

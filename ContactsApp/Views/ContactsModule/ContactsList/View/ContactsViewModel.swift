@@ -21,7 +21,7 @@ class ContactsViewModel{
     var useCases: GoogleUseCaseProvider!
     let disposeBag = DisposeBag()
 
-    var navigator: ContactsCoordinator!
+    var coordinator: BaseCoordinator!
     fileprivate var nextEntries: [Entry] {
         willSet {
             self.dataSource.accept(self.dataSource.value + newValue)
@@ -33,8 +33,8 @@ class ContactsViewModel{
         }
     }
     
-    init(navigator: ContactsCoordinator) {
-        self.navigator = navigator
+    init(coordinator: BaseCoordinator!) {
+        self.coordinator = coordinator
         self.view = ContactsViewController()
         self.useCases =  ContactsUsecaseProvider()
         self.isLoading.onNext(true)
@@ -44,22 +44,23 @@ class ContactsViewModel{
 
     func tapOnTheContact(contactIndex: IndexPath){
         let contact =  self.dataSource.value[contactIndex.row]
-        let contactDetailsCoordinator = ContactDetailsCoordinator(contact: contact)
-        self.navigator.parentCoordinator?.next(coordinator: contactDetailsCoordinator)
+        self.coordinator.appCoordinator.next(coordinator: .details(contact: contact))
     }
     
     func goToAuthentication() {
-        self.navigator.parentCoordinator?.next(coordinator: LoginCoordinator())
+        self.coordinator.appCoordinator.next(coordinator: .login(coordinator: .contcts))
     }
     
     func getContacts() {
         self.isLoading.onNext(true)
         self.useCases.fetchContacts()
         .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-        .observeOn(MainScheduler.instance)
+            .observeOn(MainScheduler.instance)
             .subscribe(
                 onSuccess: { [unowned self] entry in
                     guard let entry = entry else {
+                        self.error.onNext(RequestError.noData)
+                        self.isLoading.onNext(false)
                         return
                     }
                     self.nextEntries = entry

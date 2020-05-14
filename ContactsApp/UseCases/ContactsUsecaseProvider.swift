@@ -12,20 +12,19 @@ import Moya
 
 class ContactsUsecaseProvider: GoogleUseCaseProvider {
     var useCase : GoogleContactsUseCase!
+    var useCaseMoya : GoogleContactsUseCaseMoya!
     
     init(){
         let service = GoogleService()
+        self.useCase = GoogleContactsUseCase.init(service: service)
+        
         let provider = MoyaProvider<GoogleMoyaService>()
-        self.useCase =  GoogleContactsUseCase.init(service: service, moyaProvider: provider)
+        self.useCaseMoya = GoogleContactsUseCaseMoya(moyaProvider: provider)
     }
     func fetchContacts() -> Single<[Entry]?>{
-        return self.useCase.fetchContacts().asSingle()
-    }
-    
-    func fetchContacts2() -> Single<[Entry]?>{
-        return self.useCase.fetchContactsWithMoya()
-     }
-    
+        return self.useCase.start().asSingle()
+        //return self.useCaseMoya.start()
+    }    
 }
  
 

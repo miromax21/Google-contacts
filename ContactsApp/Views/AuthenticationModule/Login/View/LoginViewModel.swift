@@ -14,16 +14,20 @@ class LoginViewModel{
     
     var view: LoginViewController
    // var router: RouterProtocol
-    let service: NetworkServiceProtocol!
-    var Output: UIViewController {
+  //  let service: NetworkServiceProtocol!
+    var Output: LoginViewController {
          get{
              return self.view
          }
      }
-    required init() {
+    init(coordinator: BaseCoordinator!) {
         self.view = LoginViewController()
-        self.service = GoogleService()
+        self.view.presentor = self
     }
+//    required init() {
+//        self.view = LoginViewController()
+//        self.service = GoogleService()
+//    }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
@@ -49,7 +53,7 @@ class LoginViewModel{
         
         let scene = UIApplication.shared.connectedScenes.first
         if let sd : SceneDelegate = (scene?.delegate as? SceneDelegate) {
-            sd.app.start(coordinator: ContactsCoordinator())
+           // sd.app.start(coordinator: ContactsCoordinator(router: ))
         }
 
     }

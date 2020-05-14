@@ -10,18 +10,15 @@ import Foundation
 import UIKit
 class ContactDetailsCoordinator: BaseCoordinator {
     var contact: Entry?
-    init(contact: Entry?) {
+    init(contact: Entry?, app: AppCoordinator) {
         self.contact = contact
+        super.init(appCoordinator: app)
     }
-    override func start() {
+    override func start() -> UIViewController {
         let detailsViewController = DetailsViewController()
         let detailViewModel = DetailViewModel(contact: self.contact)
         detailsViewController.presentor =  detailViewModel
-        self.navigationController.navigationBar.isHidden = false
-        self.navigationController.viewControllers = [detailsViewController]
-//        self.navigationController.pushViewController(detailsViewController, animated: true)
-        //.pushViewController(detailsViewController, animated: true)
-            
+        return detailViewModel.Output            
     }
     
 }

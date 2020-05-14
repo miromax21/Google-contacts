@@ -10,10 +10,8 @@ import Foundation
 import UIKit
 class ContactsCoordinator: BaseCoordinator {
 
-    override func start() {
-        let contactsViewController = ContactsViewController()
-        let contactVM =  ContactsViewModel(navigator: self)
-        contactsViewController.presentor =  contactVM
-        self.navigationController.viewControllers = [contactsViewController]
+    override func start() -> UIViewController {
+        let contactVM =  ContactsViewModel(coordinator: self)
+        return contactVM.Output
     }
 }

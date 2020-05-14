@@ -12,19 +12,17 @@ class DetailsViewController: UIViewController {
 
     var presentor: DetailViewModel!
     
-    @IBOutlet weak var name: UILabel?
+    @IBOutlet weak var name: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-      //  presentor.setContact()
+        self.presentor.setContact()
+        
     }
-
-}
-
-extension DetailsViewController{
     func setContact(contact: Entry?) {
-        if let addres =  contact?.gmail?.address{
-            self.name?.text = addres
-        }
-      //  name?.text = contact?.gmail?.address
-    }
+         if let addres =  contact?.gmail?.address{
+             self.name.text = addres
+         }
+     }
+
 }
+

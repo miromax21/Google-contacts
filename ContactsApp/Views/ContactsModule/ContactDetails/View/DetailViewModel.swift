@@ -12,7 +12,7 @@ class DetailViewModel {
     
     var view: DetailsViewController
   
-    let service: NetworkServiceProtocol!
+   // let service: NetworkServiceProtocol!
     var contact: Entry?
 
     var Output: UIViewController {
@@ -23,11 +23,8 @@ class DetailViewModel {
     
     init(contact: Entry?) {
         self.view = DetailsViewController()
-        self.service = GoogleService()
         self.contact = contact
-        self.view.presentor = self
-        setContact()
-    }
+        self.view.presentor = self    }
     
     func setContact() {
         self.view.setContact(contact: self.contact)

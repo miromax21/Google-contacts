@@ -41,6 +41,8 @@
 		1B96CE7C245952D7004DDD8D /* UserApiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B96CE7B245952D7004DDD8D /* UserApiData.swift */; };
 		1B9E02D02462A7F800E25937 /* GoogleMoyaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9E02CF2462A7F800E25937 /* GoogleMoyaService.swift */; };
 		1BABCC19243AEB420012FDF9 /* ApiServiceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BABCC18243AEB420012FDF9 /* ApiServiceProtocols.swift */; };
+		1BBF5876246D1378000BB3F9 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBF5875246D1378000BB3F9 /* Router.swift */; };
+		1BBF5878246D3E1A000BB3F9 /* GoogleContactsUseCaseMoya.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBF5877246D3E1A000BB3F9 /* GoogleContactsUseCaseMoya.swift */; };
 		1BCA4EFE2449BA7400646D90 /* ContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCA4EFC2449BA7400646D90 /* ContactsTableViewCell.swift */; };
 		1BCA4EFF2449BA7400646D90 /* ContactsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BCA4EFD2449BA7400646D90 /* ContactsTableViewCell.xib */; };
 		1BCA4F012449C7ED00646D90 /* UITableViewCellExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCA4F002449C7ED00646D90 /* UITableViewCellExtention.swift */; };
@@ -118,6 +120,8 @@
 		1B96CE7B245952D7004DDD8D /* UserApiData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserApiData.swift; sourceTree = "<group>"; };
 		1B9E02CF2462A7F800E25937 /* GoogleMoyaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMoyaService.swift; sourceTree = "<group>"; };
 		1BABCC18243AEB420012FDF9 /* ApiServiceProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServiceProtocols.swift; sourceTree = "<group>"; };
+		1BBF5875246D1378000BB3F9 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		1BBF5877246D3E1A000BB3F9 /* GoogleContactsUseCaseMoya.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleContactsUseCaseMoya.swift; sourceTree = "<group>"; };
 		1BCA4EFC2449BA7400646D90 /* ContactsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableViewCell.swift; sourceTree = "<group>"; };
 		1BCA4EFD2449BA7400646D90 /* ContactsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactsTableViewCell.xib; sourceTree = "<group>"; };
 		1BCA4F002449C7ED00646D90 /* UITableViewCellExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtention.swift; sourceTree = "<group>"; };
@@ -264,7 +268,7 @@
 			children = (
 				1B43AB1A245BFF9200BC3A6D /* BaseCoordinator.swift */,
 				1B43AB1C245BFFEE00BC3A6D /* AppCoordinator.swift */,
-				1B43AB25245D74E600BC3A6D /* Application.swift */,
+				1BBF5875246D1378000BB3F9 /* Router.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -273,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				1B1BF9BF243C37E200029B4A /* GoogleContactsUseCase.swift */,
+				1BBF5877246D3E1A000BB3F9 /* GoogleContactsUseCaseMoya.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -373,6 +378,7 @@
 		1BABCC10243AE38E0012FDF9 /* Aplication */ = {
 			isa = PBXGroup;
 			children = (
+				1B43AB25245D74E600BC3A6D /* Application.swift */,
 				1B7AB828244033BB00D6948C /* GoogleService-Info.plist */,
 				1BEB6A95242DC15D00B3BCE3 /* AppDelegate.swift */,
 				1BEB6A97242DC15D00B3BCE3 /* SceneDelegate.swift */,
@@ -720,12 +726,14 @@
 				1BEB6A96242DC15D00B3BCE3 /* AppDelegate.swift in Sources */,
 				1B7AB82C244420F600D6948C /* UserDataWrapper.swift in Sources */,
 				1BABCC19243AEB420012FDF9 /* ApiServiceProtocols.swift in Sources */,
+				1BBF5876246D1378000BB3F9 /* Router.swift in Sources */,
 				1B0F9DEC242DC48900DE4A41 /* ContactsViewController.swift in Sources */,
 				1B1BF9C0243C37E200029B4A /* GoogleContactsUseCase.swift in Sources */,
 				1B66990A2445C150002969D8 /* Constants.swift in Sources */,
 				1B75AF31244DCF78000C30A4 /* RequestObservable.swift in Sources */,
 				1B60A9C3246539F3002B94CC /* GoogleServiceCore.swift in Sources */,
 				1B96CE79245948FE004DDD8D /* AlamofireRequest.swift in Sources */,
+				1BBF5878246D3E1A000BB3F9 /* GoogleContactsUseCaseMoya.swift in Sources */,
 				1B96CE7C245952D7004DDD8D /* UserApiData.swift in Sources */,
 				1B7C3586243368BA00B701C6 /* LoginViewController.swift in Sources */,
 				1BEB6A9B242DC15D00B3BCE3 /* Google_contacts.xcdatamodeld in Sources */,
