@@ -21,7 +21,7 @@ class AppCoordinator {
         self.router.next(viewController: vc)
     }
     
-    func getCoordinator(coordinator: AppCoordinatorEnum) -> UIViewController {
+    fileprivate func getCoordinator(coordinator: AppCoordinatorEnum) -> UIViewController {
         var nextCoordinator : BaseCoordinator!
         self.router.navigationController.navigationBar.isHidden = false
         switch coordinator {

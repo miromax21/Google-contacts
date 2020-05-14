@@ -8,21 +8,16 @@
 
 import Foundation
 import Network
+
 class Utils {
+    
+    static let shared = Utils()
     
     fileprivate let utilsQueue = DispatchQueue(label: "utilsQueue")
     lazy var isInternetAvailable : Bool = {
         return checkInternetConnection()
     }()
 
-    static let shared = Utils()
-    func JSONDecodeToData<T: Codable>(data: Data?, model : T) -> T?{
-        guard let data = data else { return nil}
-        let model = try? JSONDecoder().decode(T.self, from: data)
-        guard let result = model else { return nil}
-        return result
-    }
-    
     func getBundleData(fileName: String, type: String? = "plist") -> NSDictionary? {
         guard let path = Bundle.main.path(forResource: fileName, ofType: type) else {
             return nil

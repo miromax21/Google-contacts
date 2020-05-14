@@ -7,7 +7,7 @@
 //
 
 import Foundation
-struct UserData : Decodable{
+struct UserData : Codable{
     var feed : Feed?
     enum CodingKeys: String, CodingKey {
          case feed
@@ -18,7 +18,7 @@ struct UserData : Decodable{
     }
 }
 
-struct Feed : Decodable{
+struct Feed : Codable{
     var entry: [Entry]?
     enum CodingKeys: String, CodingKey {
          case entry
@@ -29,7 +29,7 @@ struct Feed : Decodable{
         self.entry = try? container.decode([Entry].self, forKey: CodingKeys.entry)
     }
 }
-struct Entry: Decodable{
+struct Entry: Codable{
     var gmail: Gmail?
     var title : String?
     var name : Name?

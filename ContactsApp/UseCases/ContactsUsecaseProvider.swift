@@ -22,7 +22,7 @@ class ContactsUsecaseProvider: GoogleUseCaseProvider {
         self.useCaseMoya = GoogleContactsUseCaseMoya(moyaProvider: provider)
     }
     func fetchContacts() -> Single<[Entry]?>{
-        let s = 1
+        let s = 12
         if s % 2 == 0{
             return self.useCase.start().asSingle()
         }else{
