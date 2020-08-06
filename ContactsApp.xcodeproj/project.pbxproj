@@ -24,7 +24,7 @@
 		1B43AB1F245C2E8400BC3A6D /* ContactDetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B43AB1E245C2E8400BC3A6D /* ContactDetailsCoordinator.swift */; };
 		1B43AB24245D399700BC3A6D /* ContactsUsecaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B43AB23245D399700BC3A6D /* ContactsUsecaseProvider.swift */; };
 		1B43AB26245D74E700BC3A6D /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B43AB25245D74E600BC3A6D /* Application.swift */; };
-		1B60A9C3246539F3002B94CC /* GoogleServiceCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B60A9C2246539F3002B94CC /* GoogleServiceCore.swift */; };
+		1B60A9C3246539F3002B94CC /* GoogleServiceCoreEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B60A9C2246539F3002B94CC /* GoogleServiceCoreEnum.swift */; };
 		1B6166472434890B00ACB5DA /* Routertest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6166462434890B00ACB5DA /* Routertest.swift */; };
 		1B6166492434B34200ACB5DA /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1B6166482434B34200ACB5DA /* .gitignore */; };
 		1B66990A2445C150002969D8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6699092445C150002969D8 /* Constants.swift */; };
@@ -35,7 +35,7 @@
 		1B7C3586243368BA00B701C6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C3585243368BA00B701C6 /* LoginViewController.swift */; };
 		1B7C3589243368D900B701C6 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B7C3588243368D900B701C6 /* LoginViewController.xib */; };
 		1B7C358C24336B2700B701C6 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C358B24336B2700B701C6 /* LoginViewModel.swift */; };
-		1B864D172445EE2C00120F48 /* ContactsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B864D162445EE2C00120F48 /* ContactsModule.swift */; };
+		1B864D172445EE2C00120F48 /* ContactsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B864D162445EE2C00120F48 /* ContactsCoordinator.swift */; };
 		1B864D1B2445F2D300120F48 /* AuthenticationModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B864D1A2445F2D300120F48 /* AuthenticationModule.swift */; };
 		1B95147B246D7A250026FD0E /* CoreDataUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B95147A246D7A250026FD0E /* CoreDataUseCase.swift */; };
 		1B96CE79245948FE004DDD8D /* AlamofireRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B96CE78245948FE004DDD8D /* AlamofireRequest.swift */; };
@@ -102,7 +102,7 @@
 		1B43AB1E245C2E8400BC3A6D /* ContactDetailsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailsCoordinator.swift; sourceTree = "<group>"; };
 		1B43AB23245D399700BC3A6D /* ContactsUsecaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsUsecaseProvider.swift; sourceTree = "<group>"; };
 		1B43AB25245D74E600BC3A6D /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
-		1B60A9C2246539F3002B94CC /* GoogleServiceCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleServiceCore.swift; sourceTree = "<group>"; };
+		1B60A9C2246539F3002B94CC /* GoogleServiceCoreEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleServiceCoreEnum.swift; sourceTree = "<group>"; };
 		1B61663C243487C100ACB5DA /* ContactsAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactsAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B616640243487C100ACB5DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B6166462434890B00ACB5DA /* Routertest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routertest.swift; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 		1B7C3585243368BA00B701C6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1B7C3588243368D900B701C6 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		1B7C358B24336B2700B701C6 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		1B864D162445EE2C00120F48 /* ContactsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsModule.swift; sourceTree = "<group>"; };
+		1B864D162445EE2C00120F48 /* ContactsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsCoordinator.swift; sourceTree = "<group>"; };
 		1B864D1A2445F2D300120F48 /* AuthenticationModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationModule.swift; sourceTree = "<group>"; };
 		1B95147A246D7A250026FD0E /* CoreDataUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUseCase.swift; sourceTree = "<group>"; };
 		1B96CE78245948FE004DDD8D /* AlamofireRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireRequest.swift; sourceTree = "<group>"; };
@@ -194,7 +194,6 @@
 			children = (
 				1B0F9DFC242E31E000DE4A41 /* ContactDetails */,
 				1B864D182445F1F000120F48 /* ContactsList */,
-				1B864D162445EE2C00120F48 /* ContactsModule.swift */,
 			);
 			path = ContactsModule;
 			sourceTree = "<group>";
@@ -202,10 +201,9 @@
 		1B0F9DEF242DC60900DE4A41 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1B28649B246E789E005CFA83 /* Cell */,
 				1B0F9DEB242DC48900DE4A41 /* ContactsViewController.swift */,
 				1B0F9DED242DC51F00DE4A41 /* ContactsViewController.xib */,
-				1BCA4EFC2449BA7400646D90 /* ContactsTableViewCell.swift */,
-				1BCA4EFD2449BA7400646D90 /* ContactsTableViewCell.xib */,
 				1B0F9DF0242DC65800DE4A41 /* ContactsViewModel.swift */,
 			);
 			path = View;
@@ -265,6 +263,15 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		1B28649B246E789E005CFA83 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				1BCA4EFC2449BA7400646D90 /* ContactsTableViewCell.swift */,
+				1BCA4EFD2449BA7400646D90 /* ContactsTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		1B43AB19245BFF6A00BC3A6D /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,7 +297,7 @@
 			children = (
 				1B0F9DF8242DD57300DE4A41 /* GoogleService.swift */,
 				1B9E02CF2462A7F800E25937 /* GoogleMoyaService.swift */,
-				1B60A9C2246539F3002B94CC /* GoogleServiceCore.swift */,
+				1B60A9C2246539F3002B94CC /* GoogleServiceCoreEnum.swift */,
 			);
 			path = GoogleServices;
 			sourceTree = "<group>";
@@ -335,6 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				1B0F9DEF242DC60900DE4A41 /* View */,
+				1B864D162445EE2C00120F48 /* ContactsCoordinator.swift */,
 			);
 			path = ContactsList;
 			sourceTree = "<group>";
@@ -384,6 +392,7 @@
 				1B43AB25245D74E600BC3A6D /* Application.swift */,
 				1B7AB828244033BB00D6948C /* GoogleService-Info.plist */,
 				1BEB6A95242DC15D00B3BCE3 /* AppDelegate.swift */,
+				1B7AB8312444269100D6948C /* UserDataProtocols.swift */,
 				1BEB6A97242DC15D00B3BCE3 /* SceneDelegate.swift */,
 				1BEB6A99242DC15D00B3BCE3 /* Google_contacts.xcdatamodeld */,
 			);
@@ -411,7 +420,6 @@
 			isa = PBXGroup;
 			children = (
 				1BABCC18243AEB420012FDF9 /* ApiServiceProtocols.swift */,
-				1B7AB8312444269100D6948C /* UserDataProtocols.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -735,7 +743,7 @@
 				1B1BF9C0243C37E200029B4A /* GoogleContactsUseCase.swift in Sources */,
 				1B66990A2445C150002969D8 /* Constants.swift in Sources */,
 				1B75AF31244DCF78000C30A4 /* RequestObservable.swift in Sources */,
-				1B60A9C3246539F3002B94CC /* GoogleServiceCore.swift in Sources */,
+				1B60A9C3246539F3002B94CC /* GoogleServiceCoreEnum.swift in Sources */,
 				1B96CE79245948FE004DDD8D /* AlamofireRequest.swift in Sources */,
 				1BBF5878246D3E1A000BB3F9 /* GoogleContactsUseCaseMoya.swift in Sources */,
 				1B96CE7C245952D7004DDD8D /* UserApiData.swift in Sources */,
@@ -755,7 +763,7 @@
 				1B0F9DF9242DD57300DE4A41 /* GoogleService.swift in Sources */,
 				1B1BF9C4243C4B6F00029B4A /* Utils.swift in Sources */,
 				1B0F9E02242E3A9F00DE4A41 /* DetailsViewController.swift in Sources */,
-				1B864D172445EE2C00120F48 /* ContactsModule.swift in Sources */,
+				1B864D172445EE2C00120F48 /* ContactsCoordinator.swift in Sources */,
 				1BCA4F032449CD5400646D90 /* LibraryExtention.swift in Sources */,
 				1B7AB8322444269100D6948C /* UserDataProtocols.swift in Sources */,
 				1B11F34824457C9500C8393E /* LoaderView.swift in Sources */,

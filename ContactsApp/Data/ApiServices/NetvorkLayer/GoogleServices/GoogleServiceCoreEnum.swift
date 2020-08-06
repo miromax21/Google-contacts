@@ -13,7 +13,9 @@ fileprivate  let GoogleServiceBaseUrl:String = "https://www.google.com/m8/feeds/
 enum GoogleServiceEnum{
     case Domain
     case Users
-    case Contacts(token:String, userEmail : String)
+    case Contacts(accessToken:String, userEmail : String)
+    case UserContacts(userEmail : String)
+    
     var path : String {
         var path = ""
         switch self {
@@ -22,11 +24,13 @@ enum GoogleServiceEnum{
         case .Users:
             path = "/full"
         case .Contacts(let accessToken, let userEmail):
-            path = "\(userEmail)/full?access_token=\(accessToken)&max-results=\(999)&alt=json&v=3.0"
+            path = "\(userEmail)/full?access_token=\(accessToken)&alt=json"
+        case .UserContacts(let userEmail):
+            path = "\(userEmail)/full"
         }
         return path
     }
     var url : URL{
-        return URL(string: GoogleServiceBaseUrl + self.path)!
+        return URL(string: "https://www.google.com/m8/feeds/contacts/" + self.path)!
     }
 }

@@ -13,8 +13,7 @@ import GoogleSignIn
 class LoginViewModel{
     
     var view: LoginViewController
-   // var router: RouterProtocol
-  //  let service: NetworkServiceProtocol!
+    
     var Output: LoginViewController {
          get{
              return self.view
@@ -24,11 +23,7 @@ class LoginViewModel{
         self.view = LoginViewController()
         self.view.presentor = self
     }
-//    required init() {
-//        self.view = LoginViewController()
-//        self.service = GoogleService()
-//    }
-    
+
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
             print("\(error.localizedDescription)")
@@ -37,24 +32,19 @@ class LoginViewModel{
         guard
             let authentication = user.authentication,
             let email = user?.profile.email,
-            let accessTokken = authentication.accessToken
+            let accessToken = authentication.accessToken,
+            let idToken = authentication.idToken
         else { return }
         
         UserDataWrapper.email = email
-        UserDataWrapper.googleAccessTokken = accessTokken
-        UserDataWrapper.googleAccessTokkenExpired = Date(timeIntervalSince1970: authentication.accessTokenExpirationDate.timeIntervalSince1970)
+        UserDataWrapper.googleAccessToken = accessToken
+        UserDataWrapper.googleAccessTokenExpired = Date(timeIntervalSince1970: authentication.accessTokenExpirationDate.timeIntervalSince1970)
+        UserDataWrapper.googleIdToken = idToken
         
+        self.view.dismiss(animated: true)
+        self.view.removeFromParent()
         if let complete = view.complete {
-            self.view.dismiss(animated: true)
-            self.view.removeFromParent()
             complete()
-            return
         }
-        
-        let scene = UIApplication.shared.connectedScenes.first
-        if let sd : SceneDelegate = (scene?.delegate as? SceneDelegate) {
-           // sd.app.start(coordinator: ContactsCoordinator(router: ))
-        }
-
     }
 }

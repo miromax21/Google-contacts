@@ -12,37 +12,39 @@ enum GoogleMoyaService {
     case getContacts(accessToken : String, userEmail : String)
 }
 extension GoogleMoyaService: TargetType {
-    
     var baseURL: URL {
-        return URL(string: "https://www.google.com/m8/feeds/contacts/")!
-    //  return GoogleServiceEnum.Domain.url
+        return GoogleServiceEnum.Domain.url.absoluteURL
     }
     
     var path: String {
         switch self {
-            case .getContacts(let token, let userEmail):
-                return  "\(userEmail)/full?access_token=\(token)&max-results=\(999)&alt=json&v=3.0"
-            //  return GoogleServiceEnum.Contacts(token: token, userEmail: userEmail).path
+            case .getContacts(let accessToken, let userEmail):
+                return GoogleServiceEnum.UserContacts(userEmail: userEmail).path
         }
     }
     
     var method:  Moya.Method {
-        switch self {
-            case .getContacts:
-                return .get
-        }
+        return .get
     }
 
     var task: Task {
-        return .requestPlain
+        return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
     }
 
     var headers: [String: String]? {
-        return ["Content-type": "text/json; charset=utf-8"]
+        return nil
     }
 
     var sampleData: Data {
         return Data()
     }
+    
+    var parameters: [String: Any] {
+        guard let googleAccessToken = UserDataWrapper.googleAccessToken else {
+            return  ["alt":"json"]
+        }
+        return ["alt":"json", "access_token": googleAccessToken]
+    }
+
 }
 

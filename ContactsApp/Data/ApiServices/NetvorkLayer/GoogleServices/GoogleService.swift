@@ -15,10 +15,8 @@ class GoogleService: RequestObservable, NetworkServiceProtocol {
     var al = AlamofireRequest()
     
     func request(path:GoogleServiceEnum) -> Observable<UserData?> {
-        
         var request = URLRequest(url: path.url)
         request.httpMethod = "GET"
-        request.addValue("text/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         return self.al.callAPI(request: request)
     }
 }

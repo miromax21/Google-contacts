@@ -11,19 +11,30 @@ import Moya
 import RxSwift
 import RxCocoa
 
+struct AuthrisationTokePlugin: PluginType {
+    func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
+        var request = request
+//        guard let token =  UserDataWrapper.googleAccessToken else {
+//            return request
+//        }
+//        request.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+        request.httpMethod = "GET"
+        return request
+    }
+}
 class GoogleContactsUseCaseMoya {
     
     var provider : MoyaProvider<GoogleMoyaService>!
     
     init(moyaProvider: MoyaProvider<GoogleMoyaService>) {
-        self.provider = MoyaProvider<GoogleMoyaService>()
+        self.provider = MoyaProvider<GoogleMoyaService>(plugins:  [AuthrisationTokePlugin()])
     }
     
     func start() -> PrimitiveSequence<SingleTrait, [Entry]?> {
         guard
-            let googleAccessTokken = UserDataWrapper.googleAccessTokken,
+            let googleAccessTokken = UserDataWrapper.googleAccessToken,
             let email = UserDataWrapper.email,
-            let tokkenExpired = UserDataWrapper.googleAccessTokkenExpired,
+            let tokkenExpired = UserDataWrapper.googleAccessTokenExpired,
             tokkenExpired.timeIntervalSince1970 > NSDate().timeIntervalSince1970,
             googleAccessTokken != ""
         else {

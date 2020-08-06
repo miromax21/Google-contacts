@@ -11,8 +11,6 @@ import UIKit
 class DetailViewModel {
     
     var view: DetailsViewController
-  
-   // let service: NetworkServiceProtocol!
     var contact: Entry?
 
     var Output: UIViewController {

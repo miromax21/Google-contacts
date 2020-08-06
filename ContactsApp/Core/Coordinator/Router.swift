@@ -16,6 +16,7 @@ indirect enum AppCoordinatorEnum{
 }
 
 class Router {
+    
     var navigationController : UINavigationController
     
     init(navigationController : UINavigationController) {
@@ -23,7 +24,7 @@ class Router {
     }
     func next(viewController:UIViewController)  {
         self.navigationController.pushViewController(viewController, animated: true)
-     }
+    }
     
 
 }

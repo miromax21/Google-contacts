@@ -9,7 +9,10 @@
 import UIKit
 import SwiftUI
 import  GoogleSignIn
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+protocol SceneDelegateApp {
+    var app: AppProtocol! { get }
+}
+class SceneDelegate: UIResponder, UIWindowSceneDelegate, SceneDelegateApp {
     var window: UIWindow?
     var app: AppProtocol!
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {

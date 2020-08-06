@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 class ContactDetailsCoordinator: BaseCoordinator {
     var contact: Entry?
-    init(contact: Entry?, app: AppCoordinator) {
+    init(contact: Entry?) {
         self.contact = contact
-        super.init(appCoordinator: app)
+        super.init()
     }
     override func start() -> UIViewController {
         let detailsViewController = DetailsViewController()

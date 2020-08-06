@@ -14,6 +14,7 @@ import CoreData
 protocol AppProtocol {
     func start()
     func saveCobtext()
+    var appCoordinator: AppCoordinator! {get}
 }
 class App : AppProtocol {
     

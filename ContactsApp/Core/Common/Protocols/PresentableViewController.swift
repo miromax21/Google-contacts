@@ -8,7 +8,8 @@
 
 import Foundation
 import UIKit
-protocol PresentableViewController : UIViewController{
+
+protocol PresentableViewController: UIViewController {
     var complete: (() -> ())? {get set}
 }
 

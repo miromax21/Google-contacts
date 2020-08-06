@@ -19,8 +19,4 @@ class BaseCoordinator: Coordinator {
     func start() -> UIViewController{
         fatalError("Start method must be implemented")
     }
-
-    init(appCoordinator: AppCoordinator){
-        self.appCoordinator = appCoordinator
-    }
 }
