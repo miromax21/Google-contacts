@@ -44,19 +44,20 @@ final class AppCoordinator {
     
     fileprivate func presentViewController(coordinator : BaseCoordinator, goAfterCoordinator : AppCoordinatorEnum?) -> UIViewController {
         
-        coordinator.appCoordinator = self
-        let nextCoordinator = coordinator.start()
-        self.router.navigationController.navigationBar.isHidden = true
+        let nextController = coordinator.start()
         
-        guard let nextController = nextCoordinator as? PresentableViewController, let goAfter = goAfterCoordinator else {
-            return nextCoordinator
+        guard let nextPresentableController = nextController as? PresentableViewController, let goAfter = goAfterCoordinator else {
+             return presentViewController(coordinator: coordinator)
         }
         
-        nextController.complete = {
+        coordinator.appCoordinator = self
+        self.router.navigationController.navigationBar.isHidden = true
+        
+        nextPresentableController.complete = {
             self.router.navigationController.viewControllers = [self.getCoordinator(coordinator: goAfter)]
         }
 
-        return nextController
+        return nextPresentableController
         
     }
 }

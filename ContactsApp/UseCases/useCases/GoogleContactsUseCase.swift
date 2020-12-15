@@ -19,16 +19,16 @@ class GoogleContactsUseCase  {
     }
    func start() -> Observable<[Entry]?>{
         guard
-            let googleAccessTokken = UserDataWrapper.googleAccessTokken,
+            let googleAccessTokken = UserDataWrapper.googleAccessToken,
             let email = UserDataWrapper.email,
-            let tokkenExpired = UserDataWrapper.googleAccessTokkenExpired,
+            let tokkenExpired = UserDataWrapper.googleAccessTokenExpired,
             tokkenExpired.timeIntervalSince1970 > NSDate().timeIntervalSince1970
             else {
                 return Observable.error(RequestError.authentification)
             }
     
         return Observable.deferred {
-            return self.service.request(path: .Contacts(token: googleAccessTokken, userEmail: email) )
+            return self.service.request(path: .Contacts(accessToken: googleAccessTokken, userEmail: email) )
                 .flatMap { (userData)  -> Observable<[Entry]?>  in
                     return Observable.of(userData?.feed?.entry)
             }

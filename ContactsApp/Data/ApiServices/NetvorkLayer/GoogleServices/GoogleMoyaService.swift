@@ -9,7 +9,7 @@
 import Foundation
 import Moya
 enum GoogleMoyaService {
-    case getContacts(accessToken : String, userEmail : String)
+    case getContacts(userEmail : String)
 }
 extension GoogleMoyaService: TargetType {
     var baseURL: URL {
@@ -18,7 +18,7 @@ extension GoogleMoyaService: TargetType {
     
     var path: String {
         switch self {
-            case .getContacts(let accessToken, let userEmail):
+            case .getContacts(let userEmail):
                 return GoogleServiceEnum.UserContacts(userEmail: userEmail).path
         }
     }

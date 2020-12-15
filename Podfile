@@ -6,14 +6,11 @@ target 'ContactsApp' do
   use_frameworks!
 
   # Pods for ContactsApp
-  pod 'RxSwift', '~> 4.4'
   pod 'RxCocoa'
   pod 'Moya/RxSwift', '~> 12.0'
-  pod 'Moya-ObjectMapper'
-  pod 'Moya-ObjectMapper/RxSwift'
-  pod 'ObjectMapper'
   pod 'RxAlamofire'
   pod 'GoogleSignIn'
+  pod 'GoogleSignIn', '<5.0.0'
   pod 'KeychainSwift'
   pod 'RxDataSources'
 

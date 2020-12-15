@@ -43,7 +43,7 @@ class GoogleContactsUseCaseMoya {
 
         return self.provider
             .rx
-            .request(.getContacts(accessToken: googleAccessTokken, userEmail: email))
+            .request(.getContacts(userEmail: email))
             .filterSuccessfulStatusCodes()
             .map(UserData.self).flatMap { (userData)  in
                 return Single.just(userData.feed?.entry)

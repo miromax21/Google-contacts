@@ -1,42 +1,26 @@
 PODS:
   - Alamofire (4.9.1)
-  - AppAuth (1.4.0):
-    - AppAuth/Core (= 1.4.0)
-    - AppAuth/ExternalUserAgent (= 1.4.0)
-  - AppAuth/Core (1.4.0)
-  - AppAuth/ExternalUserAgent (1.4.0)
   - Differentiator (3.1.0)
-  - GoogleSignIn (5.0.2):
-    - AppAuth (~> 1.2)
-    - GTMAppAuth (~> 1.0)
+  - GoogleSignIn (4.4.0):
+    - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
+    - "GoogleToolboxForMac/NSString+URLArguments (~> 2.1)"
     - GTMSessionFetcher/Core (~> 1.1)
-  - GTMAppAuth (1.0.0):
-    - AppAuth/Core (~> 1.0)
-    - GTMSessionFetcher (~> 1.1)
-  - GTMSessionFetcher (1.4.0):
-    - GTMSessionFetcher/Full (= 1.4.0)
-  - GTMSessionFetcher/Core (1.4.0)
-  - GTMSessionFetcher/Full (1.4.0):
-    - GTMSessionFetcher/Core (= 1.4.0)
+  - GoogleToolboxForMac/DebugUtils (2.3.0):
+    - GoogleToolboxForMac/Defines (= 2.3.0)
+  - GoogleToolboxForMac/Defines (2.3.0)
+  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.3.0)":
+    - GoogleToolboxForMac/DebugUtils (= 2.3.0)
+    - GoogleToolboxForMac/Defines (= 2.3.0)
+    - "GoogleToolboxForMac/NSString+URLArguments (= 2.3.0)"
+  - "GoogleToolboxForMac/NSString+URLArguments (2.3.0)"
+  - GTMSessionFetcher/Core (1.5.0)
   - KeychainSwift (19.0.0)
-  - Moya (12.0.1):
-    - Moya/Core (= 12.0.1)
-  - Moya-ObjectMapper (2.8):
-    - Moya-ObjectMapper/Core (= 2.8)
-  - Moya-ObjectMapper/Core (2.8):
-    - Moya (~> 12.0)
-    - ObjectMapper (~> 3.4)
-  - Moya-ObjectMapper/RxSwift (2.8):
-    - Moya-ObjectMapper/Core
-    - Moya/RxSwift
-    - RxSwift (~> 4)
   - Moya/Core (12.0.1):
     - Alamofire (~> 4.1)
     - Result (~> 4.0)
   - Moya/RxSwift (12.0.1):
     - Moya/Core
     - RxSwift (~> 4.0)
-  - ObjectMapper (3.5.3)
   - Result (4.1.0)
   - RxAlamofire (4.4.1):
     - RxAlamofire/Core (= 4.4.1)
@@ -53,28 +37,22 @@ PODS:
 
 DEPENDENCIES:
   - GoogleSignIn
+  - GoogleSignIn (< 5.0.0)
   - KeychainSwift
-  - Moya-ObjectMapper
-  - Moya-ObjectMapper/RxSwift
   - Moya/RxSwift (~> 12.0)
-  - ObjectMapper
   - RxAlamofire
   - RxCocoa
   - RxDataSources
-  - RxSwift (~> 4.4)
 
 SPEC REPOS:
   trunk:
     - Alamofire
-    - AppAuth
     - Differentiator
     - GoogleSignIn
-    - GTMAppAuth
+    - GoogleToolboxForMac
     - GTMSessionFetcher
     - KeychainSwift
     - Moya
-    - Moya-ObjectMapper
-    - ObjectMapper
     - Result
     - RxAlamofire
     - RxCocoa
@@ -83,21 +61,18 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
-  AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
-  GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
-  GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
-  GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
+  GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
+  GoogleToolboxForMac: 1350d40e86a76f7863928d63bcb0b89c84c521c5
+  GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   KeychainSwift: a06190cf933ad46b1e0abc3d77d29c06331715c7
   Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
-  Moya-ObjectMapper: c514b5eafcfd5e260f85f7a5bf66895a217e2b37
-  ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   RxAlamofire: ed65f451f5a9a59419b0b9e705043dc01410edd9
   RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
   RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
 
-PODFILE CHECKSUM: d3552e5767d5eeb066061d46a8de2de1aa89d86f
+PODFILE CHECKSUM: e7d1cb4c2414504f2c891c052ccfa3ed617d30e2
 
 COCOAPODS: 1.9.0

@@ -9,7 +9,7 @@
 import UIKit
 import GoogleSignIn
 
-class LoginViewController: UIViewController, PresentableViewController {
+class LoginViewController: UIViewController, PresentableViewController, GIDSignInUIDelegate {
     
     var complete: (() -> ())?
     var presentor: LoginViewModel!
@@ -24,15 +24,14 @@ class LoginViewController: UIViewController, PresentableViewController {
         googleSignButton.center = view.center
         googleSignButton.bottomAnchor.anchorWithOffset(to: view.safeAreaLayoutGuide.bottomAnchor)
         view.addSubview(googleSignButton)
-        GIDSignIn.sharedInstance().presentingViewController = self
+        GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().delegate = self
-        GIDSignIn.sharedInstance().presentingViewController = self
     }
 }
 
 // MARK: Extensions
 
-extension LoginViewController:GIDSignInDelegate{
+extension LoginViewController: GIDSignInDelegate{
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         self.presentor.sign(signIn, didSignInFor: user, withError: error)
     }
