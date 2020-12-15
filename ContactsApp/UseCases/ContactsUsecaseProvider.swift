@@ -11,23 +11,15 @@ import RxSwift
 import Moya
 
 class ContactsUsecaseProvider: GoogleUseCaseProvider {
-    var useCase : GoogleContactsUseCase!
-    var useCaseMoya : GoogleContactsUseCaseMoya!
+    var useCase : GoogleUseCase!
     
     init(){
-        let service = GoogleService()
-        self.useCase = GoogleContactsUseCase.init(service: service)
-        
-        let provider = MoyaProvider<GoogleMoyaService>()
-        self.useCaseMoya = GoogleContactsUseCaseMoya(moyaProvider: provider)
+        self.useCase = true
+            ? GoogleContactsUseCase.init(service:  GoogleService())
+            : GoogleContactsUseCaseMoya(moyaProvider: MoyaProvider<GoogleMoyaService>())
     }
     func fetchContacts() -> Single<[Entry]?>{
-        let s = 12
-        if s % 2 == 0{
-            return self.useCase.start().asSingle()
-        }else{
-            return self.useCaseMoya.start()
-        }
+        return self.useCase.start()
     }
 }
  

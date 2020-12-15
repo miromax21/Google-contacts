@@ -22,7 +22,7 @@ struct AuthrisationTokePlugin: PluginType {
         return request
     }
 }
-class GoogleContactsUseCaseMoya {
+class GoogleContactsUseCaseMoya: GoogleUseCase {
     
     var provider : MoyaProvider<GoogleMoyaService>!
     

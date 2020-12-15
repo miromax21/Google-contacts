@@ -12,3 +12,7 @@ import RxSwift
 protocol GoogleUseCaseProvider {
      func fetchContacts() -> Single<[Entry]?>
 }
+
+protocol GoogleUseCase {
+    func start() -> PrimitiveSequence<SingleTrait, [Entry]?>
+}

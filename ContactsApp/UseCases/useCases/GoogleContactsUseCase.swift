@@ -11,29 +11,24 @@ import RxSwift
 import RxCocoa
 import Moya
 
-class GoogleContactsUseCase  {
+class GoogleContactsUseCase: GoogleUseCase  {
     var service: NetworkServiceProtocol!
     
     init(service: NetworkServiceProtocol!) {
         self.service = service
     }
-   func start() -> Observable<[Entry]?>{
+   func start() -> PrimitiveSequence<SingleTrait, [Entry]?>{
         guard
             let googleAccessTokken = UserDataWrapper.googleAccessToken,
             let email = UserDataWrapper.email,
             let tokkenExpired = UserDataWrapper.googleAccessTokenExpired,
             tokkenExpired.timeIntervalSince1970 > NSDate().timeIntervalSince1970
-            else {
-                return Observable.error(RequestError.authentification)
-            }
-    
-        return Observable.deferred {
-            return self.service.request(path: .Contacts(accessToken: googleAccessTokken, userEmail: email) )
-                .flatMap { (userData)  -> Observable<[Entry]?>  in
-                    return Observable.of(userData?.feed?.entry)
-            }
+        else {
+           return Single.error(RequestError.authentification)
+        }
+    return self.service.request(path: .Contacts(accessToken: googleAccessTokken, userEmail: email) ).asSingle()
+            .flatMap { (userData)  -> PrimitiveSequence<SingleTrait, [Entry]?>  in
+                return Single.just(userData?.feed?.entry)
         }
     }
-
-    
 }

@@ -43,7 +43,7 @@ enum ExtendedValidation{
     func validate(val:String) -> Bool {
         switch  self {
              case .lenght(let from, let to):
-                 return NSPredicate(format: "SELF MATCHES %@","^(?=.{\(from),\(to)}$).*").evaluate(with: val)
+                 return NSPredicate(format: "SELF MATCHES %@","^(?=.{\(from ?? 0),\(to ?? 0)}$).*").evaluate(with: val)
          }
     }
 }
