@@ -9,10 +9,13 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import RxDataSources
 
-class ContactsViewModel{
+class ContactsViewModel: ViewModelProtocol{
+    
     var view: ContactsViewController
-    var dataSource = BehaviorRelay(value: [Entry]())
+    var dataSource: RxTableViewSectionedReloadDataSource<SectionModel<String, Entry>>!
+    var items = BehaviorRelay(value: [SectionModel<String, Entry>(model: "", items: [])])
     var isLoading = PublishSubject<Bool>()
     var error = PublishSubject<RequestError>()
     
@@ -24,10 +27,17 @@ class ContactsViewModel{
     var coordinator: BaseCoordinator!
     fileprivate var nextEntries: [Entry] {
         willSet {
-            self.dataSource.accept(self.dataSource.value + newValue)
+            let groupedEntries: [SectionModel<String, Entry>] = Dictionary(grouping: newValue){ $0.title?.first}.map {
+                var label = "#: No name"
+                if let key = $0.key{
+                    label =  String(describing: key)
+                }
+                return SectionModel(model: label, items: $0.value)
+            }
+            self.items.accept(groupedEntries)
         }
     }
-    var Output: UIViewController {
+    var Output: UIViewController! {
         get{
             return self.view
         }
@@ -42,8 +52,7 @@ class ContactsViewModel{
         self.view.presentor = self
     }
 
-    func tapOnTheContact(contactIndex: IndexPath){
-        let contact =  self.dataSource.value[contactIndex.row]
+    func tapOnTheContact(contact: Entry){
         self.coordinator.appCoordinator.next(coordinator: .details(contact: contact))
     }
     

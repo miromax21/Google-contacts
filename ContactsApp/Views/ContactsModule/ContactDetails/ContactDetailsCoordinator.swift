@@ -12,13 +12,10 @@ class ContactDetailsCoordinator: BaseCoordinator {
     var contact: Entry?
     init(contact: Entry?) {
         self.contact = contact
-        super.init()
     }
     override func start() -> UIViewController {
-        let detailsViewController = DetailsViewController()
-        let detailViewModel = DetailViewModel(contact: self.contact)
-        detailsViewController.presentor =  detailViewModel
-        return detailViewModel.Output            
+        self.viewModel = DetailViewModel(contact: self.contact)
+        return super.start()
     }
     
 }

@@ -9,9 +9,8 @@ import UIKit
 class LoginCoordinator:BaseCoordinator {
     
     override func start() -> LoginViewController {
-        let loginVM =  LoginViewModel(coordinator: self)
-        //super.start(coordinator: self)
-        return loginVM.Output
+        self.viewModel = LoginViewModel(coordinator: self)
+        return super.start() as! LoginViewController
     }
 }
 

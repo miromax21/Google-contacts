@@ -11,7 +11,7 @@ import UIKit
 class ContactsCoordinator: BaseCoordinator {
 
     override func start() -> UIViewController {
-        let contactVM =  ContactsViewModel(coordinator: self)
-        return contactVM.Output
+        self.viewModel = ContactsViewModel(coordinator: self)
+        return super.start()
     }
 }

@@ -37,16 +37,32 @@ class ContactsViewController: UIViewController {
     }
 
     private func setupTableViewBinding() {
-        let cell = ContactsTableViewCell.self
-        let nib = UINib(nibName: cell.identifier, bundle: nil)
-        contactsTableView.register(nib, forCellReuseIdentifier: cell.identifier)
-        presentor.dataSource.bind(to: contactsTableView.rx.items(cellIdentifier: cell.identifier, cellType: cell)) { index, model, cell in
-            cell.contact = model
-        }.disposed(by: self.disposeBag)
+        let nib = UINib(nibName: ContactsTableViewCell.identifier, bundle: nil)
+        contactsTableView.register(nib, forCellReuseIdentifier: ContactsTableViewCell.identifier)
         
-        contactsTableView.rx.itemSelected.subscribe(onNext: { (indexPath) in
-            self.presentor.tapOnTheContact(contactIndex: indexPath)
-        }).disposed(by: self.disposeBag)
+        presentor
+            .dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, Entry>>(
+                configureCell: { (dataSource, tableView, indexPath, item) -> ContactsTableViewCell in
+                    let cell = tableView.dequeueReusableCell(withIdentifier: ContactsTableViewCell.identifier, for: indexPath) as! ContactsTableViewCell
+                    cell.contact = item
+                    return cell
+                }
+            )
+        
+        presentor
+            .items
+                .bind(to: contactsTableView.rx.items(dataSource:  presentor.dataSource))
+                .disposed(by: disposeBag)
+        contactsTableView
+            .rx.setDelegate(self)
+            .disposed(by: disposeBag)
+        
+        Observable
+            .zip(contactsTableView.rx.itemSelected, contactsTableView.rx.modelSelected(Entry.self))
+        .bind { [unowned self] indexPath, model in
+            self.presentor.tapOnTheContact(contact: model)
+        }
+        .disposed(by: disposeBag)
     }
     private func setupHendler(){
         self.presentor.error.asObservable().subscribe(onNext: { [unowned self] (error) in
@@ -60,6 +76,23 @@ class ContactsViewController: UIViewController {
             loader.isLoading.onNext(isLoading)
         }).disposed(by: self.disposeBag)
         
+    }
+}
+extension ContactsViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel(frame: CGRect(x: 10, y: 150, width: 230, height: 21))
+        label.text = "\(self.presentor.items.value[section].model)"
+        let frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 42)
+        let headerView = UIView(frame: frame)
+        headerView.backgroundColor = UIColor.darkGray
+        headerView.addSubview(label)
+        label.center = headerView.center
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
     }
 }
 
@@ -85,7 +118,7 @@ extension ContactsViewController {
         switch message{
             
         case .any, .noData:
-            title = "asomething went wrong :)"
+            title = "something went wrong :)"
         case .noInternet:
             title = "internet cennection error"
         case .sessionError(error: let error):

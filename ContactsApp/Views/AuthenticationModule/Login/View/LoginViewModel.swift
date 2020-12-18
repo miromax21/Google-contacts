@@ -10,11 +10,11 @@ import Foundation
 import RxSwift
 import GoogleSignIn
 
-class LoginViewModel{
+class LoginViewModel: ViewModelProtocol{
     
     var view: LoginViewController
     
-    var Output: LoginViewController {
+    var Output: UIViewController! {
          get{
              return self.view
          }

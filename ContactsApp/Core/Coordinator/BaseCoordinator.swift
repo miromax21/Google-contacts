@@ -15,8 +15,8 @@ protocol Coordinator: AnyObject {
 
 class BaseCoordinator: Coordinator {
     var appCoordinator: AppCoordinator!
-    
+    var viewModel: ViewModelProtocol!
     func start() -> UIViewController{
-        fatalError("Start method must be implemented")
+        return self.viewModel.Output
     }
 }

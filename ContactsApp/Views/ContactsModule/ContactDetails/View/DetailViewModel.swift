@@ -8,12 +8,12 @@
 //
 import Foundation
 import UIKit
-class DetailViewModel {
+class DetailViewModel: ViewModelProtocol {
     
     var view: DetailsViewController
     var contact: Entry?
 
-    var Output: UIViewController {
+    var Output: UIViewController! {
          get{
              return self.view
          }
