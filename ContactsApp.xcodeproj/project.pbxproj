@@ -131,6 +131,8 @@
 		1BCA4F002449C7ED00646D90 /* UITableViewCellExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtention.swift; sourceTree = "<group>"; };
 		1BCA4F022449CD5400646D90 /* LibraryExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryExtention.swift; sourceTree = "<group>"; };
 		1BDDC23524501A0700A23B96 /* GoogleContactsUseCaseProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleContactsUseCaseProtocols.swift; sourceTree = "<group>"; };
+		1BDFE574258CC4EF00E85647 /* DomainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainTests.swift; sourceTree = "<group>"; };
+		1BDFE576258CC4EF00E85647 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1BEB6A92242DC15D00B3BCE3 /* ContactsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BEB6A95242DC15D00B3BCE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BEB6A97242DC15D00B3BCE3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -394,7 +396,6 @@
 				1B43AB25245D74E600BC3A6D /* Application.swift */,
 				1B7AB828244033BB00D6948C /* GoogleService-Info.plist */,
 				1BEB6A95242DC15D00B3BCE3 /* AppDelegate.swift */,
-				1B7AB8312444269100D6948C /* UserDataProtocols.swift */,
 				1BEB6A97242DC15D00B3BCE3 /* SceneDelegate.swift */,
 				1BEB6A99242DC15D00B3BCE3 /* Google_contacts.xcdatamodeld */,
 			);
@@ -421,6 +422,7 @@
 		1BDDC23F24501DEF00A23B96 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				1B7AB8312444269100D6948C /* UserDataProtocols.swift */,
 				1BABCC18243AEB420012FDF9 /* ApiServiceProtocols.swift */,
 			);
 			path = Protocols;
@@ -435,11 +437,21 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		1BDFE573258CC4EF00E85647 /* DomainTests */ = {
+			isa = PBXGroup;
+			children = (
+				1BDFE574258CC4EF00E85647 /* DomainTests.swift */,
+				1BDFE576258CC4EF00E85647 /* Info.plist */,
+			);
+			path = DomainTests;
+			sourceTree = "<group>";
+		};
 		1BEB6A89242DC15D00B3BCE3 = {
 			isa = PBXGroup;
 			children = (
 				1BEB6A94242DC15D00B3BCE3 /* ContactsApp */,
 				1B61663D243487C100ACB5DA /* ContactsAppTests */,
+				1BDFE573258CC4EF00E85647 /* DomainTests */,
 				1BEB6A93242DC15D00B3BCE3 /* Products */,
 				43053A043A2A3D5BB27DAA4F /* Pods */,
 				E07D2BBB2D66716B6C732A84 /* Frameworks */,

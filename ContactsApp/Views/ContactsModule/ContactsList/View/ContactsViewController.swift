@@ -15,7 +15,7 @@ class ContactsViewController: UIViewController {
     
     @IBOutlet weak var contactsTableView: UITableView!
     
-    var presentor: ContactsViewModel!
+    var viewModel: ContactsViewModel!
     let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
@@ -24,8 +24,9 @@ class ContactsViewController: UIViewController {
         
         setupTableView()
         setupLoading()
-        setupHendler()
-        self.presentor.getContacts()
+        setupApiHendler()
+        setupUIHendlers()
+        self.viewModel.getContacts()
 
     }
     private func setupTableView() {
@@ -39,40 +40,48 @@ class ContactsViewController: UIViewController {
     private func setupTableViewBinding() {
         let nib = UINib(nibName: ContactsTableViewCell.identifier, bundle: nil)
         contactsTableView.register(nib, forCellReuseIdentifier: ContactsTableViewCell.identifier)
-        
-        presentor
+        viewModel
             .dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, Entry>>(
                 configureCell: { (dataSource, tableView, indexPath, item) -> ContactsTableViewCell in
                     let cell = tableView.dequeueReusableCell(withIdentifier: ContactsTableViewCell.identifier, for: indexPath) as! ContactsTableViewCell
                     cell.contact = item
                     return cell
                 }
-            )
+        )
         
-        presentor
+        viewModel
             .items
-                .bind(to: contactsTableView.rx.items(dataSource:  presentor.dataSource))
+                .bind(to: contactsTableView.rx.items(dataSource:  viewModel.dataSource))
                 .disposed(by: disposeBag)
-        contactsTableView
-            .rx.setDelegate(self)
-            .disposed(by: disposeBag)
         
+        viewModel.isLoading.asObservable().subscribe(onNext: { (isLoading) in
+            if isLoading{
+                self.contactsTableView
+                    .rx
+                        .setDelegate(self)
+                    .disposed(by: self.disposeBag)
+            }
+        }).disposed(by: self.disposeBag)
+    }
+    
+    private func setupUIHendlers(){
         Observable
             .zip(contactsTableView.rx.itemSelected, contactsTableView.rx.modelSelected(Entry.self))
-        .bind { [unowned self] indexPath, model in
-            self.presentor.tapOnTheContact(contact: model)
-        }
-        .disposed(by: disposeBag)
+            .bind { [unowned self] indexPath, model in
+                self.viewModel.tapOnTheContact(contact: model)
+            }
+            .disposed(by: disposeBag)
     }
-    private func setupHendler(){
-        self.presentor.error.asObservable().subscribe(onNext: { [unowned self] (error) in
+    
+    private func setupApiHendler(){
+        self.viewModel.error.asObservable().subscribe(onNext: { [unowned self] (error) in
             self.showAlert(message: error)
         }).disposed(by: self.disposeBag)
     }
     
     private func setupLoading(){
         let loader: LoaderViewProtocol = LoaderView(onview: self.view)
-        presentor.isLoading.asObservable().subscribe(onNext: { (isLoading) in
+        viewModel.isLoading.asObservable().subscribe(onNext: { (isLoading) in
             loader.isLoading.onNext(isLoading)
         }).disposed(by: self.disposeBag)
         
@@ -82,7 +91,7 @@ extension ContactsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel(frame: CGRect(x: 10, y: 150, width: 230, height: 21))
-        label.text = "\(self.presentor.items.value[section].model)"
+        label.text = "\(self.viewModel.items.value[section].model)"
         let frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 42)
         let headerView = UIView(frame: frame)
         headerView.backgroundColor = UIColor.darkGray
@@ -106,14 +115,14 @@ extension ContactsViewController {
         let alert =  UIAlertController(title: title, message: alertMessege, preferredStyle: style!)
         let actionRetry = UIAlertAction(title: "Retry", style: .default) { [unowned self] (action:UIAlertAction) in
             alert.dismiss(animated: true) {
-                self.presentor.getContacts()
+                self.viewModel.getContacts()
             }
         }
         let actionOK = UIAlertAction(title: "OK", style: .default) { (action) in
             alert.dismiss(animated: true)
         }
         let actionGoAuth = UIAlertAction(title: "Авторизоваться", style: .default) { [unowned self] (action)  in
-            self.presentor.goToAuthentication()
+            self.viewModel.goToAuthentication()
         }
         switch message{
             

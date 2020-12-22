@@ -49,7 +49,7 @@ class ContactsViewModel: ViewModelProtocol{
         self.useCases =  ContactsUsecaseProvider()
         self.isLoading.onNext(true)
         self.nextEntries = [Entry]()
-        self.view.presentor = self
+        self.view.viewModel = self
     }
 
     func tapOnTheContact(contact: Entry){

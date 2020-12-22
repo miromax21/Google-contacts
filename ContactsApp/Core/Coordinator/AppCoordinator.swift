@@ -23,9 +23,7 @@ final class AppCoordinator {
     }
     
     fileprivate func getCoordinator(coordinator: AppCoordinatorEnum) -> UIViewController {
-        
         self.router.navigationController.navigationBar.isHidden = false
-        
         switch coordinator {
             case .login(let coordinator):
                 return presentViewController(coordinator: LoginCoordinator(), goAfterCoordinator: coordinator)

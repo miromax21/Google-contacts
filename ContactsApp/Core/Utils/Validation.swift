@@ -20,17 +20,11 @@ enum Validation: String {
     }
     
     func validate(text: String, validation: [ExtendedValidation]? ) -> Bool {
-        
         if !NSPredicate(format: "SELF MATCHES %@", self.rawValue).evaluate(with: text){
             return false
         }
-        
-        if let validation = validation {
-            for valide in validation{
-                if !valide.validate(val: text){
-                    return false
-                }
-            }
+        if let validationItems = validation, (validationItems.first(where: { !$0.validate(val: text)}) != nil){
+            return false
         }
         
         return true
