@@ -14,8 +14,7 @@ import RxDataSources
 class ContactsViewController: UIViewController {
     
     @IBOutlet weak var contactsTableView: UITableView!
-    
-    var viewModel: ContactsViewModel!
+    unowned var viewModel: ContactsViewModel!
     let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
@@ -151,7 +150,6 @@ extension ContactsViewController {
         DispatchQueue.main.async {
             self.present(alert, animated: true)
         }
-        
     }
 }
 

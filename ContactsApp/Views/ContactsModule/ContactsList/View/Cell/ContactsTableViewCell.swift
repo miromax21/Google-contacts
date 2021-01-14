@@ -17,9 +17,17 @@ class ContactsTableViewCell: UITableViewCell {
     @IBOutlet weak var emaillable: UILabel!
     var contact: Entry? {
         willSet(contact){
-            guard let contact = contact else {return}
+            guard let contact = contact else {
+                self.setDefault()
+                return
+            }
             self.contactLable.text = contact.name?.fullName ?? contact.title
             self.emaillable.text = contact.gmail?.address
         }
+    }
+    
+    func setDefault(){
+        self.contactLable.text = ""
+        self.emaillable.text = ""
     }
 }
